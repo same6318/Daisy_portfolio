@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :topics
   has_many :reviews
-  belongs_to :company
+  belongs_to :company, optional: true
 end

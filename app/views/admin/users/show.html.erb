@@ -1,0 +1,44 @@
+<%= render "admin/navigation" %>
+<%= render "admin/user" %>
+
+<div class="column">
+  <h2>トピック一覧</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>作成日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @topics.each do |topic| %>
+        <tr>
+          <td><%= topic.title %></td>
+          <td><%= topic.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td><%= link_to "詳細", admin_topics_path(topic) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="column">
+  <h2>レビュー一覧</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>企業名</th>
+        <th>作成日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td><%= review.company.name %></td>
+          <td><%= review.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td><%= link_to "詳細", admin_reviews_path(review) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

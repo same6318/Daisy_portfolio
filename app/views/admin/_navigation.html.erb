@@ -1,0 +1,10 @@
+<nav>
+  <h1>管理者用画面</h1>
+  <ul>
+    <li><%= link_to "ユーザー一覧", admin_users_path %></li>
+    <li><%= link_to "トピック一覧", admin_topics_path %></li>
+    <li><%= link_to "レビュー一覧", admin_reviews_path %></li>
+    <li><%= link_to "企業一覧", admin_companies_path %></li>
+    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+  </ul>
+</nav>

@@ -1,0 +1,10 @@
+<h1>アカウント詳細</h1>
+
+<p>名前: <%= @user.name %></p>
+<p>メール: <%= @user.email %></p>
+<!-- 必要に応じて他の属性も追加 -->
+
+<!-- 編集ページへのリンク -->
+<%= link_to "編集", edit_user_registration_path %>
+<!-- 戻るリンク -->
+<%= link_to "戻る", user_path(@user) %>

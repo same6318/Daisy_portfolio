@@ -9,8 +9,17 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <body>
+<!-- ゲストユーザ（ログイン）　-->
+    <% if user_signed_in? %>
+      <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
+
+    <% else %>
+      <%= link_to "新規登録", new_user_registration_path, id: "", class: "nav-item nav-link" %>
+      <%= link_to "ログイン", new_user_session_path, id: "", class: "nav-item nav-link" %>
+    
+    <% end %>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,19 @@
+<%= render "admin/navigation" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>レビュー一覧</th>
+    </tr>
+  </thead>
+</table>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= link_to "詳細", admin_review_path(review) %></td><br>
+        <td>ユーザー名：<%= review.user.name %><td><br>
+        <td>企業名：<%= review.company.name %></td><br>
+      </tr>
+    <% end %>
+  </tbody>

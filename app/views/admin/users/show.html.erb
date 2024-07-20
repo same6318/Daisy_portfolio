@@ -1,6 +1,9 @@
 <%= render "admin/navigation" %>
 <%= render "admin/user" %>
 
+<%= link_to "削除", admin_user_path(@user), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
+<%= link_to "戻る", admin_users_path %>
+
 <div class="column">
   <h2>トピック一覧</h2>
   <table>
@@ -15,7 +18,7 @@
         <tr>
           <td><%= topic.title %></td>
           <td><%= topic.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-          <td><%= link_to "詳細", admin_topics_path(topic) %></td>
+          <td><%= link_to "詳細", admin_topic_path(topic) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -36,7 +39,7 @@
         <tr>
           <td><%= review.company.name %></td>
           <td><%= review.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-          <td><%= link_to "詳細", admin_reviews_path(review) %></td>
+          <td><%= link_to "詳細", admin_review_path(review) %></td>
         </tr>
       <% end %>
     </tbody>

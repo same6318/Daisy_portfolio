@@ -1,5 +1,6 @@
 class Admin::SessionsController < Devise::SessionsController
-  before_action :authenticate_user!
+  before_action :authenticate_user! #ログインユーザーかの確認
+  before_action :require_admin #ユーザーのステータスを確認
 
   def new
     super
@@ -30,6 +31,13 @@ class Admin::SessionsController < Devise::SessionsController
 
   def after_sign_out_path_for(resource)
     new_admin_session_path
+  end
+
+  def require_admin
+    unless current_user.admin?
+      flash[:notice] = "管理者以外アクセスできません"
+      redirect_to tasks_path
+    end
   end
 
 end

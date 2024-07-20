@@ -1,0 +1,23 @@
+<%= render "admin/navigation" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>企業一覧</th>
+    </tr>
+  </thead>
+</table>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= link_to "詳細", admin_company_path(company) %></td><br>
+        <td>企業名：<%= company.name %></td><br>
+      </tr>
+    <% end %>
+    <% @company_review_count.each do |count| %>
+      <tr>
+        <td>企業レビュー数：<%= count %>
+      </tr>
+    <% end %>
+  </tbody>

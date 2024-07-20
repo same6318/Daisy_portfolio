@@ -12,7 +12,7 @@ class User < ApplicationRecord
   enum gender: { male: 0, female: 1, other: 2 }
   enum purpose: { personal: 0, business: 1, education: 2, hobby: 3 }
    
-#↑14行目触らない
+
   #Googleログイン
   def self.create_unique_string
     SecureRandom.uuid

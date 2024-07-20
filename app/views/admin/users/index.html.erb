@@ -1,0 +1,21 @@
+<%= render "admin/navigation" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー一覧</th>
+    </tr>
+  </thead>
+</table>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to "ユーザー名", admin_user_path(user) %>：<%= user.name %></td><br>
+        <td>ステータス：<%= user.role %><td><br>
+        <td>メールアドレス：<%= user.email %></td><br>
+        <td>トピック投稿数：<%= user.topics.count %></td><br>
+        <td>レビュー投稿数：<%= user.reviews.count %></td><br>
+      </tr>
+    <% end %>
+  </tbody>

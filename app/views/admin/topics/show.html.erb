@@ -1,0 +1,16 @@
+<%= render "admin/navigation" %>
+<%= render "admin/user" %>
+
+<div>
+  <h1>トピック詳細</h1>
+  <h2><%= @topic.title %></h2>
+  
+  <div>
+    <p><%= @topic.content %></p>
+    <p>作成日時: <%= @topic.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+  </div>
+
+</div>
+
+<%= link_to "削除", admin_topic_path(@topic), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
+<%= link_to "戻る", admin_topics_path %>

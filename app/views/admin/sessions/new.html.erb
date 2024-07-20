@@ -1,0 +1,17 @@
+<h1>Daisy 管理者用ログイン画面</h1>
+
+<%= form_with model: resource, as: resource_name, url: session_path(resource_name), local: true do |form| %>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

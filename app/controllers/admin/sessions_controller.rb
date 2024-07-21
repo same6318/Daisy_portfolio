@@ -1,6 +1,6 @@
 class Admin::SessionsController < Devise::SessionsController
   before_action :authenticate_user! #ログインユーザーかの確認
-  before_action :require_admin #ユーザーのステータスを確認
+  before_action :require_admin, only: [:destroy] #ユーザーのステータスを確認
 
   def new
     super
@@ -35,8 +35,9 @@ class Admin::SessionsController < Devise::SessionsController
 
   def require_admin
     unless current_user.admin?
-      flash[:notice] = "管理者以外アクセスできません"
-      redirect_to tasks_path
+      flash[:notice] = "アクセス権限がありません"
+      sign_out(current_user) #ユーザーを強制的にログアウトさせる
+      redirect_to new_user_session_path
     end
   end
 

@@ -13,11 +13,7 @@
       <tr>
         <td><%= link_to "詳細", admin_company_path(company) %></td><br>
         <td>企業名：<%= company.name %></td><br>
-      </tr>
-    <% end %>
-    <% @company_review_count.each do |count| %>
-      <tr>
-        <td>企業レビュー数：<%= count %>
+        <td>企業レビュー数：<%= company.reviews_count %>
       </tr>
     <% end %>
   </tbody>

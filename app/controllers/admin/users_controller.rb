@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :require_admin
 
   def index
     @users = User.all
@@ -14,5 +15,16 @@ class Admin::UsersController < ApplicationController
     @user.destroy
     redirect_to new_admin_session_path
   end
+
+  private
+
+  def require_admin
+    unless current_user.admin?
+      flash[:notice] = "アクセス権限がありません"
+      sign_out(current_user) #ユーザーを強制的にログアウトさせる
+      redirect_to new_user_session_path
+    end
+  end
+
 
 end

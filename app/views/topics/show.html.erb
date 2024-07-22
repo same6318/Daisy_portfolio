@@ -1,24 +1,36 @@
 <div>
   <h1>トピック詳細</h1>
-  <h2><%= @topic.title %></h2>
-  
+</div>
+
   <div>
+    <h2>タイトル： <%= @topic.title %></h2>
+  </div>
+
+  <div>
+    <h2>本文： </h2>
     <p><%= @topic.content %></p>
     <p>作成日時: <%= @topic.created_at.strftime('%Y/%m/%d %H:%M') %></p>
   </div>
 
-  <p>
-    <strong>Portrait:</strong>
-    <%#= link_to @topic.portrait.filename, @topic.portrait if @topic.portrait.attached? %>
-    <%#= image_tag @topic.portrait.variant(resize_to_limit: [100,100]) if @topic.portrait.attached? %>
-    <%# 詳細画面でimage_tagを使って画像を表示
-        表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
-        (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
-  </p>
+  <div>
+    <p>
+      <strong>Portrait:</strong>
+      <%#= link_to @topic.portrait.filename, @topic.portrait if @topic.portrait.attached? %>
+      <%#= image_tag @topic.portrait.variant(resize_to_limit: [100,100]) if @topic.portrait.attached? %>
+      <%# 詳細画面でimage_tagを使って画像を表示
+          表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
+          (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
+    </p>
+  </div>
+
+  <div>
+    <p>投稿者名： <%= @topic.user.name %></p>
+  </div>
 
 </div>
 
 <% if current_user.id == @topic.user_id %>
   <%= link_to "削除", topic_path(@topic), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
+  <%= link_to "編集", edit_topic_path(@topic) %>
 <% end %>
 <%= link_to "戻る", topics_path %>

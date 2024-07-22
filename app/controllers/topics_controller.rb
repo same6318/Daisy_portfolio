@@ -42,13 +42,14 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy
-    redirect_to admin_topics_path
+    flash[:notice] = t('.destroyed')
+    redirect_to topics_path
   end
 
   private
 
   def topic_params #:portraitを追加、モデルはhas_many_attached :portrait
-    params.require(:topic).permit(:title, :content, :user_id, :company_id)
+    params.require(:topic).permit(:title, :content).merge(user_id: current_user.id, company_id: current_user.company_id)
   end
 
   def set_topic #今回は人のトピックも見ることができる

@@ -1,10 +1,4 @@
-<%= form_with(model: @review, local: true) do |form| %>
-
-  <%#　ここにユーザーの匿名希望の選択肢を記載したい。カラム追加必要じゃないか。　%>
-  <div class="field">
-    <%= form.label :unkown, "投稿者名：" %>
-    <%#= form.check_box :select, class:"form-check-label" %>
-  </div>
+<%= form_with(model: [:company, @review], local: true) do |form| %>
 
   <div class="field">
     <%= form.label :work_life_balance, class:"form-label" %>
@@ -93,12 +87,12 @@
 
   <div class="field">
     <%= form.label :content, class:"form-label" %>
-    <%= form.text_area :content, class:"form-control" %>
+    <%= form.text_area :content, rows: "10", placeholder:"ここに文章でレビューを記入します", class:"form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :company_portrait %>
-    <%#= form.file_field :portrait %>
+    <%#= form.label :company_portrait %>
+    <%#= form.file_field :portrait ここ要らない。企業のフォームの時だけ%>
   </div>
 
   <div class="actions">

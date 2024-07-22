@@ -1,37 +1,60 @@
 <div>
-  <p>レビュー企業名： <%= @company.name %></p>
-  <p>ユーザー在職状態： <%= @review.select %>
-</div>
+  <h1>企業詳細</h1>
 
-<div>
-  <h1>レビュー詳細</h1>
+  <div>
+    <p>企業名： <%= @company.name %></p>
+    <p>企業ユーザー名： <%= @user&.company_id ? @user.name : "" %>
+    <p>企業レビュー数： <%= @company.reviews.count %>
+  </div>
 
   <div>
     <ul>
-      <li>ワークライフバランス： <%= @review.work_life_balance %></li>
-      <li>職場の雰囲気： <%= @review.workplace_atmosphere %></li>
-      <li>フレックス制度： <%= @review.flex_system %></li>
-      <li>リモート勤務： <%= @review.remote_work %></li>
-      <li>ハラスメント対策： <%= @review.harassment_prevention %></li>
-      <li>育休、介護休暇： <%= @review.parental_care_leave %></li>
-      <li>育児支援制度： <%= @review.childcare_support %></li>
-      <li>福利厚生施設： <%= @review.welfare_facilities %></li>
-      <li>評価制度： <%= @review.evaluation_system %></li>
-      <li>昇進・昇給に関して： <%= @review.promotion_salary %></li>
-      <li>残業、休日出勤： <%= @review.overtime_holiday_work %></li>
-      <li>手当・補助等： <%= @review.allowances_subsidies %></li>
-      <li>研修・教育支援： <%= @review.training_education_support %></li>
-      <li>キャリアアップ支援： <%= @review.career_support %></li>
-      <li>業務の従事に関して： <%= @review.work_engagement%></li>
+      <li>資本金： <%= @company.capital %></li>
+      <li>社員人数： <%= @company.employee %></li>
+      <li>売上高： <%= @company.sales %></li>
+      <li>所在地： <%= @company.address %></li>
+      <li>業界・業種： <%= @company.industry %></li>
+      <li>URL： <%= @company_url %></li>
+      <li>お問合せ： <%= @company.contact %></li>
     </ul>
   </div>
 
   <div>
-    <p>レビュー本文：<%= @review.content %></p>
-    <p>作成日時： <%= @review.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+    <p>企業説明：<%= @company.description %></p>
+  </div>
+
+  <div>
+      <p>
+      <strong>Portrait:</strong>
+      <%#= link_to @topic.portrait.filename, @topic.portrait if @topic.portrait.attached? %>
+      <%#= image_tag @topic.portrait.variant(resize_to_limit: [100,100]) if @topic.portrait.attached? %>
+      <%# 詳細画面でimage_tagを使って画像を表示
+          表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
+          (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
+    </p>
+  <div>
+
+  <div>
+    <p>作成日時： <%= @company.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+  </div>
+
+  <div>
+    <p>企業レビュー平均： <%= @company.company_reviews_average %></p>
+  </div>
+
+  <div>
+    <p>ピックアップレビュー</p>
+  </div>
+
+  <div>
+      <% @pickup_reviews.each do |review| %>
+        <div>
+          <p><small><%= link_to "レビュー", company_review_path(review.company_id, review) %>: <%= truncate(review.content, separator: "、") %></small></p>
+          <p><small>レビュー評価平均： <%= review.review_average %></small></p>
+        </div>
+      <% end %>
   </div>
 
 </div>
 
-<%= link_to "削除", admin_review_path(@review), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
-<%= link_to "戻る", admin_reviews_path %>
+<%= link_to "戻る", companies_path %>

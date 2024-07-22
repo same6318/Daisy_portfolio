@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user! #理由が分からない。, only:[:edit,:update]
   before_action :set_user, only: [:show, :edit, :update]
   before_action :authorize_user, only: [:show]
 

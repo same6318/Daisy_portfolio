@@ -11,24 +11,13 @@
   </head>
   
   <body>
-     <% if user_signed_in? %> 
-      <% if current_user.admin? %>
-      <ul>
-        <li><%= link_to "ユーザー一覧", admin_users_path %></li>
-        <li><%= link_to "トピック一覧", admin_topics_path %></li>
-        <li><%= link_to "レビュー一覧", admin_reviews_path %></li>
-        <li><%= link_to "企業一覧", admin_companies_path %></li>
-        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-      </ul> 
-    <% else %>
-        <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
-        <%= link_to "ホーム", users_path, id: "", class: "nav-item nav-link" %>
-        <%= link_to "会社レビュ一覧", companies_path, id: "", class: "nav-item nav-link" %>
-        <%= link_to "トピックス投稿一覧", users_path(current_user), id: "", class: "nav-item nav-link" %>
-        <%= link_to "企業レビュー投稿",destroy_user_session_path, method: :delete %>
-        <%= link_to "トピックス投稿",destroy_user_session_path, method: :delete %>
-        <%= link_to "アカウント詳細", user_path(current_user) %>
-      <% end %>
+     <% if user_signed_in? %>
+      <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
+      <%= link_to "ホーム", users_path, id: "", class: "nav-item nav-link" %>
+      <%= link_to "企業一覧", companies_path, id: "", class: "nav-item nav-link" %>
+      <%= link_to "トピックス一覧", topics_path, id: "", class: "nav-item nav-link" %>
+      <%= link_to "トピックス投稿", new_topic_path %>
+      <%= link_to "アカウント詳細", user_path(current_user) %>
     <% else %>
       <%= link_to "新規登録", new_user_registration_path, id: "", class: "nav-item nav-link" %>
       <%= link_to "ログイン", new_user_session_path, id: "", class: "nav-item nav-link" %>

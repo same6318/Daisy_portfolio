@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find(params[:id])
     @user = @company.users.find_by(company_id: @company.id) #企業に紐づいている企業ユーザーを表示する
-    #@reviews = @company.reviews
+    @reviews = @company.reviews
     @pickup_reviews = @company.reviews.order(created_at: :desc).limit(3) #新着レビュー3個ピックアップ
   end
 

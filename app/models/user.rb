@@ -10,9 +10,9 @@ class User < ApplicationRecord
 
   enum age: { teens: 0, twenties: 1, thirties: 2, forties: 3 }
   enum gender: { male: 0, female: 1, other: 2 }
-  enum purpose: { personal: 0, business: 1, education: 2, hobby: 3 }
+  # purpose: { personal: 0, business: 1, education: 2, hobby: 3 }
   enum role: { general: 0, company: 1, admin: 2 }
-  validates :password, confirmation: true, length: { minimum: 6 }
+  #validates :password, confirmation: true, length: { minimum: 6 }
 
   #Googleログイン
   def self.create_unique_string

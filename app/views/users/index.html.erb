@@ -1,6 +1,24 @@
 <h1> Daisyマイページ</h1>
 
 
-<h3>レビュー</h3>
-<h3>トピックス</h3>
+<h1>カレントユーザーのレビューとトピック</h1>
+
+<h2>レビュー</h2>
+<% @reviews.each do |review| %>
+  <div>
+    <p>ワークライフバランス: <%= review.work_life_balance %></p>
+    <p>職場の雰囲気: <%= review.workplace_atmosphere %></p>
+    <p>フレックスシステム: <%= review.flex_system %></p>
+    <!-- その他のレビュー項目を追加 -->
+  </div>
+<% end %>
+
+<h2>トピック</h2>
+<% @topics.each do |topic| %>
+  <div>
+    <p>トピックのタイトル: <%= topic.title %></p>
+    <p>トピックの内容: <%= topic.content %></p>
+    <!-- その他のトピック項目を追加 -->
+  </div>
+<% end %>
 

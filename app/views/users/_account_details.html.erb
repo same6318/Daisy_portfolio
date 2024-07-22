@@ -1,0 +1,15 @@
+<!-- アカウント詳細　-->
+
+<p>氏名: <%= @user.name %></p>
+<p>ハンドルネーム: <%= @user.screen_name %></p>
+<p>年代: <%= t("enums.user.age.#{@user.age}")%></p>
+<p>性別: <%= t("enums.user.gender.#{@user.gender}") %></p>
+<p>メールアドレス: <%= @user.email %></p>
+<p>パスワード: <%= @user.password %></p>
+<p>利用目的: <%= @user.purpose %></p>
+
+
+<!-- 編集ページへのリンク -->
+<%= link_to "編集", edit_user_path %>
+<!-- 戻るリンク -->
+<%= link_to "戻る", users_path %>

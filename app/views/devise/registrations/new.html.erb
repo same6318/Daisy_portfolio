@@ -38,10 +38,13 @@
     <%= f.text_field :screen_name, autofocus: true %>
 </div>
 
-<div class="field">
-  <%= f.label :purpose, '利用目的' %><br>
-  <%= f.select :purpose, options_for_select(User.purposes.keys.map { |k| [I18n.t("enums.user.purpose.#{k}"), k] }), include_blank: true %>
-</div>
+  <div class="field">
+    <%= f.label :role, '役割' %><br>
+    <%= f.select :role, options_for_select(User.roles.keys.map { |k| [I18n.t("enums.user.role.#{k}"), k] }), include_blank: true %>
+  </div>
+
+
+
 
 <h3>利用目的の注意書き</h3>
 

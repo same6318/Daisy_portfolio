@@ -6,14 +6,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    params[:user][:uid] = sign_up_params[:email]
+    params[:user][:provider] = :email
+    #binding.irb
+    #build_resource(uid: params[:user][:email], provider: :email)
     super
-    flash[:notice] = "アカウントを登録しました"
   end
 
   def update
     if resource.update(update_params)
-       flash[:notice] = "アカウントを更新しました"
-       bypass_sign_in(@user) #アカウント編集後もログイン状態を保持するメソッド。
+      flash[:notice] = "アカウントを更新しました"
+      bypass_sign_in(@user) #アカウント編集後もログイン状態を保持するメソッド。
       redirect_to user_path(resource)
     else
       render :edit
@@ -23,8 +26,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def update_params
-    params.require(:user).permit(:name, :age, :gender, :email, :screen_name, :password, :password_confirmation, :purpose,:role)
+  def sign_up_params
+    params.require(:user).permit(
+      :name, :uid, :provider, :age, :gender, :email, :screen_name, :password, :password_confirmation, :purpose, :role
+    )
   end
 
   #Devise を使ってユーザーの登録やアカウント情報の更新を行うときに使用

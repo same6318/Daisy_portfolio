@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user! #理由が分からない。, only:[:edit,:update]
   before_action :set_user, only: [:show, :edit, :update]
 
   def index
     @users = User.all
+    @user = current_user
+    @reviews = @user.reviews
   end
 
   def show
@@ -15,12 +17,11 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash[:notice] = "アカウントを更新しました"
   
-      # 役割に応じてリダイレクト先を変更
-      if @user.role == 'admin'
-        redirect_to admin_companies_path # 管理者用のページにリダイレクト
-      else
-        redirect_to companies_path # 一般ユーザー用のページにリダイレクト
-      end
+      # # 役割に応じてリダイレクト先を変更
+      # if @user.role == 'admin'
+      #   redirect_to admin_companies_path # 管理者用のページにリダイレクト
+      # else
+        redirect_to user_path(@user) # 一般ユーザー用のページにリダイレクト
     else
       render :edit # 更新に失敗した場合は編集ページを再表示
     end

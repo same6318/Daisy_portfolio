@@ -1,3 +1,6 @@
+<div>
+  <h1>レビュー詳細</h1>
+</div>
 
 <div>
   <p>レビュー企業名： <%= @company.name %></p>
@@ -5,17 +8,9 @@
 </div>
 
 <div>
-  <% if @review.user.name? %>
-    <p>ユーザー名： <%= reviews.user.name %></p>
-      <% if @review.user.screen_name? %>
-        <p>ユーザー名： <%= review.user.screen_name %></p>
-      <% end %>
-  <% else %>
-    <p>ユーザー名： 匿名希望</p>
-  <% end %>
-
-<div>
-  <h1>レビュー詳細</h1>
+  <p>性別： <%= @user.gender %></p>
+  <p>年代： <%= @user.age %></p>
+</div>
 
   <div>
     <ul>
@@ -38,6 +33,7 @@
   </div>
 
   <div>
+    <p>レビュー評価平均： <%= @review.review_average %></p>
     <p>レビュー本文：<%= @review.content %></p>
     <p>作成日時： <%= @review.created_at.strftime('%Y/%m/%d %H:%M') %></p>
   </div>
@@ -45,6 +41,7 @@
 </div>
 
 <% if current_user.id == @review.user_id %>
-  <%= link_to "削除", review_path(@review), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
+  <%= link_to "編集", edit_company_review_path(@review.company_id, @review) %>
+  <%= link_to "削除", company_review_path(@review.company_id, @review), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
 <% end %>
 <%= link_to "戻る", users_path %>

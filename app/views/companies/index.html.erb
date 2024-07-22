@@ -10,7 +10,8 @@
   <tbody>
     <% @companies.each do |company| %>
       <tr>
-        <td><%= link_to "詳細", companies_path %></td><br>
+        <td><%= link_to "詳細", company_path(company) %></td><br>
+        <td><%= link_to "レビュー投稿", new_company_review_path(company) %></td><br>
         <td>企業名：<%= company.name %></td><br>
       </tr>
     <% end %>

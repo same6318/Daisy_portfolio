@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def after_sign_in_path_for(resource)
-    users_path # サインイン後に /users にリダイレクト
+    users_path(current_user) # サインイン後に /users にリダイレクト
   end
 
   def after_sign_out_path_for(resource_or_scope)

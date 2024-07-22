@@ -2,5 +2,15 @@
 
 
 <h3>レビュー</h3>
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= link_to "レビュー", company_review_path(review.company_id, review) %>：<%= review.company.name %></td><br>
+        <td>投稿ユーザー名：<%= review.user.name %><td><br>
+        <td><%#= topic.portrait %></td><br>
+      </tr>
+    <% end %>
+  </tbody>
+
 <h3>トピックス</h3>
 

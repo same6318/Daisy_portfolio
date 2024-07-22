@@ -9,16 +9,16 @@ class ReviewsController < ApplicationController
 
   def new
     @user = current_user
-    @company = Company.find_by(id: params[:id]) #企業一覧ページから選択した企業IDを取得したい
+    @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
     @review = @company.reviews.build
   end
 
   def create
+    @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
     @review = @company.reviews.build(review_params)
-    @review.user = current_user
     if @review.save
       flash[:notice] = t('.created')
-      redirect_to review_path(@review)
+      redirect_to company_review_path(@company.id, @review.id)
     else
       flash[:notice] = "レビューの作成に失敗しました"
       render :new
@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
   def update
     if @review.update(review_params)
       flash[:notice] = t('.updated')
-      redirect_to reviews_path
+      redirect_to company_review_path(@company.id, @review.id)
     else
       flash[:notice] = "更新に失敗しました"
       render :edit
@@ -46,13 +46,13 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     flash[:notice] = t('.destroyed')
-    redirect_to admin_reviews_path
+    redirect_to users_path
   end
 
 
   private
 
-  def review_params #:company_portrait? modelにも[has_many_attached]必要
+  def review_params
     params.require(:review).permit(
       :work_life_balance,
       :workplace_atmosphere,
@@ -71,9 +71,7 @@ class ReviewsController < ApplicationController
       :career_support,
       :work_engagement,
       :content,
-      :select,
-      :user_id,
-      :company_id)
+      :select).merge(user_id: current_user.id)
   end
 
   def set_review #今回は人のレビューも見ることができる

@@ -11,8 +11,8 @@
   </div>
 
   <div class="field">
-    <%#= form.label :portrait %>
-    <%#= form.file_field :portrait %>
+    <%= form.label :portrait %>
+    <%= form.file_field :portrait %>
   </div>
 
   <div class="actions">
@@ -24,8 +24,8 @@
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-        <% @topic.errors.each do |error| %>
-          <li><%= "#{attr} #{message}" %></li>
+        <% @topic.errors.each do |message, error| %>
+          <li><%= " #{message}#{error}" %></li>
         <% end %>
       </ul>
     </div>

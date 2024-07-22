@@ -1,4 +1,21 @@
 ja:
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: を入力してください
+  devise:
+    failure:
+        already_authenticated: "既にログインしています"
+        invalid: "無効なメールアドレスまたはパスワードです"
+    sessions:
+      user:
+        signed_in: "ログインしました"
+        signed_out: "ログアウトしました"
+    registrations:
+      signed_up: '登録が完了しました'
+      destroyed: 'アカウントを削除しました'
+    passwords:
+      blank: "パスワードを入力してください"
   enums:
     user:
       age:
@@ -15,3 +32,16 @@ ja:
         business: "ビジネス利用" 
         education: "教育・学習"
         hobby: "趣味・娯楽"
+      role:
+        general: "一般"
+        company: "企業"
+        admin: "管理者"
+      attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+
+      
+      

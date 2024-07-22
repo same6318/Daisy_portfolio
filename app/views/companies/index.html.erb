@@ -1,3 +1,4 @@
+
 <table>
   <thead>
     <tr>
@@ -9,9 +10,8 @@
   <tbody>
     <% @companies.each do |company| %>
       <tr>
-        <td><%= link_to "詳細", admin_company_path(company) %></td><br>
+        <td><%= link_to "詳細", companies_path %></td><br>
         <td>企業名：<%= company.name %></td><br>
-        <td>企業レビュー数：<%= company.reviews_count %>
       </tr>
     <% end %>
   </tbody>

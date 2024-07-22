@@ -5,7 +5,6 @@ class Admin::CompaniesController < ApplicationController
     .select('companies.id, companies.name, COUNT(reviews.id) AS reviews_count')
     .joins(users: :reviews)
     .group('companies.id')
-    binding.irb
   end
 
   def show

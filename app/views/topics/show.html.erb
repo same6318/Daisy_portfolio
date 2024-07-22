@@ -1,6 +1,3 @@
-<%= render "admin/navigation" %>
-<%= render "admin/user" %>
-
 <div>
   <h1>トピック詳細</h1>
   <h2><%= @topic.title %></h2>
@@ -12,8 +9,8 @@
 
   <p>
     <strong>Portrait:</strong>
-    <%= link_to @topic.portrait.filename, @topic.portrait if @topic.portrait.attached? %>
-    <%= image_tag @topic.portrait.variant(resize_to_limit: [100,100]) if @topic.portrait.attached? %>
+    <%#= link_to @topic.portrait.filename, @topic.portrait if @topic.portrait.attached? %>
+    <%#= image_tag @topic.portrait.variant(resize_to_limit: [100,100]) if @topic.portrait.attached? %>
     <%# 詳細画面でimage_tagを使って画像を表示
         表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
         (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
@@ -21,5 +18,7 @@
 
 </div>
 
-<%= link_to "削除", admin_topic_path(@topic), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
-<%= link_to "戻る", admin_topics_path %>
+<% if current_user.id == @topic.user_id %>
+  <%= link_to "削除", topic_path(@topic), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
+<% end %>
+<%= link_to "戻る", topics_path %>

@@ -1,0 +1,123 @@
+<%= form_with(model: @review, local: true) do |form| %>
+
+  <%#　ここにユーザーの匿名希望の選択肢を記載したい。カラム追加必要じゃないか。　%>
+  <div class="field">
+    <%= form.label :unkown, "投稿者名：" %>
+    <%#= form.check_box :select, class:"form-check-label" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :work_life_balance, class:"form-label" %>
+    <%= form.select :work_life_balance, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :workplace_atmosphere, class:"form-label" %>
+    <%= form.select :workplace_atmosphere, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flex_system, class:"form-label" %>
+    <%= form.select :flex_system, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remote_work, class:"form-label" %>
+    <%= form.select :remote_work, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :harassment_prevention, class:"form-label" %>
+    <%= form.select :harassment_prevention, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parental_care_leave, class:"form-label" %>
+    <%= form.select :parental_care_leave, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :childcare_support, class:"form-label" %>
+    <%= form.select :childcare_support, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :welfare_facilities, class:"form-label" %>
+    <%= form.select :welfare_facilities, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mental_health_care, class:"form-label" %>
+    <%= form.select :mental_health_care, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :evaluation_system, class:"form-label" %>
+    <%= form.select :evaluation_system, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :promotion_salary, class:"form-label" %>
+    <%= form.select :promotion_salary, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :overtime_holiday_work, class:"form-label" %>
+    <%= form.select :overtime_holiday_work, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :allowances_subsidies, class:"form-label" %>
+    <%= form.select :allowances_subsidies, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :training_education_support, class:"form-label" %>
+    <%= form.select :training_education_support, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :career_support, class:"form-label" %>
+    <%= form.select :career_support, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :work_engagement, class:"form-label" %>
+    <%= form.select :work_engagement, [1,2,3,4,5] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :select, class:"form-label" %>
+    <%= form.check_box :select, class:"form-check-label" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content, class:"form-label" %>
+    <%= form.text_area :content, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_portrait %>
+    <%#= form.file_field :portrait %>
+  </div>
+
+  <div class="actions">
+    <% if @review.new_record? %>
+      <%= form.submit id: "create-user", class:"btn btn-primary" %>
+    <% else %>
+      <%= form.submit id: "update-user", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <% if @review.errors.any? %>
+  <div id="error_explanation"> <%# railsのデフォルトのエラー用スタイルが適用できる。%>
+    <h2><%= pluralize(@review.errors.count, "error") %> prohibited this from being saved:</h2>
+    <ul>
+      <% @review.errors.full_messages.each do |attr, message| %>
+        <li><%= "#{attr} #{message}" %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+<% end %>

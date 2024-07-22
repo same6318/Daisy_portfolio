@@ -1,0 +1,45 @@
+<%= render "admin/navigation" %>
+
+
+<div>
+  <h1>企業詳細</h1>
+
+  <div>
+    <p>企業名： <%= @company.name %></p>
+    <p>企業ユーザー名： <%= @user&.company_id ? @user.name : "" %>
+    <p>企業レビュー数： <%= @company.reviews.count %>
+  </div>
+
+  <div>
+    <ul>
+      <li>資本金： <%= @company.capital %></li>
+      <li>社員人数： <%= @company.employee %></li>
+      <li>売上高： <%= @company.sales %></li>
+      <li>所在地： <%= @company.address %></li>
+      <li>業界・業種： <%= @company.industry %></li>
+      <li>URL： <%= @company_url %></li>
+      <li>お問合せ： <%= @company.contact %></li>
+    </ul>
+  </div>
+
+  <div>
+    <p>企業説明：<%= @company.description %></p>
+    <p>作成日時： <%= @company.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+  </div>
+
+  <div>
+    <p>企業レビュー平均： <%= @company.company_reviews_average %></p>
+  </div>
+
+  <div>
+    <p>ピックアップレビュー</p>
+      <% @pickup_reviews.each do |review| %>
+        <p><small>ユーザー名： <%= review.user.name %></p>
+        <p><small>レビュー評価平均： <%= review.review_average %></p>
+      <% end %>
+  </div>
+
+</div>
+
+<%= link_to "削除", admin_company_path(@company), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
+<%= link_to "戻る", admin_companies_path %>

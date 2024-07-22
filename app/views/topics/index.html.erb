@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th>トピック一覧</th>
+    </tr>
+  </thead>
+</table>
+
+  <tbody>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td><%= link_to "タイトル", topic_path(topic) %>：<%= topic.title %></td><br>
+        <td>投稿ユーザー名：<%= topic.user.name %><td><br>
+        <td><%#= topic.portrait %></td><br>
+      </tr>
+    <% end %>
+  </tbody>

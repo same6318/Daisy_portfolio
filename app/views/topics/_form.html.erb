@@ -1,0 +1,34 @@
+<%= form_with(model: topic) do |form| %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+    <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :portrait %>
+    <%#= form.file_field :portrait %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+    <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @topic.errors.each do |error| %>
+          <li><%= "#{attr} #{message}" %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% end %>

@@ -1,7 +1,7 @@
 <div class="table">
   <tbody>
     <tr>
-      <td>ユーザー名：<%= @user.name %></td><br>
+      <td>ユーザー名：<%= @user&.company_id ? @user.name : "" %></td><br>
       <td>ステータス：<%= @user.role %><td><br>
       <td>メールアドレス：<%= @user.email %></td><br>
       <td>トピック投稿数：<%= @user.topics.count %></td><br>

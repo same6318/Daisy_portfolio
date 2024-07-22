@@ -34,15 +34,11 @@
     <%= f.label :gender, '性別' %><br>
     <%= f.select :gender, options_for_select(User.genders.keys.map { |k| [I18n.t("enums.user.gender.#{k}"), k] }), include_blank: true %>
   </div>
-  
-  <div class="field">
-  <%= f.label :purpose, '利用目的' %><br>
-  <%= f.select :purpose, options_for_select(User.purposes.keys.map { |k| [I18n.t("enums.user.purpose.#{k}"), k] }), include_blank: true %>
-  </div>
 
   <div class="field">
+    <% available_roles = User.roles.keys - ['admin'] %> <!-- 管理者ロールを除外 -->
     <%= f.label :role, '役割' %><br>
-    <%= f.select :role, options_for_select(User.roles.keys.map { |k| [I18n.t("enums.user.role.#{k}"), k] }), include_blank: true %>
+    <%= f.select :role, options_for_select(available_roles.map { |k| [I18n.t("enums.user.role.#{k}"), k] }), include_blank: true %>
   </div>
 
   <div class="field">
@@ -61,7 +57,5 @@
     <%= f.submit "更新する" %>
   </div>
 <% end %>
-
-
 
 <%= link_to "戻る", :back %>

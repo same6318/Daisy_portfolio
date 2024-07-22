@@ -10,5 +10,4 @@ class Company < ApplicationRecord
       total_average / reviews.count #トータルをレビューの数で割る
     end
   end
-
 end

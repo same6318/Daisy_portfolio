@@ -15,8 +15,19 @@
     <%= form.file_field :portrait %>
   </div>
 
+  <div class="field">
+    <%= form.label :ハンドルネームで投稿する %>
+    <span><%= form.check_box :author_name %></span>
+  </div>
+
+  <div>
+    <p>投稿者名として、ハンドルネームを登録していない場合は「匿名希望」で投稿されます.</p>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <% unless topic.author_name? && topic.user.screen_name? %>
+      <%= form.submit "投稿する", data: { confirm: "ハンドルネームの登録がありません。匿名希望で投稿されますが、宜しいですか？"} %>
+    <% end %>
   </div>
 
     <% if @topic.errors.any? %>

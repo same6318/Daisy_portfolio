@@ -4,8 +4,15 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   def index
-    @reviews = Review.includes(:user).all
+    @q = Review.ransack(params[:q])
+    # @reviews = @q.result(distinct: true).includes(:user).all
+    # @reviews = @q.result(distinct: true).where(company_id: params[:company_id])
+    @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
+    @company_reviews = @q.result(distinct: true).where(company_id: params[:company_id]).sort_by(&:review_average)
+    
+    # @company_reviews.map {|d| {average:d.review_average, **d.attributes}}.sort_by {|a| a[:average]}
   end
+
 
   def new
     @user = current_user
@@ -18,7 +25,7 @@ class ReviewsController < ApplicationController
     @review = @company.reviews.build(review_params)
     if @review.save
       flash[:notice] = t('.created')
-      redirect_to company_review_path(@company.id, @review.id)
+      redirect_to company_review_path(@company, @review)
     else
       flash[:notice] = "レビューの作成に失敗しました"
       render :new
@@ -34,9 +41,10 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @company = Company.find_by(id: @review.company) #企業一覧ページから選択した企業IDを取得したい
     if @review.update(review_params)
       flash[:notice] = t('.updated')
-      redirect_to company_review_path(@company.id, @review.id)
+      redirect_to company_review_path(@company, @review)
     else
       flash[:notice] = "更新に失敗しました"
       render :edit

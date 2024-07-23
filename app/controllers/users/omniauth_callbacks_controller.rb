@@ -17,8 +17,18 @@ class Users::OmniauthCallbacksController <  Devise::OmniauthCallbacksController
 
   def after_sign_in_path_for(resource)
     #binding.irb
-    users_path # サインイン後に /users にリダイレクト
+    users_path 
   end
+
+  # def after_sign_in_path_for(resource)
+  #   if resource.provider == 'google_oauth2' && resource.first_sign_in
+  #     # 初めてサインインした場合は編集ページにリダイレクト
+  #     resource.update(first_sign_in: false) # サインイン後にフラグを更新
+  #     edit_user_path(@user)
+  #   else
+  #     super
+  #   end
+  # end
 
   def after_sign_out_path_for(resource_or_scope)
     new_user_session_path # サインアウト後にログインページにリダイレクト

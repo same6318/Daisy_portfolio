@@ -1,16 +1,38 @@
 <h1> Daisyマイページ</h1>
 
-
 <h3>レビュー</h3>
+<table>
   <tbody>
-    <% @reviews.each do |review| %>
+    <% @paginated_items.each do |review| %>
       <tr>
-        <td><%= link_to "レビュー", company_review_path(review.company_id, review) %>：<%= review.company.name %></td><br>
-        <td>投稿ユーザー名：<%= review.user.name %><td><br>
-        <td><%#= topic.portrait %></td><br>
+        <td>
+          <%= link_to "レビュー", user_review_path(current_user, review)  %> <!-- タイトル等に応じて適切に変更 -->
+          <div>投稿ユーザー名：<%= review.user.name %></div>
+          <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+        </td>
       </tr>
     <% end %>
   </tbody>
+</table>
+<h3>トピック</h3>
+<table>
+  <tbody>
+    <% @paginated_items.each do |topic| %>
+      <tr>
+        <td>
+          <% if topic %>
+            <%= link_to "トピック", topic_path(topic) %>
+          <% end %>
+        </td>
+        <td>投稿ユーザー名：<%= topic.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<h3>トピックス</h3>
+
+<%= paginate @paginated_items %>
+
+
+
 

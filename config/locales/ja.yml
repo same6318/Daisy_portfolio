@@ -5,8 +5,16 @@ ja:
       blank: を入力してください
   devise:
     failure:
-        already_authenticated: "既にログインしています"
+      user:
+        already_authenticated: "ログアウトしてください"
         invalid: "無効なメールアドレスまたはパスワードです"
+        unauthenticated: "ログインしてください"
+    omniauth_callbacks:
+      user:
+        success: "ログインしました。"
+        failure: "ログインに失敗しました。"
+      success: "ログインしました。"
+      failure: "ログインに失敗しました。"
     sessions:
       user:
         signed_in: "ログインしました"
@@ -33,9 +41,8 @@ ja:
         education: "教育・学習"
         hobby: "趣味・娯楽"
       role:
-        general: "一般"
-        company: "企業"
-        admin: "管理者"
+        general: "一般ユーザ"
+        company: "企業ユーザ"
       attributes:
       user:
         name: 名前

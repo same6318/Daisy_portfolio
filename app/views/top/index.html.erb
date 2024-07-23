@@ -1,0 +1,29 @@
+<!-- app/views/top/index.html.erb -->
+
+<div class="public-content">
+  <h2>公開コンテンツ</h2>
+  <% if @selected_reviews.present? %>
+    <% @selected_reviews.each do |review| %>
+      <div class="review">
+        <div>会社名：<%= review.company.name %></div>
+        <div>レビュー評価：<%= review.review_average %></div>
+        <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div><br>
+      </div>
+    <% end %>
+  <% else %>
+    <p>レビューがありません。</p>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <!-- ログインしているユーザー専用のコンテンツ -->
+    <div class="private-content">
+      <h2>ログインユーザー専用コンテンツ</h2>
+      <div>
+        <!-- ログインユーザー専用のコンテンツをここに追加 -->
+      </div>
+    </div>
+  <% else %>
+    <p>ログインしていないと、すべてのコンテンツを見ることはできません。</p>
+    <p>コンテンツを見るには、<%= link_to 'ログイン', new_user_session_path %> または <%= link_to '新規登録', new_user_registration_path %> してください。</p>
+  <% end %>
+</div>

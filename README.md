@@ -23,4 +23,4 @@ rails s
 [ワイヤーフレーム](https://www.figma.com/design/R4U9J2Q7leGJqyQG1LldKL/Daisy%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?t=yPcQ32mLpcxhIfef-0)
 
 ## 画面遷移図
-![alt text](image.png)
+![alt text](imag.png)

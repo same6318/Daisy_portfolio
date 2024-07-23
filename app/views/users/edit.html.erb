@@ -25,22 +25,23 @@
     <%= f.label :name ,"ハンドルネーム"%><br/>
     <%= f.text_field :screen_name %>
   </div>
+
   <div class="field">
     <%= f.label :age, '年代' %><br>
-    <%= f.select :age, options_for_select(User.ages.keys.map { |k| [I18n.t("enums.user.age.#{k}"), k] }), include_blank: true %>
+    <%= f.select :age, options_for_select([['', '']] + User.ages.keys.map { |k| [I18n.t("enums.user.age.#{k}"), k] }, f.object.age || '') %>
   </div>
 
   <div class="field">
     <%= f.label :gender, '性別' %><br>
-    <%= f.select :gender, options_for_select(User.genders.keys.map { |k| [I18n.t("enums.user.gender.#{k}"), k] }), include_blank: true %>
+    <%= f.select :gender, options_for_select([['', '']] + User.genders.keys.map { |k| [I18n.t("enums.user.gender.#{k}"), k] }, f.object.gender || '') %>
   </div>
 
   <div class="field">
     <% available_roles = User.roles.keys - ['admin'] %> <!-- 管理者ロールを除外 -->
-    <%= f.label :role, '役割' %><br>
-    <%= f.select :role, options_for_select(available_roles.map { |k| [I18n.t("enums.user.role.#{k}"), k] }), include_blank: true %>
+    <%= f.label :role, 'アカウントのステータス' %><br>
+    <%= f.select :role, options_for_select([['', '']] + available_roles.map { |k| [I18n.t("enums.user.role.#{k}"), k] }, f.object.role || '') %>
   </div>
-
+  
   <div class="field">
     <%= f.label :password, "パスワード" %><br/>
     <%= f.password_field :password, autocomplete: "new-password" %>
@@ -57,5 +58,8 @@
     <%= f.submit "更新する" %>
   </div>
 <% end %>
+<div><%= button_to "削除する", users_path, data: { confirm: "本当に削除しますか？", turbo_confirm: "本当に削除しますか？" }, method: :delete %></div>
 
 <%= link_to "戻る", :back %>
+
+

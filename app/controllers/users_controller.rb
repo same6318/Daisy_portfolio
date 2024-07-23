@@ -3,12 +3,24 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   before_action :authorize_user, only: [:show]
 
-  def index#カレントユーザが持ってる、レビューとトピックを表示させないといけない
-    @reviews = current_user.reviews
-    @topics = current_user.topics
 
-    @users = User.all
-    @companies = Company.all
+  def index#カレントユーザが持ってる、レビューとトピックを表示させないといけない
+    #@users = User.all
+
+   # カレントユーザが持っているレビューとトピックのみを取得
+   user_reviews = current_user.reviews
+   topics = current_user.topics
+
+   # すべてのリソースを1つの配列にまとめる
+   all_items = user_reviews.to_a + topics.to_a
+
+   # ページネーションの設定
+   @paginated_items = Kaminari.paginate_array(all_items).page(params[:page]).per(3)
+
+
+    # @current_user_reviews = current_user.reviews.page(params[:reviews_page]).per(3)
+    # @topics = current_user.topics.page(params[:topics_page]).per(3)
+    # @reviews = Review.page(params[:reviews_page]).per(3)
   end
 
   def show
@@ -26,6 +38,7 @@ class UsersController < ApplicationController
       render :edit # 更新に失敗した場合は編集ページを再表示
     end
   end
+
 
   private
 

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'oauth/index'
+  #root 'users#index'
+  root 'top#index'
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -9,6 +11,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update, :index] 
   resources :companies, only: [:show, :edit, :update, :index]
+
+  resources :users do
+    resources :reviews, only: [:show] # 必要なアクションを追加
+  end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

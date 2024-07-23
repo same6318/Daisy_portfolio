@@ -41,6 +41,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    users_path
+    if resource.provider == 'google_oauth2'
+      edit_user_registration_path 
+    end
   end
 end

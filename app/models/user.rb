@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, 
          :omniauthable, omniauth_providers: [:google_oauth2]
-  has_many :topics
-  has_many :reviews
+  has_many :topics, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   belongs_to :company, optional: true
 
   enum age: { teens: 0, twenties: 1, thirties: 2, forties: 3 }

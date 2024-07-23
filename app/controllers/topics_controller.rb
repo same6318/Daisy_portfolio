@@ -2,13 +2,13 @@ class TopicsController < ApplicationController
   before_action :authenticate_user! #ログインしてなかったらログイン画面に自動的に遷移
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @topics = Topic.includes(:user).all
+  def index #viewから送られてくるパラメータを元にテーブルからデータを検索する
+    @q = Topic.ransack(params[:q])
+    @topics = @q.result(distinct: true).includes(:user).all
   end
 
   def new
     @topic = Topic.new
-    @user = current_user
   end
 
   def create
@@ -31,6 +31,15 @@ class TopicsController < ApplicationController
   end
 
   def update
+    @user = current_user
+      if @user.company?
+        @topic.author = @user.name
+      elsif @user.screen_name?
+        @topic_autor = @user.screen_name
+      else
+        @topic_autor = "匿名希望"
+      end
+    
     if @topic.update(topic_params)
       flash[:notice] = t('.updated')
       redirect_to topic_path(@topic)
@@ -49,7 +58,7 @@ class TopicsController < ApplicationController
   private
 
   def topic_params #:portraitを追加、モデルはhas_many_attached :portrait
-    params.require(:topic).permit(:title, :content).merge(user_id: current_user.id, company_id: current_user.company_id)
+    params.require(:topic).permit(:title, :content, :author_name).merge(user_id: current_user.id, company_id: current_user.company_id)
   end
 
   def set_topic #今回は人のトピックも見ることができる

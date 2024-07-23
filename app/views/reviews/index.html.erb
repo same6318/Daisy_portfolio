@@ -1,0 +1,28 @@
+<h1><%= @company.name %>のレビュー一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>評価平均</th>
+      <th>年代</th>
+      <th>性別</th>
+      <th><%= sort_link(@q, :select, "在籍状態", hide_indicator: true) %></th>
+      <th>本文</th>
+      <th><%= sort_link(@q, :created_at, "作成日時", hide_indicator: true) %></th>
+    </tr>
+  </thead>
+</table>
+
+  <tbody>
+    <% @company_reviews.each do |review| %>
+      <div>
+        <td>評価平均：<%= review.review_average %></td>
+        <td>年代：<%= review.user.age %></td>
+        <td>性別：<%= review.user.gender %></td>
+        <td>在籍状態：<%= review.select %></td>
+        <td><%= link_to "詳細", company_review_path(review.company_id, review) %></td>
+        <td><small><%= truncate(review.content) %></small></td>
+        <td><small>作成日時： <%= review.created_at.strftime('%Y/%m/%d %H:%M') %></small></td>
+      </div>
+    <% end %>
+  </tbody>

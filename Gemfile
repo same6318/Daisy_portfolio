@@ -26,6 +26,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem 'ransack' #検索機能
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

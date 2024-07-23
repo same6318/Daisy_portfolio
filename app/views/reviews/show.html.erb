@@ -4,7 +4,7 @@
 
 <div>
   <p>レビュー企業名： <%= @company.name %></p>
-  <p>ユーザー在職状態： <%= @review.select %>
+  <p>ユーザー在籍状態： <%= @review.select %>
 </div>
 
 <div>
@@ -44,4 +44,5 @@
   <%= link_to "編集", edit_company_review_path(@review.company_id, @review) %>
   <%= link_to "削除", company_review_path(@review.company_id, @review), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
 <% end %>
-<%= link_to "戻る", users_path %>
+<%= link_to "マイページに戻る", users_path %>
+<%= link_to "企業レビュー一覧に戻る", company_reviews_path(@company) %>

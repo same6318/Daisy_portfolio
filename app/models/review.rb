@@ -28,4 +28,12 @@ class Review < ApplicationRecord
     item_values.sum.to_f / review_items.size
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[select created_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    auth_object = []
+  end
+
 end

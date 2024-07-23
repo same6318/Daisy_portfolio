@@ -1,3 +1,11 @@
 <h1>アカウント詳細</h1>
 
-<%= render partial: 'account_details', locals: { user: @user } %>
+<p>氏名: <%= @user.name %></p>
+<p>ハンドルネーム: <%= @user.screen_name %></p>
+<p>年代: <%= @user.age.present? ? t("enums.user.age.#{@user.age}") : '' %></p>
+<p>性別: <%= @user.gender.present? ? t("enums.user.gender.#{@user.gender}") : '' %></p>
+<p>メールアドレス: <%= @user.email %></p>
+<p>アカウントのステータス: <%= @user.age.present? ?  t("enums.user.role.#{@user.role}") : '' %></p>
+
+<%= link_to "編集", edit_user_path %>
+<%= link_to "戻る", users_path %>

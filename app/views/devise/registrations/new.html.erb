@@ -39,18 +39,18 @@
 </div>
 
   <div class="field">
-    <%= f.label :role, '役割' %><br>
-    <%= f.select :role, options_for_select(User.roles.keys.map { |k| [I18n.t("enums.user.role.#{k}"), k] }), include_blank: true %>
+    <% available_roles = User.roles.keys - ['admin'] %> <!-- 管理者ロールを除外 -->
+    <%= f.label :role, 'アカウントの種類' %><br>
+    <%= f.select :role, options_for_select(available_roles.map { |k| [I18n.t("enums.user.role.#{k}"), k] }), include_blank: true %>
   </div>
-
 
 
 
 <h3>利用目的の注意書き</h3>
 
 <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "登録する" %>
 </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render "devise/shared/links", button_text: "Googleでアカウント登録" %>

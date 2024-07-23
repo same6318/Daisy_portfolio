@@ -21,6 +21,7 @@
     <% else %>
       <%= link_to "新規登録", new_user_registration_path, id: "", class: "nav-item nav-link" %>
       <%= link_to "ログイン", new_user_session_path, id: "", class: "nav-item nav-link" %>
+      <%= link_to "Topページ",root_path, id: "", class: "nav-item nav-link" %>
     <% end %>
     <%= render 'shared/flash_messages' %>
     <%= yield %>

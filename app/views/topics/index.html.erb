@@ -6,12 +6,33 @@
   </thead>
 </table>
 
+  <%= search_form_for @q do |f| %>
+    <%= f.label :title_or_content, "キーワード検索（タイトルと本文）" %>
+    <%= f.search_field :title_or_content_cont %>
+
+    <%= f.submit "検索" %>
+  <% end %>
+
+  <p><%= sort_link(@q, :title, "タイトルで並べ替え", hide_indicator: true) %></p>
+  <p><%= sort_link(@q, :user_id, "著者で並べ替え", hide_indicator: true) %></p>
+
   <tbody>
     <% @topics.each do |topic| %>
-      <tr>
-        <td><%= link_to "タイトル", topic_path(topic) %>：<%= topic.title %></td><br>
-        <td>投稿ユーザー名：<%= topic.user.name %><td><br>
-        <td><%#= topic.portrait %></td><br>
-      </tr>
+      <div>
+        <tr>
+          <td><%= link_to "タイトル", topic_path(topic) %>：<%= topic.title %></td><br>
+          <td><small><%= truncate(topic.content) %></small></td>
+          <% if topic.author_name? %>
+            <% if topic.user.screen_name? %>
+              <td>投稿ユーザー名：<%= topic.user.screen_name %><td><br>
+            <% else %>
+              <td>投稿ユーザー名：匿名希望 <td><br>
+            <% end %>
+          <% else %>
+            <td>投稿ユーザー名： 匿名希望 <td><br>
+          <% end %>
+          <td><%#= topic.portrait %></td><br>
+        </tr>
+      </div>
     <% end %>
   </tbody>

@@ -31,14 +31,6 @@
     <p>企業レビュー平均： <%= @company.company_reviews_average %></p>
   </div>
 
-  <div>
-    <p>ピックアップレビュー</p>
-      <% @pickup_reviews.each do |review| %>
-        <p><small>ユーザー名： <%= review.user.name %></p>
-        <p><small>レビュー評価平均： <%= review.review_average %></p>
-      <% end %>
-  </div>
-
 </div>
 
 <%= link_to "削除", admin_company_path(@company), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>

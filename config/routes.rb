@@ -70,16 +70,16 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :sessions, only: [:new, :create, :destroy]
+    #resources :sessions, only: [:new, :create, :destroy] admin/sign_inと同じことを書いているので要らない。
     resources :users, only: [:index, :show, :destroy]
-    resources :topics, only: [:index, :show, :destroy]
+    resources :topics , only: [:index, :show, :destroy]
     resources :reviews, only: [:index, :show, :destroy]
     resources :companies, only: [:index, :show, :destroy]
   end
 
   resources :topics
   resources :companies do #企業のidを選んだ上でレビューする。
-    resources :reviews, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :reviews
   end
 
 end

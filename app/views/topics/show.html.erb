@@ -24,7 +24,15 @@
   </div>
 
   <div>
-    <p>投稿者名： <%= @topic.user.name %></p>
+    <% if @topic.author_name? %>
+      <% if @topic.user.screen_name? %>
+        <p>投稿ユーザー名：<%= @topic.user.screen_name %></p><br>
+      <% else %>
+        <p>投稿ユーザー名：匿名希望 </p><br>
+      <% end %>
+    <% else %>
+      <p>投稿ユーザー名： 匿名希望 </p><br>
+    <% end %>
   </div>
 
 </div>

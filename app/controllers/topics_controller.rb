@@ -3,8 +3,16 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index #viewから送られてくるパラメータを元にテーブルからデータを検索する
-    @q = Topic.ransack(params[:q])
-    @topics = @q.result(distinct: true).includes(:user).all
+    if params[:q].present? && params[:q][:title_or_content_cont].present?
+      search_word = params[:q][:title_or_content_cont]
+      hiragana_search_word = Topic.to_hiragana(search_word)
+      katakana_search_word = Topic.to_katakana(search_word)
+      @q = Topic.joins(:user).ransack(m: "or", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word])
+    else
+      @q = Topic.joins(:user).ransack(params[:q])
+    end
+    
+    @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.order(created_at: :asc).page(params[:page]).per(9)
   end
 
   def new
@@ -15,7 +23,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     if @topic.save
       flash[:notice] = t('.created')
-      redirect_to topics_path
+      redirect_to topic_path(@topic)
     else
       flash[:notice] = "トピックの作成に失敗しました"
       render :new
@@ -31,15 +39,6 @@ class TopicsController < ApplicationController
   end
 
   def update
-    @user = current_user
-      if @user.company?
-        @topic.author = @user.name
-      elsif @user.screen_name?
-        @topic_autor = @user.screen_name
-      else
-        @topic_autor = "匿名希望"
-      end
-    
     if @topic.update(topic_params)
       flash[:notice] = t('.updated')
       redirect_to topic_path(@topic)
@@ -57,8 +56,8 @@ class TopicsController < ApplicationController
 
   private
 
-  def topic_params #:portraitを追加、モデルはhas_many_attached :portrait
-    params.require(:topic).permit(:title, :content, :author_name).merge(user_id: current_user.id, company_id: current_user.company_id)
+  def topic_params #:topic_imageを追加、モデルはhas_many_attached :topic_image
+    params.require(:topic).permit(:title, :content, :author_name, topic_images: []).merge(user_id: current_user.id, company_id: current_user.company_id)
   end
 
   def set_topic #今回は人のトピックも見ることができる

@@ -11,8 +11,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :portrait %>
-    <%= form.file_field :portrait %>
+    <%= form.label :topic_images %>
+    <%= form.file_field :topic_images, multiple: true %>
   </div>
 
   <div class="field">
@@ -21,13 +21,11 @@
   </div>
 
   <div>
-    <p>投稿者名として、ハンドルネームを登録していない場合は「匿名希望」で投稿されます.</p>
+    <p>投稿者名として、ハンドルネームを登録していない場合は「匿名希望」で投稿されます</p>
   </div>
 
   <div class="actions">
-    <% unless topic.author_name? && topic.user.screen_name? %>
-      <%= form.submit "投稿する", data: { confirm: "ハンドルネームの登録がありません。匿名希望で投稿されますが、宜しいですか？"} %>
-    <% end %>
+    <%= form.submit "投稿する" %>
   </div>
 
     <% if @topic.errors.any? %>

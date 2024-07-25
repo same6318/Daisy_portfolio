@@ -13,8 +13,6 @@ ja:
       user:
         success: "ログインしました。"
         failure: "ログインに失敗しました。"
-      success: "ログインしました。"
-      failure: "ログインに失敗しました。"
     sessions:
       user:
         signed_in: "ログインしました"

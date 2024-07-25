@@ -12,7 +12,8 @@ class User < ApplicationRecord
   enum gender: { male: 0, female: 1, other: 2 }
   # purpose: { personal: 0, business: 1, education: 2, hobby: 3 }
   enum role: { general: 0, company: 1, admin: 2 }
-  #validates :password, confirmation: true, length: { minimum: 6 }
+  
+  validates_acceptance_of :agreement, allow_nil: false, on: :create
 
   #Googleログイン
   def self.create_unique_string

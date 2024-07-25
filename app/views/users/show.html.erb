@@ -5,7 +5,7 @@
 <p>年代: <%= @user.age.present? ? t("enums.user.age.#{@user.age}") : '' %></p>
 <p>性別: <%= @user.gender.present? ? t("enums.user.gender.#{@user.gender}") : '' %></p>
 <p>メールアドレス: <%= @user.email %></p>
-<p>アカウントのステータス: <%= @user.role %></p>
+<p>アカウントのステータス: <%= @user.role%></p>
 
 <%= link_to "編集", edit_user_path %>
 <%= link_to "戻る", users_path %>

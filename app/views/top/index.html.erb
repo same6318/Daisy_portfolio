@@ -1,29 +1,27 @@
-<!-- app/views/top/index.html.erb -->
-
 <div class="public-content">
-  <h2>公開コンテンツ</h2>
-  <% if @selected_reviews.present? %>
-    <% @selected_reviews.each do |review| %>
+  <h2>新着レビュー</h2>
+  <% if @grouped_reviews.present? %>
+    <% @grouped_reviews.each do |company, reviews| %>
       <div class="review">
-        <div>会社名：<%= review.company.name %></div>
-        <div>レビュー評価：<%= review.review_average %></div>
-        <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div><br>
+        <div>会社名：<%= company.name %></div>
+        <div>レビュー件数：<%= reviews.size %></div>
+      <div>レビュー平均評価：<%= (reviews.map(&:review_average).sum / reviews.size.to_f).round(1) %></div>
       </div>
     <% end %>
-  <% else %>
-    <p>レビューがありません。</p>
+  <% end %>
+  
+  <h2>新着トピックス</h2>
+  <% if @selected_topics.present? %>
+    <% @selected_topics.each do |topic| %>
+    <div class="topic">
+        <div>投稿者名：<%= topic.user.name %></div>
+        <div><%= topic.title %></div>
+        <div>・<%= topic.content %></div> 
+      </div>
+    <% end %>
   <% end %>
 
-  <% if user_signed_in? %>
-    <!-- ログインしているユーザー専用のコンテンツ -->
-    <div class="private-content">
-      <h2>ログインユーザー専用コンテンツ</h2>
-      <div>
-        <!-- ログインユーザー専用のコンテンツをここに追加 -->
-      </div>
-    </div>
-  <% else %>
-    <p>ログインしていないと、すべてのコンテンツを見ることはできません。</p>
+  <% unless user_signed_in? %>
     <p>コンテンツを見るには、<%= link_to 'ログイン', new_user_session_path %> または <%= link_to '新規登録', new_user_registration_path %> してください。</p>
   <% end %>
 </div>

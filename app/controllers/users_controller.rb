@@ -4,30 +4,21 @@ class UsersController < ApplicationController
   before_action :authorize_user, only: [:show]
 
 
-  def index#カレントユーザが持ってる、レビューとトピックを表示させないといけない
-    #@users = User.all
+  def index
+    #レビューとトピックス数
+    @review_count = current_user.reviews.size
+    @topic_count = current_user.topics.size
 
-   # カレントユーザが持っているレビューとトピックのみを取得
-   user_reviews = current_user.reviews
-   topics = current_user.topics
-
-   # すべてのリソースを1つの配列にまとめる
-   all_items = user_reviews.to_a + topics.to_a
-
-   # ページネーションの設定
-   @paginated_items = Kaminari.paginate_array(all_items).page(params[:page]).per(3)
-
-
-    # @current_user_reviews = current_user.reviews.page(params[:reviews_page]).per(3)
-    # @topics = current_user.topics.page(params[:topics_page]).per(3)
-    # @reviews = Review.page(params[:reviews_page]).per(3)
+    #ページネーション表示
+    @current_user_reviews = current_user.reviews.page(params[:reviews_page]).per(3)
+    @topics = current_user.topics.page(params[:topics_page]).per(3)
+    @reviews = Review.page(params[:page]).per(3)
   end
 
   def show
   end
 
   def update
-    #binding.irb
     @user = current_user # 現在のユーザーを取得
   
     if @user.update(user_params)
@@ -47,9 +38,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(
-        :name, :age, :gender, :email, :screen_name, :role, :password, :password_confirmation
-      )
+    params.require(:user)
+    .permit(:name, :age, :gender, :email, :screen_name, :role, :password, :password_confirmation)
   end
 
   def authorize_user

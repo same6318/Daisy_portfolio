@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  get 'static_pages/terms_of_service'
+  get 'static_pages/privacy_policy'
   get 'oauth/index'
-  #root 'users#index'
   root 'top#index'
 
   devise_for :users, controllers: {

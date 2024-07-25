@@ -5,12 +5,13 @@ class ReviewsController < ApplicationController
 
   def index
     @q = Review.ransack(params[:q])
-    # @reviews = @q.result(distinct: true).includes(:user).all
-    # @reviews = @q.result(distinct: true).where(company_id: params[:company_id])
     @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
-    @company_reviews = @q.result(distinct: true).where(company_id: params[:company_id]).sort_by(&:review_average)
-    
+    sorted_reviews = @q.result(distinct: true).includes(:user)
+                     .where(company_id: params[:company_id])
+                     #.sort_by(&:review_average).reverse
+    @company_reviews = Kaminari.paginate_array(sorted_reviews).page(params[:page]).per(10)
     # @company_reviews.map {|d| {average:d.review_average, **d.attributes}}.sort_by {|a| a[:average]}
+    #binding.irb
   end
 
 

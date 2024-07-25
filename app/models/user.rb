@@ -32,4 +32,31 @@ class User < ApplicationRecord
     user.save
     user
   end
+
+
+
+
+
+
+
+
+  #admin画面でのユーザー検索関連
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name screen_name role created_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[company topic review]
+  end
+
+    # 文字列をひらがなに変換
+  def self.to_hiragana(text)
+    NKF.nkf('-w --hiragana', text)
+  end
+
+  # 文字列をカタカナに変換
+  def self.to_katakana(text)
+    NKF.nkf('-w --katakana', text)
+  end
+
 end

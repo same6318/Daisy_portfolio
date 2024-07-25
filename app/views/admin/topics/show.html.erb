@@ -10,14 +10,21 @@
     <p>作成日時: <%= @topic.created_at.strftime('%Y/%m/%d %H:%M') %></p>
   </div>
 
-  <p>
-    <strong>Portrait:</strong>
-    <%= link_to @topic.portrait.filename, @topic.portrait if @topic.portrait.attached? %>
-    <%= image_tag @topic.portrait.variant(resize_to_limit: [100,100]) if @topic.portrait.attached? %>
-    <%# 詳細画面でimage_tagを使って画像を表示
-        表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
-        (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
-  </p>
+  <div>
+    <p>
+      <strong>Portrait:</strong>
+      <% if @topic.topic_images.attached? %>
+        <% @topic.topic_images.each do |image| %>
+          <%= link_to url_for(image) do %>
+            <%= image_tag image.variant(resize_to_limit: [500,500]) %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%# 詳細画面でimage_tagを使って画像を表示
+          表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
+          (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
+    </p>
+  </div>
 
 </div>
 

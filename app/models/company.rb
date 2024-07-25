@@ -7,12 +7,12 @@ class Company < ApplicationRecord
       return "データはありません"
     else
       total_average = reviews.sum(&:review_average) #企業が持っているレビューの平均値全てを合計する
-      (total_average / reviews.count).round(2) #トータルをレビューの数で割る
+      total_average / reviews.count #トータルをレビューの数で割る
     end
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[name address created_at]
+    %w[name address]
   end
 
   def self.ransackable_associations(auth_object = nil)

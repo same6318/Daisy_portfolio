@@ -6,47 +6,33 @@
   </thead>
 </table>
 
-<%= sort_link(@q, :updated_at, "更新日時順", hide_indicator: true) %>
-<%= sort_link(@q, :created_at, "作成日時順", hide_indicator: true) %>
+  <%= search_form_for @q do |f| %>
+    <%= f.label :title_or_content, "キーワード検索（タイトルと本文）" %>
+    <%= f.search_field :title_or_content_cont %>
 
-<p><%= link_to "検索結果をリセットする", topics_path %></p>
+    <%= f.submit "検索" %>
+  <% end %>
 
-<%= search_form_for @q, url: topics_path, method: :get do |f| %>
-  <%= f.label :title_or_content_cont, "キーワード(タイトル・本文内)検索" %>
-  <%= f.text_field :title_or_content_cont %>
-  <%= f.submit "検索" %>
-<% end %>
+  <p><%= sort_link(@q, :title, "タイトルで並べ替え", hide_indicator: true) %></p>
+  <p><%= sort_link(@q, :user_id, "著者で並べ替え", hide_indicator: true) %></p>
 
-
-<div class="container">
-  <div class="row">
-      <% @topics.each do |topic| %>
-        <div class="col-md-4 mb-4"> <!-- 3列にするため、col-md-4 を使用 -->
-          <div class="card text-center" style="width: 100%;">
-            <div class="card-body">
-              <h5 class="card-title"><%= topic.title %></h5><br>
-              <p class="card-text"><%= truncate(topic.content, length: 20) %></p>
-              <%= link_to "詳細", topic_path(topic), class:"btn btn-primary" %><br>
-              <% if topic.author_name %>
-                <!--user.name/user.screen_nameが空の文字列についても無しと判断する為、present?を使用する-->
-                <% if topic.user.screen_name.present? || topic.user.name.present? %>
-                  <%= topic.user.screen_name.present? ? topic.user.screen_name : topic.user.name %><td><br>
-                <% else %>
-                  <td>匿名希望 <td><br>
-                <% end %>
-              <% else %>
-                <td>匿名希望 <td><br>
-              <% end %>
-              <% if topic.topic_images.attached? %>
-                <% topic.topic_images.each do |image| %>
-                  <%= image_tag image.variant(resize_to_limit: [100,100]).processed %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-  </div>
-</div>
-  <%= paginate @topics %>
-
+  <tbody>
+    <% @topics.each do |topic| %>
+      <div>
+        <tr>
+          <td><%= link_to "タイトル", topic_path(topic) %>：<%= topic.title %></td><br>
+          <td><small><%= truncate(topic.content) %></small></td>
+          <% if topic.author_name? %>
+            <% if topic.user.screen_name? %>
+              <td>投稿ユーザー名：<%= topic.user.screen_name %><td><br>
+            <% else %>
+              <td>投稿ユーザー名：匿名希望 <td><br>
+            <% end %>
+          <% else %>
+            <td>投稿ユーザー名： 匿名希望 <td><br>
+          <% end %>
+          <td><%#= topic.portrait %></td><br>
+        </tr>
+      </div>
+    <% end %>
+  </tbody>

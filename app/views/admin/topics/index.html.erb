@@ -8,28 +8,13 @@
   </thead>
 </table>
 
-<%= sort_link(@q, :created_at, "作成日時順", hide_indicator: true) %>
-<%= sort_link(@q, :created_at, "更新日時順", hide_indicator: true) %>
-
-<p><%= link_to "検索結果をリセットする", admin_topics_path %></p>
-
-<%= search_form_for @q, url: admin_topics_path, method: :get do |f| %>
-  <%= f.label :user_screen_name_cont, "ハンドルネーム名検索" %>
-  <%= f.text_field :user_screen_name_cont %>
-
-  <%= f.label :title_or_content_cont, "キーワード(タイトル・本文内)検索" %>
-  <%= f.text_field :title_or_content_cont %>
-  <%= f.submit "検索" %>
-<% end %>
-
   <tbody>
     <% @topics.each do |topic| %>
       <tr>
         <td><%= link_to "タイトル", admin_topic_path(topic) %>：<%= topic.title %></td><br>
         <td>投稿ユーザー名：<%= topic.user.name %><td><br>
-        <td>投稿ユーザーハンドルネーム：<%= topic.user.screen_name %></td><br>
+        <td>投稿ユーザーメールアドレス：<%= topic.user.email %></td><br>
       </tr>
     <% end %>
   </tbody>
 
-<%= paginate @topics %>

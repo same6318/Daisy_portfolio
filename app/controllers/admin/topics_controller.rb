@@ -2,9 +2,7 @@ class Admin::TopicsController < ApplicationController
   before_action :require_admin
 
   def index
-    @q = Topic.joins(:user).ransack(params[:q])
-    @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.page(params[:page]).per(5)
-    #binding.irb
+    @topics = Topic.includes(:user).all
   end
 
   def show

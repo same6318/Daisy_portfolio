@@ -25,20 +25,15 @@ class Review < ApplicationRecord
 
   def review_average #レビューの平均値。
     item_values = review_items.values
-    (item_values.sum.to_f / review_items.size).round(1)
+    item_values.sum.to_f / review_items.size
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    super + %w[select created_at company_name] #親クラスのメソッドを呼び出し、追加でレビューに追加したい属性を記載。
-    #user_nameやcompany_nameはransackで使用する仮の属性名。カラムが無くても使える。
-  end
-
-  ransacker :company_name do
-    Arel.sql('COMPANIES.name')  # 仮の属性を設定するためのSQL(アドミンだけでの検索機能)
+    %w[select created_at]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    super + %w[user company]
+    auth_object = []
   end
 
 end

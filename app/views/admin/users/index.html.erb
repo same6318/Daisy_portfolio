@@ -1,19 +1,5 @@
 <%= render "admin/navigation" %>
 
-<%= sort_link(@q, :created_at, "作成日時順", hide_indicator: true) %>
-
-  <%= search_form_for @q, url: admin_users_path, method: :get do |f| %>
-    <%= f.label :name_or_screen_name_cont, "名前 or ハンドルネーム検索" %>
-    <%= f.search_field :name_or_screen_name_cont %>
-    <%= f.label :role_eq, "権限検索" %>
-    <%= f.search_field :role_eq %> <!--整数カラムのマッチング-->
-
-    <%= f.submit "検索" %>
-  <% end %>
-
-  <p><%= link_to "検索結果をリセットする", admin_users_path %></p>
-
-
 <table>
   <thead>
     <tr>
@@ -28,11 +14,8 @@
         <td><%= link_to "ユーザー名", admin_user_path(user) %>：<%= user.name %></td><br>
         <td>ステータス：<%= user.role %><td><br>
         <td>メールアドレス：<%= user.email %></td><br>
-        <td>ハンドルネーム：<%= user.screen_name %></td><br>
         <td>トピック投稿数：<%= user.topics.count %></td><br>
         <td>レビュー投稿数：<%= user.reviews.count %></td><br>
       </tr>
     <% end %>
   </tbody>
-
-<%= paginate @users %>

@@ -3,10 +3,12 @@ class CompaniesController < ApplicationController
 
   def index
     @q = Company.ransack(params[:q])
-    @companies = @q.result(distinct: true).left_joins(:reviews) #企業テーブルにレビューテーブルを結合
-    .select('companies.*, COUNT(reviews.id) AS reviews_count') #レビューidの数をカウントする
-    .group('companies.id') #集計する為にグループ化する
-    # .order("#{sort_column} #{sort_direction}")
+    @companies = @q.result(distinct: true)
+                   .joins(:reviews) #企業テーブルにレビューテーブルを結合
+                   .select('companies.*, COUNT(reviews.id) AS reviews_count') #レビューidの数をカウントする
+                   .group('companies.id') #集計する為にグループ化する
+                   .order('reviews_count DESC') #reviews_countで降順にソートして表示する。
+                   .page(params[:page]).per(10)
   end
 
   def show
@@ -20,15 +22,5 @@ class CompaniesController < ApplicationController
     redirect_to admin_companies_path
   end
 
-
-  # private
-
-  # def sort_column
-  #   params[:sort] || 'average_rating' # デフォルトのソートカラム
-  # end
-
-  # def sort_direction
-  #   params[:direction] || 'asc' # デフォルトのソート順
-  # end
 
 end

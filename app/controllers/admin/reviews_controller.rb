@@ -2,7 +2,9 @@ class Admin::ReviewsController < ApplicationController
   before_action :require_admin
 
   def index
-    @reviews = Review.includes(:user).all
+    @q = Review.joins(:company).ransack(params[:q])
+    #binding.irb
+    @reviews = @q.result(distinct: true).includes(:user, :company).page(params[:page]).per(10)
   end
 
   def show

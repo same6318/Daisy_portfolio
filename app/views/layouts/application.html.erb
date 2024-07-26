@@ -20,12 +20,20 @@
     </nav>
     <ul class="nav justify-content">
       <% if user_signed_in? %>
-        <li class="nav-item"><%= link_to "ログアウト",destroy_user_session_path, method: :delete, class: "nav-item nav-link"  %></li>
-        <li class="nav-item"><%= link_to "ホーム", users_path, id: "", class: "nav-item nav-link" %></li>
-        <li class="nav-item"><%= link_to "企業一覧", companies_path, id: "", class: "nav-item nav-link" %></li>
-        <li class="nav-item"><%= link_to "トピックス一覧", topics_path, id: "", class: "nav-item nav-link" %></li>
-        <li class="nav-item"><%= link_to "トピックス投稿", new_topic_path, class: "nav-item nav-link" %></li>
-        <li class="nav-item"><%= link_to "アカウント詳細", user_path(current_user), class: "nav-item nav-link"  %></li>
+        <% if current_user.admin? %>
+          <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-item nav-link"  %></li>
+          <li class="nav-item"><%= link_to "トピック一覧", admin_topics_path, class: "nav-item nav-link" %></li>
+          <li class="nav-item"><%= link_to "レビュー一覧", admin_reviews_path, class: "nav-item nav-link" %></li>
+          <li class="nav-item"><%= link_to "企業一覧", admin_companies_path, class: "nav-item nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-item nav-link" %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "ログアウト",destroy_user_session_path, method: :delete, class: "nav-item nav-link"  %></li>
+          <li class="nav-item"><%= link_to "ホーム", users_path, id: "", class: "nav-item nav-link" %></li>
+          <li class="nav-item"><%= link_to "企業一覧", companies_path, id: "", class: "nav-item nav-link" %></li>
+          <li class="nav-item"><%= link_to "トピックス一覧", topics_path, id: "", class: "nav-item nav-link" %></li>
+          <li class="nav-item"><%= link_to "トピックス投稿", new_topic_path, class: "nav-item nav-link" %></li>
+          <li class="nav-item"><%= link_to "アカウント詳細", user_path(current_user), class: "nav-item nav-link"  %></li>
+        <% end %>
       <% else %>
         <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, id: "", class: "nav-item nav-link" %></li>
         <li class="nav-item"><%= link_to "ログイン", new_user_session_path, id: "", class: "nav-item nav-link" %></li>

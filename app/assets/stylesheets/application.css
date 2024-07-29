@@ -21,18 +21,18 @@
 
 .pagination>li>a {
   border: none;
-  color: #ffa500;
+  color: #000;
 }
 
 .pagination>.active>a { /*表示しているページ番号のデザイン*/
   border-radius: 15px;
-  color: #fff;
-  background-color: #ffa500;
+  color: #000;
+  background-color: #eed15dfc;
 }
 
 .pagination>li>a:hover {/*ホバー時のデザイン*/
   border-radius: 15px;
-  color: #ffa500;
+  color: #eed15dfc;
 }
 
 .pagination { /*ページネーション自体のデザイン*/
@@ -43,12 +43,12 @@
 }
 
 .btn-custom {
-  background-color: #fda95b;
-  color: #ffffff;
+  background-color: #eed15dfc;
+  color: #000;
 }
 
 .bg-custom {
-  background-color: #fda95b;
+  background-color: #eed15dfc;
 }
 
 @import '/app/assets/stylesheets/reviews.scss';
@@ -142,9 +142,8 @@
   background-color: #eed15dfc;
  }
  .navbar-brand {
-  font-size: 20px; /* フォントサイズ */
+  font-size: 45px; /* フォントサイズ */
   font-weight: 700; /* フォントの太さ */
-  color: #333; /* テキストの色 */
+  color: #fff; /* テキストの色 */
   padding-left: 20px;
 }
-

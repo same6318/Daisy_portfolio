@@ -145,12 +145,11 @@
   width: 60vh; /* 幅を100%に設定 */
   max-width: 500px; /* 最大幅を500pxに設定 */
 }
-
-
 .button-group {
   display: flex; /* フレックスボックスを使用して横並びにする */
   gap: 20px; /* ボタン間のスペースを指定 */
   justify-content: center; /* ボタンを中央に配置 */
+  height:10%;
 }
 
 

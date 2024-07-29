@@ -4,7 +4,10 @@ class Admin::ReviewsController < ApplicationController
   def index
     @q = Review.joins(:company).ransack(params[:q])
     #binding.irb
-    @reviews = @q.result(distinct: true).includes(:user, :company).page(params[:page]).per(10)
+    # @reviews = @q.result(distinct: true).includes(:user, :company).page(params[:page]).per(10)
+    @reviews = @q.result.includes(:user, :company).page(params[:page]).per(10)
+    #distinctを使って並べ替えをするときは、一意であることが前提になる。
+
   end
 
   def show
@@ -23,7 +26,7 @@ class Admin::ReviewsController < ApplicationController
 
   def require_admin
     unless current_user.admin?
-      flash[:notice] = "アクセス権限がありません"
+      flash[:notice] = "パスワードが違います"
       sign_out(current_user) #ユーザーを強制的にログアウトさせる
       redirect_to new_user_session_path
     end

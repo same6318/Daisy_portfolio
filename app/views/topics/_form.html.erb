@@ -1,43 +1,52 @@
-<%= form_with(model: topic) do |form| %>
+<body class="topics-page">
+    <div id="topics-page">
+      <div class="container">
+        <div class="form"> 
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <% if @topic.errors.any? %>
+                <div id="error_explanation">
+                  <ul>
+                    <% @topic.errors.each do |message, error| %>
+                      <li><%= " #{message}#{error}" %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            <h1 class="fw-light">トピックス投稿</h1>
+            <%= form_with(model: topic) do |form| %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+              <div class="field">
+                <%= form.label :title ,'タイトル'%>
+                <%= form.text_field :title, class: 'form-control'  %>
+              </div>
+                <div class="field">
+                <%= form.label :content ,'コンテント' %>
+                <%= form.text_area :content , class: 'topic-form-control' %>
+              </div>
+              <div class="field">
+                <li><%= form.label :ハンドルネームで投稿する %>
+                <span><%= form.check_box :author_name %></span></li>
+              </div>
+              <div class="field">
+                <li><%= form.label :topic_images ,'画像挿入'%>
+                <%= form.file_field :topic_images, multiple: true %></li>
+              </div>
+              <div>
+                <p>※投稿者名として、ハンドルネームを登録していない場合は「匿名希望」で投稿されます</p>
+              </div>
 
-    <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+             <div class="topics-button-group">
+                <%= form.submit "投稿する",class: "btn btn-outline-dark" %>
+              </div>
 
-  <div class="field">
-    <%= form.label :topic_images %>
-    <%= form.file_field :topic_images, multiple: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ハンドルネームで投稿する %>
-    <span><%= form.check_box :author_name %></span>
-  </div>
-
-  <div>
-    <p>投稿者名として、ハンドルネームを登録していない場合は「匿名希望」で投稿されます</p>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "投稿する" %>
-  </div>
-
-    <% if @topic.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% @topic.errors.each do |message, error| %>
-          <li><%= " #{message}#{error}" %></li>
-        <% end %>
-      </ul>
+              <div class="topics-button-group">
+                <%= link_to "戻る", topics_path %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-<% end %>
+  </div>
+</div>

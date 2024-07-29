@@ -1,3 +1,156 @@
 // Place all the styles related to the users::registrations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.google-document iframe {
+  width: 40%; /* 幅を80%に設定 */
+  height: 300px; 
+  border: 1px solid #ccc; /* 枠線を追加 */
+}
+
+.registration-page {
+  background-image: url('background.jpg');
+  background-size: cover; /* 画面全体に画像をフィットさせる */
+  background-position: center; /* 画像を中央に配置 */
+  background-repeat: no-repeat; /* 画像を繰り返さない */
+  background-attachment: fixed; /* 画面をスクロールしても背景画像は固定 */
+}
+
+/* 新規アカウント登録フォームのスタイル */
+.registration-page .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* ビューポート全体の高さに設定 */
+}
+
+.registration-page .form-container {
+  margin-top: 120px;
+  max-width: 600px;
+  height: auto; /* 高さは内容に応じて調整 */
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+  padding: 20px;
+}
+
+.form-inline {
+  display: flex; /* フレックスボックスで横並びにする */
+  gap: 10px; /* アイテム間の間隔を設定 */
+  margin-bottom: 15px; /* 下部に余白を追加 */
+}
+
+.form-inline .form-group {
+  flex: 1; /* 各フォームグループが均等に広がるようにする */
+}
+
+.form-inline .form-control {
+  width: 100%; /* フォームコントロールの幅を100%にする */
+}
+
+/* 利用規約のセクションのスタイリング */
+.agreement-section {
+  margin-top: 30px; /* 上部に余白を追加 */
+  border-top: 1px solid #ddd; /* 上部に境界線を追加 */
+  padding-top: 20px; /* 内部余白を追加 */
+}
+
+/* Google ドキュメントのセクションのスタイリング */
+.google-documents {
+  display: flex; /* フレックスボックスで横並びにする */
+  gap: 10px; /* アイテム間の間隔を設定 */
+  
+}
+
+.google-document {
+  flex: 1; /* 各ドキュメントが均等に広がるようにする */
+  max-width: 50%;
+}
+
+.google-document iframe {
+  width: 100%; /* iframe の幅を親要素に合わせる */
+  height: 400px; /* iframe の高さを設定 */
+  border: none; /* iframe の枠線を削除 */
+}
+
+/* フォームの全体的なスタイリング */
+.registration-page {
+  background-image: url('background.jpg');
+  background-size: cover; /* 画面全体に画像をフィットさせる */
+  background-position: center; /* 画像を中央に配置 */
+  background-repeat: no-repeat; /* 画像を繰り返さない */
+  background-attachment: fixed; /* 画面をスクロールしても背景画像は固定 */
+}
+
+#registration .container {
+  padding: 20px; /* 内部余白を追加 */
+  border-radius: 10px; /* 角を丸くする */
+}
+
+.custom-heading {
+  font-family: 'Roboto', sans-serif; /* お好みのフォントファミリーに変更 */
+  font-size: 2.5rem; /* フォントサイズ */
+  font-weight: 700; /* フォントの太さ */
+  color: #333; /* テキストの色 */
+  text-align: center; /* テキストの中央揃え */
+  margin-bottom: 20px; /* 下のマージン */
+  position: relative; /* 擬似要素を使うために必要 */
+}
+
+.button-group {
+  gap: 20px; /* ボタン間のスペースを指定 */
+  justify-content: center; /* ボタンを中央に配置 */
+   text-align: center;
+}
+.form-submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff; /* 文字色 */
+  background-color: #007bff; /* 背景色 */
+  border: 1px solid #007bff; /* 枠線 */
+  border-radius: 5px; /* 角を丸くする */
+  text-decoration: none; /* 下線を除去 */
+  text-align: center;
+}
+
+.form-submit-button:hover {
+  background-color: #0056b3; /* ホバー時の背景色 */
+  border-color: #0056b3; /* ホバー時の枠線の色 */
+}
+
+
+.social-login-link {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #007bff; /* リンクの色 */
+  text-decoration: none;
+  border: 1px solid #007bff; /* リンクの枠線 */
+  border-radius: 5px; /* 角を丸くする */
+  background-color: #ffffff; /* 背景色 */
+  transition: background-color 0.3s, color 0.3s;
+  
+}
+
+.social-login-link:hover {
+  background-color: #007bff; /* ホバー時の背景色 */
+  color: #ffffff; /* ホバー時の文字色 */
+}
+.center-text {
+  text-align: center; /* テキストを中央揃えにする */
+}
+
+.login-form {
+  background: rgba(255, 255, 255, 0.767); /* 背景色を白にして透過を追加 */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1); /* 透過の枠を作成 */
+  width: 60vh; /* 幅を100%に設定 */
+  max-width: 500px; /* 最大幅を500pxに設定 */
+}
+
+
+.button-group {
+  display: flex; /* フレックスボックスを使用して横並びにする */
+  gap: 20px; /* ボタン間のスペースを指定 */
+  justify-content: center; /* ボタンを中央に配置 */
+}
+
+

@@ -53,3 +53,98 @@
 
 @import '/app/assets/stylesheets/reviews.scss';
 @import '/app/assets/stylesheets/companies.scss';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .custom-yellow {
+  background-color: #eed15dfc;
+ }
+ .navbar-brand {
+  font-size: 20px; /* フォントサイズ */
+  font-weight: 700; /* フォントの太さ */
+  color: #333; /* テキストの色 */
+  padding-left: 20px;
+}
+

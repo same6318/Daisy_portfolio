@@ -1,7 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
- 
+  
   def new
+    @user = User.new
     super
   end
 
@@ -21,6 +22,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       render :edit
     end
+  end
+
+  def cancel
+    super
   end
   
 
@@ -45,4 +50,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
       edit_user_registration_path 
     end
   end
+
 end

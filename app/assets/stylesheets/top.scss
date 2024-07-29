@@ -3,10 +3,11 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 /* 公開コンテンツとログインユーザー専用コンテンツのスタイリング */
 
-  .public-content {
-    /* 公開コンテンツのスタイリング */
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-  }
+.public-content {
+  /* 公開コンテンツのスタイリング */
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
 

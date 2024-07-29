@@ -1,26 +1,46 @@
-<h2>ログイン</h2>
+<body class="login-page">
+  <div id="login-page">
+    <div class="container">
+       <div class="login-form">
+        <div class="row justify-content-center">
+          <div class="col-md-20">
+            
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス"%><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <h2 class="custom-heading"> ログイン</h2>
 
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+          <div class="form-group">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me, "パスワードを記憶"%>
+              <div class="form-group">
+                <div class="col-md-20">
+                  <%= f.label :email, "メールアドレス"%><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password, "パスワード" %><br />
+                  <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+                </div>
+                <% if devise_mapping.rememberable? %>
+                  <div class="field">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me, "パスワードを記憶"%>
+                  </div>
+                <% end %>
+                <div class="button-group">
+                  <%= f.submit "ログイン", class:"btn btn-outline-dark"%>
+                </div>
+              <% end %>    
+              
+            <div class="button-group"> 
+            <%= render "devise/shared/links", button_text: "Googleでログイン" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
   </div>
-<% end %>
+</body>
+          
 
-<%= render "devise/shared/links", button_text: "Googleでログイン" %>
+       

@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .login-page {
-  background-image: url('background-login.jpg');
+  background-image: url('background.jpg');
   background-size: cover; /* 画面全体に画像をフィットさせる */
   background-position: center; /* 画像を中央に配置 */
   background-repeat: no-repeat; /* 画像を繰り返さない */
@@ -14,14 +14,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* ビューポート全体の高さに設定 */
+  height: 30vh; /* ビューポート全体の高さに設定 */
+}
+.login-form {
+  background: rgba(255, 255, 255, 0.767); /* 背景色を白にして透過を追加 */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1); /* 透過の枠を作成 */
+  width: 60vh; /* 幅を100%に設定 */
+  max-width: 500px; /* 最大幅を500pxに設定 */
 }
 
-.login-page #login-box {
-  margin-top: 120px;
-  max-width: 600px;
-  height: auto; /* 高さは内容に応じて調整 */
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
-  padding: 20px;
-}

@@ -14,24 +14,17 @@ class Admin::UsersController < ApplicationController
     @users = @q.result(distinct: true).includes(:company).page(params[:page]).per(5)
   end
 
-  # def index #viewから送られてくるパラメータを元にテーブルからデータを検索する
-  #   if params[:q].present? && params[:q][:title_or_content_cont].present?
-  #     search_word = params[:q][:title_or_content_cont]
-  #     hiragana_search_word = Topic.to_hiragana(search_word)
-  #     katakana_search_word = Topic.to_katakana(search_word)
-  #     @q = Topic.joins(:user).ransack(m: "or", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word])
-  #   else
-  #     @q = Topic.joins(:user).ransack(params[:q])
-  #   end
-    
-  #   @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.order(created_at: :asc).page(params[:page]).per(9)
-  # end
-
   def show
     @user = User.find(params[:id])
-    @topics = @user.topics.all
-    @reviews = @user.reviews.all
+    @topics = @user.topics.all.page(params[:page]).per(3)
+    @reviews = @user.reviews.all.page(params[:reviews_page]).per(3)
   end
+
+      # #ページネーション表示
+      # @current_user_reviews = current_user.reviews.page(params[:reviews_page]).per(3)
+      # @topics = current_user.topics.page(params[:topics_page]).per(3)
+      # @reviews = Review.page(params[:page]).per(3)
+  
 
   def destroy
     @user.destroy

@@ -1,3 +1,11 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.reviews-container {
+  display: flex; /* フレックスボックスコンテナ */
+  flex-direction: row; /* 横並び */
+  flex-wrap: wrap; /* アイテムがコンテナを超える場合は折り返す */
+  justify-content: center; /* アイテムを中央に配置 */
+  gap: 1rem; /* カード間のスペース */
+  padding: 1rem; /* コンテナの内側に余白を追加 */
+}

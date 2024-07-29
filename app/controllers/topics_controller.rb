@@ -12,7 +12,7 @@ class TopicsController < ApplicationController
       @q = Topic.joins(:user).ransack(params[:q])
     end
     
-    @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.order(created_at: :asc).page(params[:page]).per(9)
+    @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.order(created_at: :desc).page(params[:page]).per(9)
   end
 
   def new
@@ -51,7 +51,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
     flash[:notice] = t('.destroyed')
-    redirect_to topics_path
+    redirect_to users_path
   end
 
   private

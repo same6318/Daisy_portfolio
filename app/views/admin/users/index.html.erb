@@ -1,59 +1,65 @@
-<div class="container-fluid">
-  <div class="row">
-    <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
-      <h1 class="h2">ユーザー一覧</h1>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light p-2 h2">ユーザー一覧</h1>
       <p>ここにテキストとか入れる。検索方法などについて</p>
       <hr>
-        <div class="float-start">
-          <div class="mx-auto">
-            <p>
-              <%= search_form_for @q, url: admin_users_path, method: :get do |f| %>
-                <p>
-                <%= f.label :name_or_screen_name_cont, "名前 or ハンドルネーム検索" %>
-                <%= f.text_field :name_or_screen_name_cont %>
-                </p>
-                <p>
-                <%= f.submit "検索", class:"btn btn-custom float-end" %>
-                </p>
-              <% end %>
-            </p>
-            <div class="align-items-center">
-              <p><%= link_to "検索結果をリセット", admin_users_path, class:"btn btn-custom" %></p>
-            </div>
-          </div>
-        </div>
-    </main>
-  </div>
-</div>
-
-<div class="table-responsive p-4">
-  <table class="table table caption-top">
-    <caption>ソート項目は各ボタンを押してください</caption>
-    <thead class="table-warning text-align-center align-middle">
-      <tr>
-        <th class="text-center">詳細</th>
-        <th><%= sort_link(@q, :name, "ユーザー名", hide_indicator: true, class: "btn btn-light") %></th>
-        <th><%= sort_link(@q, :role, "権限", hide_indicator: true, class: "btn btn-light") %></th>
-        <th><%= sort_link(@q, :email, "メールアドレス", hide_indicator: true, class: "btn btn-light") %></th>
-        <th><%= sort_link(@q, :screen_name, "ハンドルネーム", hide_indicator: true, class: "btn btn-light") %></th>
-        <th>トピック数</th>
-        <th>レビュー数</th>
-      <tr>
-    </thead>
-      <tbody class="align-middle">
-        <% @users.each do |user| %>
-          <tr>
-            <td class="text-center"><%= link_to "詳細", admin_user_path(user), class:"btn btn-custom" %>
-            <td><%= user.name %></td>
-            <td><%= user.role %></td>
-            <td><%= user.email %></td>
-            <td><%= user.screen_name %></td>
-            <td><%= user.topics.count %></td>
-            <td><%= user.reviews.count %></td>
-          </tr>
+      <div class="justify-content-center align-items-center">
+        <%= search_form_for @q, url: admin_users_path, method: :get do |f| %>
+          <p>
+          <%= f.label :name_or_screen_name_cont, "名前 or ハンドルネーム", class:"col-sm-4 col-form-label" %>
+          <%= f.text_field :name_or_screen_name_cont, class:"col-sm-4" %>
+          </p>
+          <p>
+          <%= f.label :email_cont, "メールアドレス", class:"col-sm-4 col-form-label" %>
+          <%= f.text_field :email_cont, class:"col-sm-4" %>
+          </p>
+          <p>
+          <%= f.label :role_eq, "権限", class:"col-sm-4 col-form-label" %>
+          <%= f.text_field :role_eq, class:"col-sm-4" %>
+          </p>
+          <p>
+          <%= f.submit "検索", class:"btn btn-custom" %>
+          </p>
         <% end %>
-      </tbody>
-  </table>
+      </div>
+      <div class="align-items-center">
+        <p><%= link_to "検索結果をリセット", admin_users_path, class:"btn btn-custom" %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table caption-top">
+      <caption>ソート項目は各ボタンを押してください</caption>
+      <thead class="table-warning text-align-center text-center align-middle">
+        <tr>
+          <th></th>
+          <th><%= sort_link(@q, :name, "ユーザー名", hide_indicator: true, class: "btn btn-light") %></th>
+          <th>権限</th>
+          <th><%= sort_link(@q, :email, "メールアドレス", hide_indicator: true, class: "btn btn-light") %></th>
+          <th>ハンドルネーム</th>
+          <th>トピック数</th>
+          <th>レビュー数</th>
+        <tr>
+      </thead>
+        <tbody class="align-middle text-center">
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to "詳細", admin_user_path(user), class:"btn btn-custom" %>
+              <td><%= truncate(user.name, length: 15) %></td>
+              <td><%= user.role %></td>
+              <td><%= user.email %></td>
+              <td><%= truncate(user.screen_name, length: 15) %></td>
+              <td><%= user.topics.count %></td>
+              <td><%= user.reviews.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
 </div>
 
 <%= paginate @users %>

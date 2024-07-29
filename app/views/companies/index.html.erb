@@ -2,21 +2,21 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light p-2">企業一覧</h1>
-      <p>
+      <div class="justify-content-center align-items-center">
         <%= search_form_for @q, url: companies_path, method: :get do |f| %>
           <p>
-          <%= f.label :name, "企業名検索" %>
-          <%= f.text_field :name_cont %>
+          <%= f.label :name, "企業名検索", class:"col-sm-4 col-form-label" %>
+          <%= f.text_field :name_cont, class:"col-sm-4" %>
           </p>
           <p>
-          <%= f.label :address, " 住所 検索" %>
-          <%= f.text_field :name_cont %>
+          <%= f.label :address, "住所検索", class:"col-sm-4 col-form-label" %>
+          <%= f.text_field :name_cont, class:"col-sm-4" %>
           </p>
           <p>
           <%= f.submit "検索", class:"btn btn-custom" %>
           </p>
         <% end %>
-      </p>
+      </div>
       <div class="align-items-center">
         <p><%= link_to "検索結果をリセット", companies_path, class:"btn btn-custom" %></p>
       </div>

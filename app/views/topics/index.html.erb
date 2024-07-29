@@ -3,13 +3,13 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light  p-2">トピック一覧</h1>
-      <p>
+      <div class="justify-content-center align-items-center">
         <%= search_form_for @q, url: topics_path, method: :get do |f| %>
-          <%= f.label :title_or_content_cont, "キーワード(タイトル・本文内)検索" %>
-          <%= f.text_field :title_or_content_cont %>
+          <%= f.label :title_or_content_cont, "タイトル・本文検索", class:"col-sm-4 col-form-label" %>
+          <%= f.text_field :title_or_content_cont, class:"col-sm-4" %>
           <%= f.submit "検索", class:"btn btn-custom" %>
         <% end %>
-      </p>
+      </div>
       <div class="align-items-center">
         <%= link_to "検索結果をリセット", topics_path, class:"btn btn-custom" %>
       </div>
@@ -47,6 +47,7 @@
               <% else %>
                 <small class="text-muted">匿名希望</small>
               <% end %>
+              <small class="text-muted"><%= topic.created_at.strftime('%y/%m/%d') %></small>
             </div>
           </div>
       </div>

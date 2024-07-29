@@ -21,7 +21,7 @@
     <ul class="nav justify-content">
       <% if user_signed_in? %>
         <% if current_user.admin? %>
-          <ul>
+          <ul class="nav justify-content">
             <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-item nav-link"  %></li>
             <li class="nav-item"><%= link_to "トピック一覧", admin_topics_path, class: "nav-item nav-link" %></li>
             <li class="nav-item"><%= link_to "レビュー一覧", admin_reviews_path, class: "nav-item nav-link" %></li>

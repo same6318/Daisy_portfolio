@@ -1,3 +1,9 @@
+<h1>
+  <div class ="custom-heading">
+  Daisy
+  </div>
+</h1>
+
 <div class="public-content">
   <h2>新着レビュー</h2>
   <% if @grouped_reviews.present? %>
@@ -10,18 +16,35 @@
     <% end %>
   <% end %>
   
-  <h2>新着トピックス</h2>
-  <% if @selected_topics.present? %>
+<h2>新着トピックス</h2>
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     <% @selected_topics.each do |topic| %>
-    <div class="topic">
-        <div>投稿者名：<%= topic.user.name %></div>
-        <div><%= topic.title %></div>
-        <div>・<%= topic.content %></div> 
+      <div class="col">
+        <div class="card shadow-sm" style="width: 18rem;">
+          <% if @selected_topics.present? %>
+            <%= image_tag topic.topic_images.first, class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;" %>
+          <% else %>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="100%" height="100%" fill="#eeeeee"></rect>
+              <text x="50%" y="50%" fill="#aaaaaa" dy=".3em" text-anchor="middle">No image</text>
+            </svg>
+          <% end %>
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-body-secondary"><%= topic.title %></h6>
+            <p class="card-text">
+              <div>投稿者名：<%= topic.user.name || '匿名希望' %></div>
+              <div><%= topic.content %></div> 
+            </p>
+          </div>
+        </div>
       </div>
     <% end %>
-  <% end %>
+  </div><br>
 
-  <% unless user_signed_in? %>
-    <p>コンテンツを見るには、<%= link_to 'ログイン', new_user_session_path %> または <%= link_to '新規登録', new_user_registration_path %> してください。</p>
-  <% end %>
-</div>
+  <figure class="text-center">
+    <blockquote class="blockquote">
+    <% unless user_signed_in? %>
+      <p>コンテンツを見るには、<%= link_to 'ログイン', new_user_session_path %> または <%= link_to '新規登録', new_user_registration_path %> してください。</p>
+    <% end %>
+  </blockquote>

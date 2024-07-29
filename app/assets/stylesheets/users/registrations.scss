@@ -96,8 +96,61 @@
 }
 
 .button-group {
+  gap: 20px; /* ボタン間のスペースを指定 */
+  justify-content: center; /* ボタンを中央に配置 */
+   text-align: center;
+}
+.form-submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff; /* 文字色 */
+  background-color: #007bff; /* 背景色 */
+  border: 1px solid #007bff; /* 枠線 */
+  border-radius: 5px; /* 角を丸くする */
+  text-decoration: none; /* 下線を除去 */
+  text-align: center;
+}
+
+.form-submit-button:hover {
+  background-color: #0056b3; /* ホバー時の背景色 */
+  border-color: #0056b3; /* ホバー時の枠線の色 */
+}
+
+
+.social-login-link {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #007bff; /* リンクの色 */
+  text-decoration: none;
+  border: 1px solid #007bff; /* リンクの枠線 */
+  border-radius: 5px; /* 角を丸くする */
+  background-color: #ffffff; /* 背景色 */
+  transition: background-color 0.3s, color 0.3s;
+  
+}
+
+.social-login-link:hover {
+  background-color: #007bff; /* ホバー時の背景色 */
+  color: #ffffff; /* ホバー時の文字色 */
+}
+.center-text {
+  text-align: center; /* テキストを中央揃えにする */
+}
+
+.login-form {
+  background: rgba(255, 255, 255, 0.767); /* 背景色を白にして透過を追加 */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1); /* 透過の枠を作成 */
+  width: 60vh; /* 幅を100%に設定 */
+  max-width: 500px; /* 最大幅を500pxに設定 */
+}
+
+
+.button-group {
   display: flex; /* フレックスボックスを使用して横並びにする */
   gap: 20px; /* ボタン間のスペースを指定 */
   justify-content: center; /* ボタンを中央に配置 */
 }
+
 

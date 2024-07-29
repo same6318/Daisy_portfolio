@@ -1,17 +1,31 @@
-<h1>Daisy 管理者用ログイン画面</h1>
+<body class="admin-login-page">
+    <div id="admin-login-page">
+      <div class="container">
+        <div class="admin-login-form">
+          <div class="row justify-content-center">
+            <div class="col-md-10">
 
-<%= form_with model: resource, as: resource_name, url: admin_session_path, local: true do |form| %>
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.email_field :email %>
-  </div>
+            <h1 class="custom-heading"> Daisy<br>管理者ログイン画面</h1> 
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
+            <div class="form-group">
+              <%= form_with model: resource, as: resource_name, url: admin_session_path, local: true do |form| %>
 
-  <div class="actions">
-    <%= form.submit %>
+              <div class="form-group">
+                <%= form.label :email %>
+                <%= form.email_field :email, class: 'form-control'  %>
+              </div>
+              <div class="field">
+                <%= form.label :password %>
+                <%= form.password_field :password , class: 'form-control' %>
+              </div>
+              <div class="button-group">
+                  <%= form.submit %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

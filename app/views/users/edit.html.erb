@@ -38,7 +38,7 @@
 
   <div class="field">
     <% available_roles = User.roles.keys - ['admin'] %> <!-- 管理者ロールを除外 -->
-    <%= f.label :role, 'アカウントのステータス' %><br>
+    <%= f.label :role, 'ステータス' %><br>
     <%= f.select :role, options_for_select([['', '']] + available_roles.map { |k| [I18n.t("enums.user.role.#{k}"), k] }, f.object.role || '') %>
   </div>
   

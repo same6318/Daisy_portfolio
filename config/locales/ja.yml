@@ -1,8 +1,18 @@
 ja:
-  errors:
-    format: "%{attribute}%{message}"
-    messages:
-      blank: を入力してください
+  topics:
+    create:
+      created: "トピックが作成されました。"
+    update:
+      updated: "トピックが更新されました。"
+    destroy:
+      destroyed: "トピックが正常に削除されました。"
+  reviews:
+    create:
+      created: "レビューが作成されました"
+    update:
+      updated: "レビューが更新されました。"
+    destroy:
+      destroyed: "レビューが正常に削除されました。"
   devise:
     failure:
       user:
@@ -22,6 +32,22 @@ ja:
       destroyed: 'アカウントを削除しました'
     passwords:
       blank: "パスワードを入力してください"
+  activerecord:
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        agreement: "利用規約とプライバシーポリシー"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "を入力してください"
+            password:
+              blank: "を入力してください"
+            agreement:
+              acceptance: "を受諾してください"  
   enums:
     user:
       age:
@@ -47,6 +73,5 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認）
-
-      
+  
       

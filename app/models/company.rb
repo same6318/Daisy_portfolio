@@ -16,7 +16,7 @@ class Company < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    auth_object = []
+    %w[user]
   end
 
 end

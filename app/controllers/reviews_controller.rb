@@ -4,12 +4,23 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Review.ransack(params[:q])
+    #@q = Review.ransack(params[:q])
     @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
-    sorted_reviews = @q.result(distinct: true).includes(:user)
-                     .where(company_id: params[:company_id])
-                     #.sort_by(&:review_average).reverse
-    @company_reviews = Kaminari.paginate_array(sorted_reviews).page(params[:page]).per(10)
+    @q = @company.reviews.ransack(params[:q])
+    #binding.irb
+
+    sorted_reviews = @q.result
+                    #  .where(company_id: @company.id)
+
+    # binding.irb
+                     #.sort_by(&:review_average).reverse #これはページリロードと同時に評価点数上位がソートされる
+    # if params[:sort_by].present?
+    #   sorted_reviews = sorted_reviews.joins(:user)
+    #                                  .order("users.#{params[:sort_by]} ASC")
+    # end
+
+    # @company_reviews = sorted_reviews.page(params[:page]).per(10)
+    @company_reviews = Kaminari.paginate_array(sorted_reviews).page(params[:page]).per(5)
     # @company_reviews.map {|d| {average:d.review_average, **d.attributes}}.sort_by {|a| a[:average]}
     #binding.irb
   end

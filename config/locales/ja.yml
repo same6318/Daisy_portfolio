@@ -73,5 +73,10 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認）
-  
-      
+  views:
+    pagination:
+     first: "&laquo; Top"
+     last: "Last &raquo;"
+     previous: "&laquo; Back"
+     next: "Next &rsaquo;"
+     truncate: "..."

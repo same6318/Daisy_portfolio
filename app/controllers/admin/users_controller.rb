@@ -20,12 +20,6 @@ class Admin::UsersController < ApplicationController
     @reviews = @user.reviews.all.page(params[:reviews_page]).per(3)
   end
 
-      # #ページネーション表示
-      # @current_user_reviews = current_user.reviews.page(params[:reviews_page]).per(3)
-      # @topics = current_user.topics.page(params[:topics_page]).per(3)
-      # @reviews = Review.page(params[:page]).per(3)
-  
-
   def destroy
     @user.destroy
     flash[:notice] = "ユーザーを削除しました"
@@ -37,7 +31,7 @@ class Admin::UsersController < ApplicationController
   def require_admin
     # binding.irb
     unless current_user.admin?
-      flash[:notice] = "アクセス権限がありません"
+      flash[:notice] = "パスワードが違います" #権限の文言は使わない
       sign_out(current_user) #ユーザーを強制的にログアウトさせる
       redirect_to new_user_session_path
     end

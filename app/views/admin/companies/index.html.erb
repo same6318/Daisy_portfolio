@@ -1,33 +1,57 @@
-<table>
-  <thead>
-    <tr>
-      <th>企業一覧</th>
-    </tr>
-  </thead>
-</table>
 
- <p><%= sort_link(@q, :name, "企業名で並べ替え", hide_indicator: true) %></p>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light p-2">企業一覧</h1>
+      <p>ここにテキストとか入れる。検索方法などについて</p>
+      <hr>
+      <div class="justify-content-center align-items-center">
+        <%= search_form_for @q, url: admin_companies_path, method: :get do |f| %>
+          <p>
+          <%= f.label :name, "企業名", class:"col-sm-4 col-form-label" %>
+          <%= f.text_field :name_cont, class:"col-sm-4" %>
+          </p>
+          <p>
+          <%= f.label :address, " 住所", class:"col-sm-4 col-form-label" %>
+          <%= f.text_field :name_cont, class:"col-sm-4" %>
+          </p>
+          <p>
+          <%= f.submit "検索", class:"btn btn-custom" %>
+          </p>
+        <% end %>
+      </div>
+      <div class="align-items-center">
+        <p><%= link_to "検索結果をリセット", admin_companies_path, class:"btn btn-custom" %></p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <%= search_form_for @q, url: admin_companies_path, method: :get do |f| %>
-    <%= f.label :name, "企業名検索" %>
-    <%= f.search_field :name_cont %>
-    <%= f.label :address, "住所検索" %>
-    <%= f.search_field :address_cont %>
-
-    <%= f.submit "検索" %>
-  <% end %>
-
-  <p><%= link_to "検索結果をリセットする", admin_companies_path %></p>
-
-
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= link_to "詳細", admin_company_path(company) %></td><br>
-        <td>企業名：<%= company.name %></td><br>
-        <td>企業レビュー数：<%= company.reviews_count %>
-      </tr>
-    <% end %>
-  </tbody>
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table caption-top">
+      <caption>ソート項目は各ボタンを押してください</caption>
+      <thead class="table-warning text-align-center text-center align-middle">
+        <tr>
+          <th></th>
+          <th><%= sort_link(@q, :name, "企業名", hide_indicator: true, class: "btn btn-light") %></th>
+          <th><%= sort_link(@q, :address, "住所", hide_indicator: true, class: "btn btn-light") %></th>
+          <th>レビュー件数</th>
+          <th>企業評価</th>
+        <tr>
+        <tbody class="align-middle">
+          <% @companies.each do |company| %>
+            <tr>
+              <td class="text-center"><%= link_to "詳細", admin_company_path(company), class:"btn btn-custom" %></td>
+              <td class="text-center"><%= company.name %></td>
+              <td><%= company.address %>
+              <td class="text-center"><%= company.reviews_count %>
+              <td class="text-center"><%= company.company_reviews_average %><br>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 <%= paginate @companies %>

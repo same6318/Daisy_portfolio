@@ -41,7 +41,7 @@ class User < ApplicationRecord
 
   #admin画面でのユーザー検索関連
   def self.ransackable_attributes(auth_object = nil)
-    %w[name screen_name role created_at]
+    %w[name email screen_name role created_at age gender]
   end
 
   def self.ransackable_associations(auth_object = nil)

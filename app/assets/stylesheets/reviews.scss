@@ -1,6 +1,12 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+thead th {
+  color: #696969; // `thead` の文字色を変更
+  font-weight: bold; // フォントの太さを変更
+}
+
 .reviews-container {
   display: flex; /* フレックスボックスコンテナ */
   flex-direction: row; /* 横並び */

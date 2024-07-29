@@ -26,7 +26,7 @@ class Topic < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    super + %w[user]
+    super + %w[user company]
   end
 
 end

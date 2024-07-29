@@ -2,16 +2,16 @@
 <section class="py-5 text-center container">
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light">トピック一覧</h1>
+      <h1 class="fw-light  p-2">トピック一覧</h1>
       <p>
         <%= search_form_for @q, url: topics_path, method: :get do |f| %>
           <%= f.label :title_or_content_cont, "キーワード(タイトル・本文内)検索" %>
           <%= f.text_field :title_or_content_cont %>
-          <%= f.submit "検索", class:"btn btn-warning" %>
+          <%= f.submit "検索", class:"btn btn-custom" %>
         <% end %>
       </p>
       <div class="align-items-center">
-        <%= link_to "検索結果をリセット", topics_path, class:"btn btn-warning" %>
+        <%= link_to "検索結果をリセット", topics_path, class:"btn btn-custom" %>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
           <h5 class="card-title"><%= truncate(topic.title, length: 15) %></h5>
           <p class="card-text"><%= truncate(topic.content, length: 25) %></p>
             <div class="d-flex justify-content-between align-items-center">
-              <%= link_to "詳細", topic_path(topic), class:"btn btn-warning" %>
+              <%= link_to "詳細", topic_path(topic), class:"btn btn-custom" %>
               <% if topic.author_name %>
                 <!--user.name/user.screen_nameが空の文字列についても無しと判断する為、present?を使用する-->
                 <% if topic.user.screen_name.present? || topic.user.name.present? %>
@@ -54,5 +54,5 @@
     <% end %>
   </div>
 </div>
-  <%= paginate @topics %>
 
+<%= paginate @topics %>

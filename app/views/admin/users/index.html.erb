@@ -1,36 +1,59 @@
-<%= sort_link(@q, :created_at, "作成日時順", hide_indicator: true) %>
+<div class="container-fluid">
+  <div class="row">
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+      <h1 class="h2">ユーザー一覧</h1>
+      <p>ここにテキストとか入れる。検索方法などについて</p>
+      <hr>
+        <div class="float-start">
+          <div class="mx-auto">
+            <p>
+              <%= search_form_for @q, url: admin_users_path, method: :get do |f| %>
+                <p>
+                <%= f.label :name_or_screen_name_cont, "名前 or ハンドルネーム検索" %>
+                <%= f.text_field :name_or_screen_name_cont %>
+                </p>
+                <p>
+                <%= f.submit "検索", class:"btn btn-custom float-end" %>
+                </p>
+              <% end %>
+            </p>
+            <div class="align-items-center">
+              <p><%= link_to "検索結果をリセット", admin_users_path, class:"btn btn-custom" %></p>
+            </div>
+          </div>
+        </div>
+    </main>
+  </div>
+</div>
 
-  <%= search_form_for @q, url: admin_users_path, method: :get do |f| %>
-    <%= f.label :name_or_screen_name_cont, "名前 or ハンドルネーム検索" %>
-    <%= f.search_field :name_or_screen_name_cont %>
-    <%= f.label :role_eq, "権限検索" %>
-    <%= f.search_field :role_eq %> <!--整数カラムのマッチング-->
-
-    <%= f.submit "検索" %>
-  <% end %>
-
-  <p><%= link_to "検索結果をリセットする", admin_users_path %></p>
-
-
-<table>
-  <thead>
-    <tr>
-      <th>ユーザー一覧</th>
-    </tr>
-  </thead>
-</table>
-
-  <tbody>
-    <% @users.each do |user| %>
+<div class="table-responsive p-4">
+  <table class="table table caption-top">
+    <caption>ソート項目は各ボタンを押してください</caption>
+    <thead class="table-warning text-align-center align-middle">
       <tr>
-        <td><%= link_to "ユーザー名", admin_user_path(user) %>：<%= user.name %></td><br>
-        <td>ステータス：<%= user.role %><td><br>
-        <td>メールアドレス：<%= user.email %></td><br>
-        <td>ハンドルネーム：<%= user.screen_name %></td><br>
-        <td>トピック投稿数：<%= user.topics.count %></td><br>
-        <td>レビュー投稿数：<%= user.reviews.count %></td><br>
-      </tr>
-    <% end %>
-  </tbody>
+        <th class="text-center">詳細</th>
+        <th><%= sort_link(@q, :name, "ユーザー名", hide_indicator: true, class: "btn btn-light") %></th>
+        <th><%= sort_link(@q, :role, "権限", hide_indicator: true, class: "btn btn-light") %></th>
+        <th><%= sort_link(@q, :email, "メールアドレス", hide_indicator: true, class: "btn btn-light") %></th>
+        <th><%= sort_link(@q, :screen_name, "ハンドルネーム", hide_indicator: true, class: "btn btn-light") %></th>
+        <th>トピック数</th>
+        <th>レビュー数</th>
+      <tr>
+    </thead>
+      <tbody class="align-middle">
+        <% @users.each do |user| %>
+          <tr>
+            <td class="text-center"><%= link_to "詳細", admin_user_path(user), class:"btn btn-custom" %>
+            <td><%= user.name %></td>
+            <td><%= user.role %></td>
+            <td><%= user.email %></td>
+            <td><%= user.screen_name %></td>
+            <td><%= user.topics.count %></td>
+            <td><%= user.reviews.count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
 
 <%= paginate @users %>

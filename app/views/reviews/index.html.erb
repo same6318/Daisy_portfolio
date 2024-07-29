@@ -1,33 +1,44 @@
-<h1><%= @company.name %>のレビュー一覧</h1>
 
-<%= sort_link(@q, :created_at, "作成日時順", hide_indicator: true) %>
-<p><%= %>
-
-<table>
-  <thead>
-    <tr>
-      <th>評価平均</th>
-      <th>年代</th>
-      <th>性別</th>
-      <th>在籍状態</th>
-      <th>本文</th>
-      <th></th>
-    </tr>
-  </thead>
-</table>
-
-  <tbody>
-    <% @company_reviews.each do |review| %>
-      <div>
-        <td><%= link_to "詳細", company_review_path(review.company_id, review) %></td>
-        <td>評価平均：<%= review.review_average %></td>
-        <td>年代：<%= review.user.age %></td>
-        <td>性別：<%= review.user.gender %></td>
-        <td>在籍状態：<%= review.select %></td>
-        <td><small><%= truncate(review.content) %></small></td>
-        <td><small>作成日時： <%= review.created_at.strftime('%Y/%m/%d %H:%M') %></small></td>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light  p-2"><%= @company.name %>のレビュー一覧</h1>
+      <div class="align-items-center">
+        <p>ここにテキストとか入れる??</p>
       </div>
-    <% end %>
-  </tbody>
+    </div>
+  </div>
+</section>
 
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table caption-top">
+      <caption>ソート項目は各ボタンを押してください</caption>
+      <thead class="table-warning text-align-center text-center align-middle">
+        <tr>
+          <th></th>
+          <th>評価平均</th>
+          <th><%= sort_link(@q, :user_age, "年代", hide_indicator: true, class: "btn btn-light") %></th>
+          <th><%= sort_link(@q, :user_gender, "性別", hide_indicator: true, class: "btn btn-light") %></th>
+          <th><%= sort_link(@q, :select, "在籍状態", hide_indicator: true, class: "btn btn-light") %></th>
+          <th>本文</th>
+          <th><%= sort_link(@q, :created_at, "作成日時", hide_indicator: true, class: "btn btn-light") %></th>
+        </tr>
+      </thead>
+      <tbody class="align-middle">
+      <% @company_reviews.each do |review| %>
+        <tr>
+          <td class="text-center"><%= link_to "詳細", company_review_path(review.company_id, review), class:"btn btn-custom" %></td>
+          <td class="text-center"><%= review.review_average %></td>
+          <td class="text-center"><%= review.user.age %></td>
+          <td class="text-center"><%= review.user.gender %></td>
+          <td class="text-center"><%= review.select %></td>
+          <td><small><%= truncate(review.content) %></small></td>
+          <td class="text-center"><small><%= review.created_at.strftime('%Y/%m/%d') %></small></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
   <%= paginate @company_reviews %>

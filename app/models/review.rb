@@ -29,7 +29,7 @@ class Review < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    super + %w[select created_at company_name] #親クラスのメソッドを呼び出し、追加でレビューに追加したい属性を記載。
+    %w[select created_at company_name age gender] #親クラスのメソッドを呼び出し、追加でレビューに追加したい属性を記載。
     #user_nameやcompany_nameはransackで使用する仮の属性名。カラムが無くても使える。
   end
 
@@ -38,7 +38,7 @@ class Review < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    super + %w[user company]
+    %w[user company]
   end
 
 end

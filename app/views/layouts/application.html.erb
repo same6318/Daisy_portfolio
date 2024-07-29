@@ -13,19 +13,21 @@
   </head>
   
   <body>
-    <nav class="navbar navbar-light bg-warning"><!--デフォルト値はこれしかない。作る必要あり。-->
+    <nav class="navbar navbar-light bg-custom"><!--デフォルト値はこれしかない。作る必要あり。-->
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">Daisy World</span>
+        <span class="navbar-brand mb-0 h1 text-white">Daisy World</span>
       </div>
     </nav>
-    <ul class="nav justify-content">
+    <ul>
       <% if user_signed_in? %>
         <% if current_user.admin? %>
-          <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-item nav-link"  %></li>
-          <li class="nav-item"><%= link_to "トピック一覧", admin_topics_path, class: "nav-item nav-link" %></li>
-          <li class="nav-item"><%= link_to "レビュー一覧", admin_reviews_path, class: "nav-item nav-link" %></li>
-          <li class="nav-item"><%= link_to "企業一覧", admin_companies_path, class: "nav-item nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-item nav-link" %></li>
+          <ul>
+            <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-item nav-link"  %></li>
+            <li class="nav-item"><%= link_to "トピック一覧", admin_topics_path, class: "nav-item nav-link" %></li>
+            <li class="nav-item"><%= link_to "レビュー一覧", admin_reviews_path, class: "nav-item nav-link" %></li>
+            <li class="nav-item"><%= link_to "企業一覧", admin_companies_path, class: "nav-item nav-link" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-item nav-link" %></li>
+          </ul>
         <% else %>
           <li class="nav-item"><%= link_to "ログアウト",destroy_user_session_path, method: :delete, class: "nav-item nav-link"  %></li>
           <li class="nav-item"><%= link_to "ホーム", users_path, id: "", class: "nav-item nav-link" %></li>

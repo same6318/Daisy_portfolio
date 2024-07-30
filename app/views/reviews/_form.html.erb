@@ -1,8 +1,19 @@
 <%= form_with(model: [:company, @review], local: true) do |form| %>
 
-  <div class="field">
+  <div class="form-group row" id="star">
     <%= form.label :work_life_balance,'ワークライフバランス', class:"form-label" %>
-    <%= form.select :work_life_balance, [1,2,3,4,5] %>
+    <%= form.hidden_field :work_life_balance %>
+      <div id="post_raty"></div>
+        <script>
+          var elem = document.querySelector('#post_raty');
+          var opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            scoreName: 'review[work_life_balance]', //scoreNameがreviewモデルのカラムに保存する
+          };
+          raty(elem,opt);
+        </script>
+      </div>
   </div>
 
   <div class="field">

@@ -27,9 +27,9 @@
 
 <div class="container">
   <div class="table-responsive">
-    <table class="table table caption-top">
+    <table class="table caption-top">
       <caption>ソート項目は各ボタンを押してください</caption>
-      <thead class="table-warning text-align-center text-center align-middle">
+      <thead class="text-align-center text-center align-middle custom-thead">
         <tr>
           <th></th>
           <th>レビュー投稿</th>
@@ -42,11 +42,15 @@
           <% @companies.each do |company| %>
             <tr>
               <td class="text-center"><%= link_to "詳細", company_path(company), class:"btn btn-custom" %></td>
-              <td class="text-center"><%= link_to "投稿", new_company_review_path(company), class:"btn btn-custom" %></td>
+              <% if current_user.age.present? && current_user.gender.present? %>
+                <td class="text-center"><%= link_to "投稿", new_company_review_path(company), class:"btn btn-custom" %></td>
+              <% else %>
+                <td class="text-center"><%= link_to "投稿", companies_path, class:"btn btn-custom", data: { confirm: "レビューを投稿する場合は、年代と性別を登録してください"} %></td>
+              <% end %>
               <td class="text-center"><%= link_to "一覧", company_reviews_path(company), class:"btn btn-custom" %></td><br>
-              <td>企業名：<%= company.name %></td>
+              <td><%= company.name %></td>
               <td><%= company.address %>
-              <td>企業評価：<%= company.company_reviews_average %><br>
+              <td><%= company.company_reviews_average %><br>
             </tr>
           <% end %>
         </tbody>

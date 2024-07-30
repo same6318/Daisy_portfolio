@@ -6,7 +6,6 @@
   height: 300px; 
   border: 1px solid #ccc; /* 枠線を追加 */
 }
-
 .registration-page {
   background-image: url('background.jpg');
   background-size: cover; /* 画面全体に画像をフィットさせる */
@@ -14,7 +13,6 @@
   background-repeat: no-repeat; /* 画像を繰り返さない */
   background-attachment: fixed; /* 画面をスクロールしても背景画像は固定 */
 }
-
 /* 新規アカウント登録フォームのスタイル */
 .registration-page .container {
   display: flex;
@@ -27,7 +25,7 @@
   margin-top: 120px;
   max-width: 600px;
   height: auto; /* 高さは内容に応じて調整 */
-  border: 1px solid #9C9C9C;
+  border: 3px solid #9C9C9C;
   background-color: #EAEAEA;
   padding: 20px;
 }
@@ -38,26 +36,18 @@
   margin-bottom: 15px; /* 下部に余白を追加 */
 }
 
-.form-inline .form-group {
-  flex: 1; /* 各フォームグループが均等に広がるようにする */
-}
-
-.form-inline .form-control {
-  width: 100%; /* フォームコントロールの幅を100%にする */
-}
-
 /* 利用規約のセクションのスタイリング */
 .agreement-section {
   margin-top: 30px; /* 上部に余白を追加 */
   border-top: 1px solid #ddd; /* 上部に境界線を追加 */
   padding-top: 20px; /* 内部余白を追加 */
+  width: 75vh; /* 幅を100%に設定 */
 }
 
 /* Google ドキュメントのセクションのスタイリング */
 .google-documents {
   display: flex; /* フレックスボックスで横並びにする */
   gap: 10px; /* アイテム間の間隔を設定 */
-  
 }
 
 .google-document {
@@ -94,56 +84,18 @@
   margin-bottom: 20px; /* 下のマージン */
   position: relative; /* 擬似要素を使うために必要 */
 }
-
-.button-group {
-  gap: 20px; /* ボタン間のスペースを指定 */
-  justify-content: center; /* ボタンを中央に配置 */
-   text-align: center;
-}
-.form-submit-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #ffffff; /* 文字色 */
-  background-color: #007bff; /* 背景色 */
-  border: 1px solid #007bff; /* 枠線 */
-  border-radius: 5px; /* 角を丸くする */
-  text-decoration: none; /* 下線を除去 */
-  text-align: center;
-}
-
-.form-submit-button:hover {
-  background-color: #0056b3; /* ホバー時の背景色 */
-  border-color: #0056b3; /* ホバー時の枠線の色 */
-}
-
-
-.social-login-link {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #007bff; /* リンクの色 */
-  text-decoration: none;
-  border: 1px solid #007bff; /* リンクの枠線 */
-  border-radius: 5px; /* 角を丸くする */
-  background-color: #ffffff; /* 背景色 */
-  transition: background-color 0.3s, color 0.3s;
-  
-}
-
-.social-login-link:hover {
-  background-color: #007bff; /* ホバー時の背景色 */
-  color: #ffffff; /* ホバー時の文字色 */
-}
 .center-text {
   text-align: center; /* テキストを中央揃えにする */
 }
 
-.login-form {
+.registrations-login-form {
   background: rgba(255, 255, 255, 0.767); /* 背景色を白にして透過を追加 */
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1); /* 透過の枠を作成 */
-  width: 60vh; /* 幅を100%に設定 */
-  max-width: 500px; /* 最大幅を500pxに設定 */
+  width: 75vh; /* 幅を100%に設定 */
+  margin-top: 30px;
+  
 }
 .button-group {
   display: flex; /* フレックスボックスを使用して横並びにする */
@@ -151,5 +103,3 @@
   justify-content: center; /* ボタンを中央に配置 */
   height:10%;
 }
-
-

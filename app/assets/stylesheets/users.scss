@@ -22,3 +22,45 @@ div.actions {
   height: 500px; /* 必要に応じて高さを調整 */
 }
 
+
+
+
+.account-details {
+  border: 1px solid #ddd; /* 全体の枠線の色 */
+  padding: 10px; /* 内部余白を追加 */
+  margin: 20px auto; /* 上下余白を追加し、中央寄せ */
+  
+}
+
+.account-detail {
+  display: flex; /* フレックスボックスレイアウトを使用 */
+  padding: 5px 0; /* 上下の内部余白を追加 */
+  border-bottom: 1px solid #ddd; /* 下部の枠線 */
+}
+
+.account-detail:last-child {
+  border-bottom: none; /* 最後の要素には枠線をつけない */
+}
+
+.label {
+  flex: 1; /* ラベルを左側に配置 */
+  text-align: center; /* ラベルの文字を中央寄せ */
+  font-weight: bold; /* ラベルの文字を太くする */
+  padding-right: 10px; /* ラベルと縦線の間に余白を追加 */
+  font-size: 1.2rem; /* ラベルの文字サイズを設定 */
+}
+
+.value {
+  flex: 2; /* 値を右側に配置 */
+  text-align: center; /* 値の文字を中央寄せ */
+  border-left: 1px solid #ddd; /* 左側に縦線を追加 */
+  padding-left: 10px; /* 縦線と値の間に余白を追加 */
+}
+
+.text-center {
+  text-align: center; /* テキストを中央に揃える */
+  margin-top: 55px;
+}
+.btn-actions {
+  justify-content: center; 
+}

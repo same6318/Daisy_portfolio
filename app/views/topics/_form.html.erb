@@ -1,18 +1,9 @@
 <body class="topics-page">
-    <div id="topics-page">
-      <div class="container">
-        <div class="form"> 
-          <div class="row justify-content-center">
-            <div class="col-md-10">
-              <% if @topic.errors.any? %>
-                <div id="error_explanation">
-                  <ul>
-                    <% @topic.errors.each do |message, error| %>
-                      <li><%= " #{message}#{error}" %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              <% end %>
+    <div class="container">
+      <div class="form"> 
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+
             <h1 class="fw-light">トピックス投稿</h1>
             <%= form_with(model: topic) do |form| %>
 

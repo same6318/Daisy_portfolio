@@ -1,11 +1,11 @@
 ja:
   topics:
     create:
-      created: "トピックが作成されました。"
+      created: "トピックスが作成されました。"
     update:
-      updated: "トピックが更新されました。"
+      updated: "トピックスが更新されました。"
     destroy:
-      destroyed: "トピックが正常に削除されました。"
+      destroyed: "トピックスが正常に削除されました。"
   reviews:
     create:
       created: "レビューが作成されました"
@@ -16,12 +16,13 @@ ja:
   devise:
     failure:
       user:
+        not_found_in_database: "ユーザーが見つかりませんでした。"
         already_authenticated: "ログアウトしてください"
         invalid: "無効なメールアドレスまたはパスワードです"
         unauthenticated: "ログインしてください"
     omniauth_callbacks:
       user:
-        success: "ログインしました。"
+        success: "ログインしました"
         failure: "ログインに失敗しました。"
     sessions:
       user:
@@ -73,10 +74,3 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認）
-  views:
-    pagination:
-     first: "&laquo; Top"
-     last: "Last &raquo;"
-     previous: "&laquo; Back"
-     next: "Next &rsaquo;"
-     truncate: "..."

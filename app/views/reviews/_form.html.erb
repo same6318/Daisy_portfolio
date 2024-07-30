@@ -1,117 +1,127 @@
-<%= form_with(model: [:company, @review], local: true) do |form| %>
+<div class="justify-content-center align-items-center">
 
-  <div class="field">
-    <%= form.label :work_life_balance,'ワークライフバランス', class:"form-label" %>
-    <%= form.select :work_life_balance, [1,2,3,4,5] %>
-  </div>
+      <%= form_with(model: [:company, @review], local: true) do |form| %>
 
-  <div class="field">
-    <%= form.label :workplace_atmosphere,'職場の雰囲気', class:"form-label" %>
-    <%= form.select :workplace_atmosphere, [1,2,3,4,5] %>
-  </div>
+      <div class="form-container">
+        <div class="reviews-field">
+          <%= form.label :work_life_balance,'▶︎ ワークライフバランス　', class:"form-label" %>
+          <%= form.select :work_life_balance, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :flex_system, 'フレックス制度',class:"form-label" %>
-    <%= form.select :flex_system, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :workplace_atmosphere,'▶︎ 職場の雰囲気　', class:"form-label" %>
+          <%= form.select :workplace_atmosphere, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :remote_work, 'リモートワーク',class:"form-label" %>
-    <%= form.select :remote_work, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :flex_system, '▶︎ フレックス制度　',class:"form-label" %>
+          <%= form.select :flex_system, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :harassment_prevention, 'ハラスメント対策',class:"form-label" %>
-    <%= form.select :harassment_prevention, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :remote_work, '▶︎ リモート勤務　',class:"form-label" %>
+          <%= form.select :remote_work, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :parental_care_leave,'育児休暇', class:"form-label" %>
-    <%= form.select :parental_care_leave, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :harassment_prevention, '▶︎ ハラスメント対策　',class:"form-label" %>
+          <%= form.select :harassment_prevention, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :childcare_support, '育児休暇',class:"form-label" %>
-    <%= form.select :childcare_support, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :parental_care_leave,'▶︎ 育児・介護休暇　', class:"form-label" %>
+          <%= form.select :parental_care_leave, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :welfare_facilities, '育児休暇',class:"form-label" %>
-    <%= form.select :welfare_facilities, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :childcare_support, '▶︎ 育児支援制度（ベビーシッター券など）',class:"form-label" %>
+          <%= form.select :childcare_support, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :mental_health_care, 'メンタルヘルスケア',class:"form-label" %>
-    <%= form.select :mental_health_care, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :welfare_facilities, '▶︎ 福利厚生施設　',class:"form-label" %>
+          <%= form.select :welfare_facilities, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :evaluation_system,'評価制度', class:"form-label" %>
-    <%= form.select :evaluation_system, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :mental_health_care, '▶︎ メンタルヘルスケア　',class:"form-label" %>
+          <%= form.select :mental_health_care, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :promotion_salary,'昇進・昇給に関して', class:"form-label" %>
-    <%= form.select :promotion_salary, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :evaluation_system,'▶︎ 評価制度　', class:"form-label" %>
+          <%= form.select :evaluation_system, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :overtime_holiday_work, '時間外労働・休日出勤',class:"form-label" %>
-    <%= form.select :overtime_holiday_work, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :promotion_salary,'▶︎ 昇進・昇給に関して　', class:"form-label" %>
+          <%= form.select :promotion_salary, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :allowances_subsidies, '手当・補助',class:"form-label" %>
-    <%= form.select :allowances_subsidies, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :overtime_holiday_work, '▶︎ 時間外労働・休日出勤（適切に管理されてるか）',class:"form-label" %>
+          <%= form.select :overtime_holiday_work, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :training_education_support,'研修・教育支援', class:"form-label" %>
-    <%= form.select :training_education_support, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :allowances_subsidies, '▶︎ 手当・補助に関して　',class:"form-label" %>
+          <%= form.select :allowances_subsidies, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :career_support,'キャリアアップ支援', class:"form-label" %>
-    <%= form.select :career_support, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :training_education_support,'▶︎ 研修・教育支援　', class:"form-label" %>
+          <%= form.select :training_education_support, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :work_engagement,'育児休暇',class:"form-label" %>
-    <%= form.select :work_engagement, [1,2,3,4,5] %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :career_support,'▶︎ キャリアアップ支援　', class:"form-label" %>
+          <%= form.select :career_support, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :select, class:"form-label" %>
-    <%= form.check_box :select, class:"form-check-label" %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :work_engagement,'▶︎ 育児休暇　',class:"form-label" %>
+          <%= form.select :work_engagement, [1,2,3,4,5] %>
+        </div>
 
-  <div class="field">
-    <%= form.label :content, class:"form-label" %>
-    <%= form.text_area :content, rows: "10", placeholder:"ここに文章でレビューを記入します", class:"form-control" %>
-  </div>
+        <div class="reviews-field">
+          <%= form.label :select,'▶︎選択 　', class:"form-label" %>
+          <%= form.check_box :select, class:"form-check-label" %>
+        </div>
+    
 
-  <div class="field">
-    <%#= form.label :company_portrait %>
-    <%#= form.file_field :portrait ここ要らない。企業のフォームの時だけ%>
-  </div>
+        <div class="reviews-content-field">
+          <%= form.label :content,'コンテント',class:"form-label" %>
+          <%= form.text_area :content, rows: "8", placeholder:"ここに文章でレビューを記入します",class:"form-control"%>
+        </div>
+      </div>
+        
 
-  <div class="actions">
-    <% if @review.new_record? %>
-      <%= form.submit id: "create-user", class:"btn btn-primary" %>
-    <% else %>
-      <%= form.submit id: "update-user", class:"btn btn-primary" %>
-    <% end %>
-  </div>
+        <div class="field">
+          <%#= form.label :company_portrait %>
+          <%#= form.file_field :portrait ここ要らない。企業のフォームの時だけ%>
+        </div>
+      
+      
+        <div class="btn-actions">
+          <% if @review.new_record? %>
+            <%= form.submit id: "create-user", class:"btn btn-primary" %>
+          <% else %>
+            <%= form.submit id: "update-user", class:"btn btn-primary" %>
+          <% end %>
+        </div>
 
-  <% if @review.errors.any? %>
-  <div id="error_explanation"> <%# railsのデフォルトのエラー用スタイルが適用できる。%>
-    <h2><%= pluralize(@review.errors.count, "error") %> prohibited this from being saved:</h2>
-    <ul>
-      <% @review.errors.full_messages.each do |attr, message| %>
-        <li><%= "#{attr} #{message}" %></li>
+        <% if @review.errors.any? %>
+        <div id="error_explanation"> <%# railsのデフォルトのエラー用スタイルが適用できる。%>
+          <h2><%= pluralize(@review.errors.count, "error") %> prohibited this from being saved:</h2>
+          <ul>
+            <% @review.errors.full_messages.each do |attr, message| %>
+              <li><%= "#{attr} #{message}" %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
       <% end %>
-    </ul>
-  </div>
-  <% end %>
+</div>
 
-<% end %>
+
+

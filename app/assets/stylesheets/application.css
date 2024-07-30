@@ -27,12 +27,12 @@
 .pagination>.active>a { /*表示しているページ番号のデザイン*/
   border-radius: 15px;
   color: #000;
-  background-color: #eed15dfc;
+  background-color: #FF644E ;
 }
 
 .pagination>li>a:hover {/*ホバー時のデザイン*/
   border-radius: 15px;
-  color: #eed15dfc;
+  color: #FF644E ;
 }
 
 .pagination { /*ページネーション自体のデザイン*/
@@ -43,13 +43,19 @@
 }
 
 .btn-custom {
-  background-color: #eed15dfc;
-  color: #000;
+  background-color: #FF644E ;
+  color: #fff;
 }
 
 .bg-custom {
-  background-color: #eed15dfc;
+  background-color: #FF644E;
 }
+
+.custom-thead {
+  background-color: #FF644E;
+  color: #fff;
+}
+
 
 @import '/app/assets/stylesheets/reviews.scss';
 @import '/app/assets/stylesheets/companies.scss';
@@ -139,7 +145,7 @@
 
 
  .custom-yellow {
-  background-color: #eed15dfc;
+  background-color: #FF644E;
  }
  .navbar-brand {
   font-size: 45px; /* フォントサイズ */

@@ -11,3 +11,15 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+//追記
+window.$ = window.jQuery = require('jquery');
+
+import Raty from "./raty.js"// 同じ階層にあるraty.jsをRatyという名前でインポート
+
+// ratyアクションの定義
+window.raty = function(elem,opt){ 
+    var raty =  new Raty(elem,opt)
+    raty.init();
+    return raty;
+}

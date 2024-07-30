@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 thead th {
-  color: #696969; // `thead` の文字色を変更
+  color: #fff; // `thead` の文字色を変更
   font-weight: bold; // フォントの太さを変更
 }
 
@@ -15,6 +15,8 @@ thead th {
   gap: 1rem; /* カード間のスペース */
   padding: 1rem; /* コンテナの内側に余白を追加 */
 }
+
+
 
 
 
@@ -45,3 +47,4 @@ thead th {
   text-align: right;
   margin-bottom: 40px;
 }
+

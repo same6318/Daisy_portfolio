@@ -34,14 +34,14 @@
       <td colspan="2"><%= "#{@review.review_average}点 / 5点" %></td>
     </tr>
     <tr>
-<% @review.attributes.each do |name, value| %>
-  <% if name.in?(%w[work_life_balance workplace_atmosphere flex_system remote_work harassment_prevention parental_care_leave childcare_support welfare_facilities evaluation_system promotion_salary overtime_holiday_work allowances_subsidies training_education_support career_support work_engagement]) %>
-  <!--ここで数字評価だけのカラムを選びたいので、カラム名を列記している。これがないと、idとかまで★で表示してしまう-->
-    <li><%= I18n.t("activerecord.attributes.review.#{name}") %>:
-      <%= render partial: "output_star", locals: { review: @review, attribute_name: name.parameterize, score: value } %>
-    </li>
-  <% end %>
-<% end %>
+      <% @review.attributes.each do |name, value| %>
+        <% if name.in?(%w[work_life_balance workplace_atmosphere flex_system remote_work harassment_prevention parental_care_leave childcare_support welfare_facilities evaluation_system promotion_salary overtime_holiday_work allowances_subsidies training_education_support career_support work_engagement]) %>
+        <!--ここで数字評価だけのカラムを選びたいので、カラム名を列記している。これがないと、idとかまで★で表示してしまう-->
+          <li><%= I18n.t("activerecord.attributes.review.#{name}") %>:
+            <%= render partial: "output_star", locals: { review: @review, attribute_name: name.parameterize, score: value } %>
+          </li>
+        <% end %>
+      <% end %>
 
   </tbody>
 </table>

@@ -12,29 +12,54 @@
   <p>年代： <%= @user.age %></p>
 </div>
 
-<div>
-  <ul>
-    <li>ワークライフバランス： <%= @review.work_life_balance %></li>
-    <li>職場の雰囲気： <%= @review.workplace_atmosphere %></li>
-    <li>フレックス制度： <%= @review.flex_system %></li>
-    <li>リモート勤務： <%= @review.remote_work %></li>
-    <li>ハラスメント対策： <%= @review.harassment_prevention %></li>
-    <li>育休、介護休暇： <%= @review.parental_care_leave %></li>
-    <li>育児支援制度： <%= @review.childcare_support %></li>
-    <li>福利厚生施設： <%= @review.welfare_facilities %></li>
-    <li>評価制度： <%= @review.evaluation_system %></li>
-    <li>昇進・昇給に関して： <%= @review.promotion_salary %></li>
-    <li>残業、休日出勤： <%= @review.overtime_holiday_work %></li>
-    <li>手当・補助等： <%= @review.allowances_subsidies %></li>
-    <li>研修・教育支援： <%= @review.training_education_support %></li>
-    <li>キャリアアップ支援： <%= @review.career_support %></li>
-    <li>業務の従事に関して： <%= @review.work_engagement%></li>
-  </ul>
-</div>
+<table class="table">
+  <thead class="custom-thead">
+    <tr>
+      <th scope="col">　</th>
+      <th scope="col">年代</th>
+      <th scope="col">在籍状況</th>
+      <th scope="col">性別</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <th scope="row">◇</th>
+      <td><%= @user.age %></td>
+      <td><%= @review.select %></td>
+      <td><%= @user.gender %></td>
+    </tr>
+    <tr>
+      <th scope="row">◇</th>
+      <td>総合評価</td>
+      <td colspan="2"><%= "#{@review.review_average}点 / 5点" %></td>
+    </tr>
+    <tr>
+<% @review.attributes.each do |name, value| %>
+  <% if name.in?(%w[work_life_balance workplace_atmosphere flex_system remote_work harassment_prevention parental_care_leave childcare_support welfare_facilities evaluation_system promotion_salary overtime_holiday_work allowances_subsidies training_education_support career_support work_engagement]) %>
+  <!--ここで数字評価だけのカラムを選びたいので、カラム名を列記している。これがないと、idとかまで★で表示してしまう-->
+    <li><%= I18n.t("activerecord.attributes.review.#{name}") %>:
+      <%= render partial: "output_star", locals: { review: @review, attribute_name: name.parameterize, score: value } %>
+    </li>
+  <% end %>
+<% end %>
+
+  </tbody>
+</table>
+
+
+
+<% @review.attributes.each do |name, value| %>
+  <% if name.in?(%w[work_life_balance workplace_atmosphere flex_system remote_work harassment_prevention parental_care_leave childcare_support welfare_facilities evaluation_system promotion_salary overtime_holiday_work allowances_subsidies training_education_support career_support work_engagement]) %>
+  <!--ここで数字評価だけのカラムを選びたいので、カラム名を列記している。これがないと、idとかまで★で表示してしまう-->
+    <li><%= I18n.t("activerecord.attributes.review.#{name}") %>:
+      <%= render partial: "output_star", locals: { review: @review, attribute_name: name.parameterize, score: value } %>
+    </li>
+  <% end %>
+<% end %>
 
 
   <div>
-    <p>レビュー評価平均： <%= @review.review_average %></p>
+    <p>評価点平均： <%= @review.review_average %></p>
     <p>レビュー本文：<%= @review.content %></p>
     <p>作成日時： <%= @review.created_at.strftime('%Y/%m/%d %H:%M') %></p>
   </div>

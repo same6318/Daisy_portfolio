@@ -21,12 +21,11 @@
 
 .pagination>li>a {
   border: none;
-  color: #000;
+  color: #FF644E;
 }
 
 .pagination>.active>a { /*表示しているページ番号のデザイン*/
   border-radius: 15px;
-  color: #000;
   background-color: #FF644E ;
 }
 
@@ -43,7 +42,7 @@
 }
 
 .btn-custom {
-  background-color: #FF644E ;
+  background-color: #FF9A8F ;/*少し色味をピンクに寄せた*/
   color: #fff;
 }
 

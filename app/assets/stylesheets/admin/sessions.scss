@@ -1,22 +1,16 @@
 // Place all the styles related to the admin/sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.admin-login-page {
-  background-size: cover; /* 画面全体に画像をフィットさせる */
-  background-position: center; /* 画像を中央に配置 */
-  background-repeat: no-repeat; /* 画像を繰り返さない */
-  background-attachment: fixed; /* 画面をスクロールしても背景画像は固定 */
-}
+
 .admin-login-page .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh; /* ビューポート全体の高さに設定 */
 }
 .admin-login-form {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1); /* 透過の枠を作成 */
-  width: 80vh; /* 幅を100%に設定 */
-  max-width: 500px; /* 最大幅を500pxに設定 */
+  width: 80vh; 
+  margin-top: 20vh;
 }

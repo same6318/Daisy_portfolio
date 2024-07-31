@@ -9,5 +9,35 @@
   border: 1px solid #ccc;
   background-color: #f9f9f9;
   border-radius: 8px;
+  margin-top: 30px;
 }
 
+.top-reviews-container {
+  margin: 20px auto; /* 上下のマージンを設定し、中央に配置 */
+  width: 90%; /* 幅を調整、全体のバランスを考慮 */
+  max-width: 1200px; /* 最大幅を設定 */
+}
+
+.top-review {
+  padding: 15px; /* 内側の余白 */
+  margin-bottom: 10px; /* 下部の余白 */
+  background-color: #fff3cd; /* 背景色を明るく */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 影を追加して浮き上がらせる */
+  display: flex; /* Flexboxを使用 */
+  justify-content: space-between; /* 要素を均等に配置 */
+  align-items: center; /* 縦方向に中央揃え */
+}
+
+.company-name, .review-count, .average-rating {
+  font-size: 1.5rem; /* 文字の大きさを少し小さく */
+  color: #333; /* 文字の色 */
+  margin-right: 20px; /* 右側の余白 */
+}
+
+.company-name {
+  font-weight: bold; /* 会社名を太字に */
+}
+
+.review-count, .average-rating {
+  color: #131212;
+}

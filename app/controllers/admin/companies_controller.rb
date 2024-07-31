@@ -25,7 +25,7 @@ class Admin::CompaniesController < ApplicationController
 
   def require_admin
     unless current_user.admin?
-      flash[:notice] = "パスワードが違います"
+      flash[:alert] = "パスワードが違います"
       sign_out(current_user) #ユーザーを強制的にログアウトさせる
       redirect_to new_user_session_path
     end

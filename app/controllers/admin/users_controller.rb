@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    flash[:notice] = "ユーザーを削除しました"
+    flash[:alert] = "ユーザーを削除しました"
     redirect_to new_admin_session_path
   end
 
@@ -31,7 +31,7 @@ class Admin::UsersController < ApplicationController
   def require_admin
     # binding.irb
     unless current_user.admin?
-      flash[:notice] = "パスワードが違います" #権限の文言は使わない
+      flash[:alert] = "パスワードが違います" #権限の文言は使わない
       sign_out(current_user) #ユーザーを強制的にログアウトさせる
       redirect_to new_user_session_path
     end

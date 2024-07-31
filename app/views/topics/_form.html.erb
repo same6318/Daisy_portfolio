@@ -4,6 +4,19 @@
         <div class="row justify-content-center">
           <div class="col-md-10">
 
+          <% if topic.errors.any? %>
+            <div id="error_explanation" class="alert alert-danger">
+              <ul>
+                <% topic.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+
+
+
             <h1 class="fw-light">トピックス投稿</h1>
             <%= form_with(model: topic) do |form| %>
 

@@ -16,7 +16,35 @@ thead th {
   padding: 1rem; /* コンテナの内側に余白を追加 */
 }
 
-.stars {
-  display: inline-block;
-  font-size: 0; /* スペースを削除 */
+
+
+
+
+
+
+
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 7%;
 }
+.reviews-field {
+  flex: 40%; /* 各フィールドの幅配置 */
+  box-sizing: border-box;
+  padding: 10px; 
+  font-size: 20px;
+  display: flex;
+}
+.reviews-content-field {
+  width: 100%;
+}
+.btn-actions {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.link-back {
+  text-align: right;
+  margin-bottom: 40px;
+}
+

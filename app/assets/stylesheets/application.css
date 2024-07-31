@@ -144,12 +144,29 @@
 
 
 
+
  .custom-yellow {
   background-color: #FF644E;
  }
+
  .navbar-brand {
   font-size: 45px; /* フォントサイズ */
   font-weight: 700; /* フォントの太さ */
   color: #fff; /* テキストの色 */
   padding-left: 20px;
+}
+/* .alert {
+  background-color: transparent !important; /* 背景を透明にする */
+  /* border: none; ボーダーをなしにする */
+/* } */ 
+.alert-success {
+  color: green; /* 成功メッセージの文字色 */
+}
+.alert-danger {
+  color: rgb(241, 12, 43); /* エラーメッセージの文字色 */
+}
+.alert {
+  margin: 0 auto;
+  font-size: 1.25rem;
+  text-align: center;
 }

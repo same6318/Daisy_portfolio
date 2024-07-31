@@ -1,5 +1,10 @@
-<p>企業名： <%= @company.name %></p>
+
+<div class="reviews-container">
+   <h1 class="fw-light p-2">企業名：<%= @company.name %></h1>
+</div>
+<!--<p>企業名： <%= @company.name %></p>-->
 
 <%= render 'form', review: @review %>
-
-<%= link_to "戻る", companies_path %>
+<div class= "link-back">
+   <%= link_to "戻る", companies_path %>
+</div>

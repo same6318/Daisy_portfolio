@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
       flash[:notice] = t('.created')
       redirect_to company_review_path(@company, @review)
     else
-      flash[:notice] = "レビューの作成に失敗しました"
+      flash[:alert] = "レビューの作成に失敗しました"
       render :new
     end
   end
@@ -58,7 +58,7 @@ class ReviewsController < ApplicationController
       flash[:notice] = t('.updated')
       redirect_to company_review_path(@company, @review)
     else
-      flash[:notice] = "更新に失敗しました"
+      flash[:alert] = "更新に失敗しました"
       render :edit
     end
   end
@@ -100,7 +100,7 @@ class ReviewsController < ApplicationController
 
   def business_user?
     unless current_user.company?
-      flash[:notice] = "アクセスできません"
+      flash[:alert] = "アクセスできません"
       redirect_to users_path
     end
   end

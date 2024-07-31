@@ -2,19 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.topics-page {
-  background-image: url('topic.jpg');
-  background-size: cover; /* 画面全体に画像をフィットさせる */
-  background-position: center; /* 画像を中央に配置 */
-  background-repeat: no-repeat; /* 画像を繰り返さない */
-  background-attachment: fixed; /* 画面をスクロールしても背景画像は固定 */
-}
 .topics-page .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35vh; /* ビューポート全体の高さに設定 */
   width: auto;
+  margin-top: 30px;
 }
 .form {
   background: rgba(255, 255, 255, 0.767); /* 背景色を白にして透過を追加 */
@@ -23,9 +16,11 @@
   box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1); /* 透過の枠を作成 */
   width: 80vh; /* 幅を100%に設定 */
 }
+
 .topic-form-control {
   height: 27vh;
   width: 62vh;
   border-color: rgba(172, 168, 168, 0.47);
   border-radius: 8px;
 }
+

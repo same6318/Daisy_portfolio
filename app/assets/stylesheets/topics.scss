@@ -2,13 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.topics-page {
-  background-image: url('topic.jpg');
-  background-size: cover; /* 画面全体に画像をフィットさせる */
-  background-position: center; /* 画像を中央に配置 */
-  background-repeat: no-repeat; /* 画像を繰り返さない */
-  background-attachment: fixed; /* 画面をスクロールしても背景画像は固定 */
-}
 .topics-page .container {
   display: flex;
   justify-content: center;

@@ -1,20 +1,12 @@
 // Place all the styles related to the users/sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.login-page {
-  background-image: url('background.jpg');
-  background-size: cover; /* 画面全体に画像をフィットさせる */
-  background-position: center; /* 画像を中央に配置 */
-  background-repeat: no-repeat; /* 画像を繰り返さない */
-  background-attachment: fixed; /* 画面をスクロールしても背景画像は固定 */
-}
 /* ログインフォームのスタイル */
 .login-page .container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 30px;
-  /*height: 30vh; /* ビューポート全体の高さに設定 */
 }
 .login-form {
   background: rgba(255, 255, 255, 0.767); /* 背景色を白にして透過を追加 */

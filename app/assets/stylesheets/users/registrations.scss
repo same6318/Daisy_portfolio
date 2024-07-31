@@ -6,13 +6,6 @@
   height: 300px; 
   border: 1px solid #ccc; /* 枠線を追加 */
 }
-.registration-page {
-  background-image: url('background.jpg');
-  background-size: cover; /* 画面全体に画像をフィットさせる */
-  background-position: center; /* 画像を中央に配置 */
-  background-repeat: no-repeat; /* 画像を繰り返さない */
-  background-attachment: fixed; /* 画面をスクロールしても背景画像は固定 */
-}
 /* 新規アカウント登録フォームのスタイル */
 .registration-page .container {
   display: flex;
@@ -59,15 +52,6 @@
   width: 100%; /* iframe の幅を親要素に合わせる */
   height: 400px; /* iframe の高さを設定 */
   border: none; /* iframe の枠線を削除 */
-}
-
-/* フォームの全体的なスタイリング */
-.registration-page {
-  background-image: url('background.jpg');
-  background-size: cover; /* 画面全体に画像をフィットさせる */
-  background-position: center; /* 画像を中央に配置 */
-  background-repeat: no-repeat; /* 画像を繰り返さない */
-  background-attachment: fixed; /* 画面をスクロールしても背景画像は固定 */
 }
 
 #registration .container {

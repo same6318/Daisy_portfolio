@@ -25,7 +25,7 @@ class TopicsController < ApplicationController
       flash[:notice] = t('.created')
       redirect_to topic_path(@topic)
     else
-      flash[:notice] = "トピックの作成に失敗しました"
+      flash[:alert] = "トピックの作成に失敗しました"
       render :new
     end
   end
@@ -43,7 +43,7 @@ class TopicsController < ApplicationController
       flash[:notice] = t('.updated')
       redirect_to topic_path(@topic)
     else
-      flash[:notice] = "更新に失敗しました"
+      flash[:alert] = "更新に失敗しました"
       render :edit
     end
   end

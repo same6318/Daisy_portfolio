@@ -4,30 +4,30 @@
   <p>登録メールアドレス（ID）</p>
 <div class="account-details">
   <div class="account-detail">
-    <div class="label">メールアドレス:</div>
+    <div class="label">メールアドレス</div>
     <div class="value"><%= @user.email %></div>
   </div>
 </div>
   <p>基本情報</p>
 <div class="account-details">
   <div class="account-detail">
-    <div class="label">氏名:</div>
+    <div class="label">氏名</div>
     <div class="value"><%= @user.name %></div>
   </div>
   <div class="account-detail">
-    <div class="label">ハンドルネーム:</div>
+    <div class="label">ハンドルネーム</div>
     <div class="value"><%= @user.screen_name %></div>
   </div>
   <div class="account-detail">
-    <div class="label">年代:</div>
+    <div class="label">年代</div>
     <div class="value"><%= @user.age.present? ? t("enums.user.age.#{@user.age}") : '' %></div>
   </div>
   <div class="account-detail">
-    <div class="label">性別:</div>
+    <div class="label">性別</div>
     <div class="value"><%= @user.gender.present? ? t("enums.user.gender.#{@user.gender}") : '' %></div>
   </div>
   <div class="account-detail">
-    <div class="label">アカウントのステータス:</div>
+    <div class="label">アカウントのステータス</div>
     <div class="value"><%= @user.role %></div>
   </div>
 </div>
@@ -36,6 +36,6 @@
 
 
 <div class="btn-actions">
-  <%= link_to "編集", edit_user_path ,class:"btn btn-outline-primary"%>
-  <%= link_to "戻る", users_path ,class:"btn btn-outline-primary"%>
+  <%= link_to "編集", edit_user_path ,class:"btn btn-custom" %>
+  <%= link_to "戻る", users_path ,class:"btn btn-custom" %>
 </div>

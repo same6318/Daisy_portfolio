@@ -26,13 +26,9 @@
               <div>
                 <p>※投稿者名として、ハンドルネームを登録していない場合は「匿名希望」で投稿されます</p>
               </div>
-
-             <div class="topics-button-group">
-                <%= form.submit "投稿する",class: "btn btn-outline-dark" %>
-              </div>
-
-              <div class="topics-button-group">
-                <%= link_to "戻る", topics_path %>
+              <div class="text-center">
+                <%= form.submit "投稿する",class: "btn btn-outline-dark", class:"btn btn-custom" %>
+                <%= link_to "戻る", topics_path ,class:"btn btn-custom"  %>
               </div>
             <% end %>
           </div>

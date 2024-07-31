@@ -1,65 +1,72 @@
+<body class="edit-page">
+  <div class="container mt-5">
+    <div class="edit-form-container">
+      <h1 class="text-center">アカウント編集ページ</h1>
 
-<h1>アカウント編集ページ</h1>
+          <% if @user.errors.any? %>
+            <div id="error_explanation" class="alert alert-danger">
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-<% if @user.errors.any? %>
-  <div id="error_explanation">
-  
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+            <%= form_with(model: @user, local: true, class: "edit-form") do |f| %>
+              <div class="form-group mb-3">
+                  <%= f.label :name ,"氏名"%>
+                  <%= f.text_field :name, class: 'form-control' %>
+              </div>    
+                <div class="form-group mb-3">
+                  <%= f.label :email, "メールアドレス"%>
+                  <%= f.email_field :email, class: 'form-control'%>
+                </div>
+                <div class="form-group mb-3">
+                  <%= f.label :name ,"ハンドルネーム"%>
+                  <%= f.text_field :screen_name , class: 'form-control'%>
+                </div>
+
+                <div class="form-group mb-3">
+                  <%= f.label :age, '年代' %>
+                  <%= f.select :age, options_for_select([['', '']] + User.ages.keys.map { |k| [I18n.t("enums.user.age.#{k}"), k] }, f.object.age || ''), class: 'form-control' %>
+                </div>
+
+                <div class="form-group mb-3">
+                  <%= f.label :gender, '性別' %>
+                  <%= f.select :gender, options_for_select([['', '']] + User.genders.keys.map { |k| [I18n.t("enums.user.gender.#{k}"), k] }, f.object.gender || '') , class: 'form-control'%>
+                </div>
+
+                <div class="form-group mb-3">
+                  <% available_roles = User.roles.keys - ['admin'] %> <!-- 管理者ロールを除外 -->
+                  <%= f.label :role, 'ステータス' %>
+                  <%= f.select :role, options_for_select([['', '']] + available_roles.map { |k| [I18n.t("enums.user.role.#{k}"), k] }, f.object.role || '') , class: 'form-control'%>
+                </div>
+                
+                <div class="form-group mb-3">
+                  <%= f.label :password, "パスワード" %>
+                  <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+                  <% if @minimum_password_length %>
+                  <% end %>
+                </div>
+
+                <div class="form-group mb-3">
+                  <%= f.label :password_confirmation, "パスワード（確認）"%>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password" , class: 'form-control'%>
+                </div>
+                <div class="actions mt-3">
+                  <%= f.submit "更新する", class: 'btn btn-primary' %>
+                </div>
+              <% end %>
+
+              <div class="actions mt-3">
+                <%= button_to "削除する", users_path, data: { confirm: "本当に削除しますか？", turbo_confirm: "本当に削除しますか？" }, method: :delete, class: 'btn btn-danger' %>
+                <%= link_to "戻る", :back, class: 'btn btn-secondary' %>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
-
-
-
-<%= form_with(model: @user, local: true) do |f| %>
- <div class="field">
-    <%= f.label :name ,"氏名"%><br/>
-    <%= f.text_field :name %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス"%><br/>
-    <%= f.email_field :email%>
-  <div class="field">
-    <%= f.label :name ,"ハンドルネーム"%><br/>
-    <%= f.text_field :screen_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :age, '年代' %><br>
-    <%= f.select :age, options_for_select([['', '']] + User.ages.keys.map { |k| [I18n.t("enums.user.age.#{k}"), k] }, f.object.age || '') %>
-  </div>
-
-  <div class="field">
-    <%= f.label :gender, '性別' %><br>
-    <%= f.select :gender, options_for_select([['', '']] + User.genders.keys.map { |k| [I18n.t("enums.user.gender.#{k}"), k] }, f.object.gender || '') %>
-  </div>
-
-  <div class="field">
-    <% available_roles = User.roles.keys - ['admin'] %> <!-- 管理者ロールを除外 -->
-    <%= f.label :role, 'ステータス' %><br>
-    <%= f.select :role, options_for_select([['', '']] + available_roles.map { |k| [I18n.t("enums.user.role.#{k}"), k] }, f.object.role || '') %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br/>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "パスワード（確認）"%><br/>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "更新する" %>
-  </div>
-<% end %>
-<div><%= button_to "削除する", users_path, data: { confirm: "本当に削除しますか？", turbo_confirm: "本当に削除しますか？" }, method: :delete %></div>
-
-<%= link_to "戻る", :back %>
-
+</div>
 

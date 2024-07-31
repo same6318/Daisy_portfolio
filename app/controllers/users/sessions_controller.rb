@@ -4,7 +4,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def new
    super
-   flash[:notice] = 'ログアウトしてください' if user_signed_in?
+   flash[:alert] = 'ログアウトしてください' if user_signed_in?
   end
 
 

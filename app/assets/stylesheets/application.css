@@ -163,13 +163,12 @@
   color: green; /* 成功メッセージの文字色 */
 }
 .alert-danger {
-  color: red; /* エラーメッセージの文字色 */
+  color: rgb(241, 12, 43); /* エラーメッセージの文字色 */
 }
 .alert {
   /*position: fixed; /* 固定位置 */
-  top: 70px; /* 上からの距離 */
-  /*left: 50%; /* 左端から50% */
-  /*transform: translateX(-50%); /* 中央寄せのために左に移動 */
-  width: auto; /* 必要に応じて調整 */
+  top: 40px; /* 上からの距離 */
+  left: 40%; /* 左端から50% */
+  margin: 0; 
   font-size: 1.50rem; /* 文字の大きさを設定（例: 1.25rem） */
 }

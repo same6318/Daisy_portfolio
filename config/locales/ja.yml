@@ -38,7 +38,6 @@ ja:
       user:
         email: "メールアドレス"
         password: "パスワード"
-        agreement: "利用規約とプライバシーポリシー"
     errors:
       models:
         user:
@@ -47,8 +46,19 @@ ja:
               blank: "を入力してください"
             password:
               blank: "を入力してください"
-            agreement:
-              acceptance: "を受諾してください"  
+        topic: "トピック"
+      attributes:
+        topic:
+          title: "タイトル"
+          content: "内容"
+      errors:
+        models:
+          topic:
+            attributes:
+              title:
+                blank: "を入力してください"
+              content:
+                blank: "を入力してください"
   enums:
     user:
       age:
@@ -68,7 +78,6 @@ ja:
       role:
         general: "一般ユーザ"
         company: "企業ユーザ"
-      attributes:
       user:
         name: 名前
         email: メールアドレス

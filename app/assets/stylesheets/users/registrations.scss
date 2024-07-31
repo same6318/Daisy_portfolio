@@ -32,7 +32,7 @@
 /* 利用規約のセクションのスタイリング */
 .agreement-section {
   margin-top: 30px; /* 上部に余白を追加 */
-  border-top: 1px solid #ddd; /* 上部に境界線を追加 */
+  border-bottom: 1px solid #ddd; /* 上部に境界線を追加 */
   padding-top: 20px; /* 内部余白を追加 */
   width: 75vh; /* 幅を100%に設定 */
 }
@@ -79,11 +79,11 @@
   box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1); /* 透過の枠を作成 */
   width: 75vh; /* 幅を100%に設定 */
   margin-top: 30px;
-  
 }
 .button-group {
   display: flex; /* フレックスボックスを使用して横並びにする */
   gap: 20px; /* ボタン間のスペースを指定 */
   justify-content: center; /* ボタンを中央に配置 */
-  height:10%;
+  margin-bottom: 10px; /* 下部のマージン */
 }
+

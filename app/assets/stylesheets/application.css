@@ -155,10 +155,10 @@
   color: #fff; /* テキストの色 */
   padding-left: 20px;
 }
-.alert {
+/* .alert {
   background-color: transparent !important; /* 背景を透明にする */
-  border: none; /* ボーダーをなしにする */
-}
+  /* border: none; ボーダーをなしにする */
+/* } */ 
 .alert-success {
   color: green; /* 成功メッセージの文字色 */
 }
@@ -167,6 +167,6 @@
 }
 .alert {
   margin: 0 auto;
-  font-size: 1.50rem;
+  font-size: 1.25rem;
   text-align: center;
 }

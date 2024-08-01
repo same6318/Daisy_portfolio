@@ -3,7 +3,7 @@ class Admin::ReviewsController < ApplicationController
 
   def index
     @q = Review.joins(:company).ransack(params[:q])
-    # @reviews = @q.result(distinct: true).includes(:user, :company).page(params[:page]).per(10)
+    #@reviews = @q.result(distinct: true).includes(:user, :company).page(params[:page]).per(10)
     @reviews = @q.result.includes(:user, :company).page(params[:page]).per(10)
     #distinctを使って並べ替えをするときは、一意であることが前提になる。
     #binding.irb

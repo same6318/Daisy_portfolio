@@ -28,6 +28,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'ransack' #検索機能
 gem 'nkf' #ワード変換
+gem 'activestorage-validator' #画像のみ投稿できるようにバリデーションを追加する
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

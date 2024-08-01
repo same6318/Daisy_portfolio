@@ -43,7 +43,7 @@
         <tr>
           <th></th>
           <th>レビュー企業</th>
-          <th>評価平均</th>
+          <th>総合評価</th>
           <th>在籍状況</th>
           <th>本文</th>
           <th>投稿者名</th>
@@ -57,8 +57,8 @@
           <td class="text-center"><%= review.company.name %></td>
           <td class="text-center"><%= review.review_average %></td>
           <td class="text-center"><%= review.select %></td>
-          <td class="text-center"><%= review.user.name.present? ? review.user.name : "設定されていません" %></td>
           <td><small><%= truncate(review.content) %></small></td>
+          <td class="text-center"><%= review.user.name %></td>
           <td class="text-center"><small><%= review.created_at.strftime('%Y/%m/%d') %></small></td>
         </tr>
       <% end %>

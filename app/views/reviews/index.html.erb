@@ -42,3 +42,8 @@
   </div>
 </div>
   <%= paginate @company_reviews %>
+
+<div class="d-flex justify-content-center align-items-center gap-2"> <!--gapでボタン同士の距離を離す-->
+  <%= link_to "ページトップ", company_reviews_path(@company), class:"btn btn-custom mr-2 mb-5" %>
+  <%= link_to "一覧に戻る", companies_path, class:"btn btn-custom mr-2 mb-5" %>
+</div>

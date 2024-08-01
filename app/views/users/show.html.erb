@@ -23,17 +23,17 @@
 
     <div class="account-detail">
       <div class="label">年代</div>
-      <div class="value"><%= @user.age.present? ? t("enums.user.age.#{@user.age}") : '' %></div>
+      <div class="value"><%= @user.age.present? ? t("activerecord.enums.user.age.#{@user.age}") : '' %></div>
     </div>
 
     <div class="account-detail">
       <div class="label">性別</div>
-      <div class="value"><%= @user.gender.present? ? t("enums.user.gender.#{@user.gender}") : '' %></div>
+      <div class="value"><%= @user.gender.present? ? t("activerecord.enums.user.gender.#{@user.gender}") : '' %></div>
     </div>
     
     <div class="account-detail">
       <div class="label">アカウントのステータス</div>
-      <div class="value"><%= @user.role.present? ? t("enums.user.role.#{@user.role}") : '' %></div>
+      <div class="value"><%= @user.role.present? ? t("activerecord.enums.user.role.#{@user.role}") : '' %></div>
     </div>
   </div>
   <p>※ハンドルネームは、トピック投稿で使用します。</p>

@@ -2,10 +2,20 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light p-2 h2">トピックス一覧</h1>
-      <p>ここにテキストとか入れる。検索方法などについて</p>
+      <br>
+      <p>
+      キーワード検索はタイトルと本文の中を「ひらがな・カタカナ」検索します<br>
+      <br>
+      匿名希望は名前なしの判定なので検索不可です<br>
+      <br>
+      </p>
       <hr>
       <div class="justify-content-center align-items-center">
         <%= search_form_for @q, url: admin_topics_path, method: :get do |f| %>
+          <p>
+            <%= f.label :title_or_content_cont, "キーワード検索", class:"col-sm-4 col-form-label" %>
+            <%= f.text_field :title_or_content_cont, class:"col-sm-4" %>
+          </p>
           <p>
             <%= f.label :user_screen_name_cont, "ハンドルネーム名", class:"col-sm-4 col-form-label" %>
             <%= f.text_field :user_screen_name_cont, class:"col-sm-4" %>
@@ -13,10 +23,6 @@
           <p>
             <%= f.label :user_name_cont, "投稿者名", class:"col-sm-4 col-form-label" %>
             <%= f.text_field :user_name_cont, class:"col-sm-4" %>
-          </p>
-          <p>
-            <%= f.label :title_or_content_cont, "キーワード検索", class:"col-sm-4 col-form-label" %>
-            <%= f.text_field :title_or_content_cont, class:"col-sm-4" %>
           </p>
           <p>
           <%= f.submit "検索", class:"btn btn-custom" %>
@@ -37,11 +43,11 @@
       <thead class="text-center align-middle custom-thead">
         <tr>
           <th></th>
-          <th><%= sort_link(@q, :title, "タイトル", hide_indicator: true, class: "btn btn-light") %></th>
+          <th>タイトル</th>
+          <th>本文</th>
           <th>投稿者名</th>
-          <th><%= sort_link(@q, :content, "本文", hide_indicator: true, class: "btn btn-light") %></th>
           <th>ハンドルネーム</th>
-          <th><%= sort_link(@q, :content, "作成日時", hide_indicator: true, class: "btn btn-light") %></th>
+          <th><%= sort_link(@q, :created_at, "作成日時", hide_indicator: true, class: "btn btn-light") %></th>
           <th>画像の有無</th>
         <tr>
       </thead>
@@ -50,8 +56,8 @@
             <tr>
               <td class="text-center"><%= link_to "詳細", admin_topic_path(topic), class:"btn btn-custom" %>
               <td class="text-center"><%= truncate(topic.title, length: 15) %></td>
-              <td class="text-center"><%= truncate(topic.user.name, length: 15) %></td>
               <td><%= truncate(topic.content) %></td>
+              <td class="text-center"><%= truncate(topic.user.name, length: 15) %></td>
               <td class="text-center"><%= truncate(topic.user.screen_name, length: 15) %></td>
               <td class="text-center"><%= topic.created_at.strftime('%Y/%m/%d') %></td>
               <td class="text-center"><%= topic.topic_images.attached? ? "あり": "なし" %></td>

@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user! #ログインしてなかったらログイン画面に自動的に遷移
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:show]
+  before_action :topic_edit, only:[:edit, :update, :destroy]
 
   def index #viewから送られてくるパラメータを元にテーブルからデータを検索する
     if params[:q].present? && params[:q][:title_or_content_cont].present?
@@ -63,6 +64,15 @@ class TopicsController < ApplicationController
   def set_topic #今回は人のトピックも見ることができる
     @topic = Topic.find_by(id: params[:id])
   end
+
+  def topic_edit #edit、update、destoryで他人が入れないようにする
+    @topic = Topic.find_by(id: params[:id], user_id: current_user.id)
+    unless @topic
+      flash[:alert] = "ページのロードに失敗しました"
+      redirect_to users_path
+    end
+  end
+
 
 
 end

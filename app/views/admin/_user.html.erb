@@ -1,11 +1,32 @@
-<div class="table">
-  <tbody>
-    <tr>
-      <td>ユーザー名：<%= @user&.company_id ? @user.name : "" %></td><br>
-      <td>ステータス：<%= @user.role %><td><br>
-      <td>メールアドレス：<%= @user.email %></td><br>
-      <td>トピック投稿数：<%= @user.topics.count %></td><br>
-      <td>レビュー投稿数：<%= @user.reviews.count %></td><br>
-    </tr>
-  </tbody>
+<h3 class="mt-5">アカウント詳細</h3>
+
+  <p class="m-0">登録メールアドレス（ID）</p>
+<div class="account-details my-1">
+  <div class="account-detail">
+    <div class="label">メールアドレス</div>
+    <div class="value"><%= @user.email %></div>
+  </div>
+</div>
+  <p class="m-0">基本情報</p>
+<div class="account-details mt-1 mb-5">
+  <div class="account-detail">
+    <div class="label">氏名</div>
+    <div class="value"><%= @user.name %></div>
+  </div>
+  <div class="account-detail">
+    <div class="label">ハンドルネーム</div>
+    <div class="value"><%= @user.screen_name %></div>
+  </div>
+  <div class="account-detail">
+    <div class="label">トピック投稿数</div>
+    <div class="value"><%= @user.topics.count %></div>
+  </div>
+  <div class="account-detail">
+    <div class="label">レビュー投稿数</div>
+    <div class="value"><%= @user.reviews.count %></div>
+  </div>
+  <div class="account-detail">
+    <div class="label">アカウントのステータス</div>
+    <div class="value"><%= @user.role %></div>
+  </div>
 </div>

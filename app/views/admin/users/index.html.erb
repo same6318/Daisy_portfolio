@@ -2,7 +2,13 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light p-2 h2">ユーザー一覧</h1>
-      <p>ここにテキストとか入れる。検索方法などについて</p>
+      <br>
+      <p>
+      名前とハンドルネームは「ひらがな・カタカナ」検索可能<br>
+      <br>
+      権限は数字のみ入力して検索してください<br>
+      「0：一般ユーザー、1：企業ユーザー、2：管理者」<br>
+      </p>
       <hr>
       <div class="justify-content-center align-items-center">
         <%= search_form_for @q, url: admin_users_path, method: :get do |f| %>
@@ -37,7 +43,7 @@
       <thead class="text-align-center text-center align-middle custom-thead">
         <tr>
           <th></th>
-          <th><%= sort_link(@q, :name, "ユーザー名", hide_indicator: true, class: "btn btn-light") %></th>
+          <th>ユーザー名</th>
           <th>権限</th>
           <th><%= sort_link(@q, :email, "メールアドレス", hide_indicator: true, class: "btn btn-light") %></th>
           <th>ハンドルネーム</th>

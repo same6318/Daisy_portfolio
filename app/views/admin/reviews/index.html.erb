@@ -2,7 +2,11 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light p-2 h2">レビュー一覧</h1>
-      <p>ここにテキストとか入れる。検索方法などについて</p>
+      <br>
+      <p>
+      キーワード検索はレビュー本文の中を検索します（かな・カナ変換無し）<br>
+      <br>
+      </p>
       <hr>
       <div class="justify-content-center align-items-center">
         <%= search_form_for @q, url: admin_reviews_path, method: :get do |f| %>
@@ -44,7 +48,7 @@
           <th><%= sort_link(@q, :select, "在籍状態", hide_indicator: true, class: "btn btn-light") %></th>
           <th>投稿者名</th>
           <th>本文</th>
-          <th><%= sort_link(@q, :content, "作成日時", hide_indicator: true, class: "btn btn-light") %></th>
+          <th><%= sort_link(@q, :created_at, "作成日時", hide_indicator: true, class: "btn btn-light") %></th>
         <tr>
       </thead>
         <tbody class="align-middle">

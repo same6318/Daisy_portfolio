@@ -1,7 +1,7 @@
 <div id="show_star-<%= review.id %>-<%= attribute_name %>"></div>
 <!--div id="show_star-7(レビューのid）-work_life_balance"というidができる-->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    //document.addEventListener('DOMContentLoaded', function() {
         var elem = document.querySelector('#show_star-<%= review.id %>-<%= attribute_name %>');
         var opt = {
             starOn: "<%= asset_path('star-on.png') %>",
@@ -10,5 +10,5 @@
             score: <%= score %>
         };
         raty(elem, opt);
-    });
+    //});
 </script>

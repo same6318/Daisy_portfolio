@@ -1,30 +1,41 @@
 
-<div>
-  <h1>トピック詳細</h1>
-  <h2><%= @topic.title %></h2>
+<div class="container">
   
-  <div>
-    <p><%= @topic.content %></p>
-    <p>作成日時: <%= @topic.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+  <div class="col w-100 px-5 pt-5">
+    <h2>タイトル：<%= @topic.title %></h2>
   </div>
 
-  <div>
+  <div class="col w-100 p-5">
+    <p class="fs-5">本文：<%= @topic.content %></p>
+  </div>
+
+  <div class="col w-100 px-5">
+    <small>作成日時：<%= @topic.created_at.strftime('%Y/%m/%d') %></small>
+  </div>
+
+  <div class="col w-100 p-5 text-center">
     <p>
-      <strong>Portrait:</strong>
       <% if @topic.topic_images.attached? %>
         <% @topic.topic_images.each do |image| %>
           <%= link_to url_for(image) do %>
             <%= image_tag image.variant(resize_to_limit: [500,500]) %>
           <% end %>
         <% end %>
+      <% else %>
+        <p>画像添付はありません</p>
       <% end %>
-      <%# 詳細画面でimage_tagを使って画像を表示
-          表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
-          (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
     </p>
   </div>
 
+<div class="text-center">
+  <%= link_to "トピック削除", admin_topic_path(@topic), method: :delete, data: { confirm: "削除しても宜しいですか？"}, class:"btn btn-custom mr-2 mb-5" %>
 </div>
 
-<%= link_to "削除", admin_topic_path(@topic), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
-<%= link_to "戻る", admin_topics_path %>
+
+<%= render "admin/user" %>
+
+<div class="d-flex justify-content-center align-items-center gap-2"> <!--gapでボタン同士の距離を離す-->
+  <%= link_to "トピック一覧に戻る", admin_topics_path, class:"btn btn-custom mr-2 mb-5" %>
+  <%= link_to "ユーザー詳細に戻る", admin_user_path(@user), class:"btn btn-custom mr-2 mb-5" %>
+  <%= link_to "ページトップ", admin_topic_path(@topic), class:"btn btn-custom mr-2 mb-5" %>
+</div>

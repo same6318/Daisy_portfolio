@@ -3,7 +3,7 @@ class Admin::TopicsController < ApplicationController
 
   def index
     @q = Topic.joins(:user).ransack(params[:q])
-    @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.page(params[:page]).per(5)
+    @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).page(params[:page]).per(10)
     #binding.irb
   end
 

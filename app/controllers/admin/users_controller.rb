@@ -11,13 +11,14 @@ class Admin::UsersController < ApplicationController
       @q = User.ransack(params[:q])
     end
 
-    @users = @q.result(distinct: true).includes(:company).page(params[:page]).per(5)
+    #@users = @q.result(distinct: true).includes(:company).page(params[:page]).per(10)
+    @users = @q.result.page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
-    @topics = @user.topics.all.page(params[:page]).per(3)
-    @reviews = @user.reviews.all.page(params[:reviews_page]).per(3)
+    @topics = @user.topics.all.page(params[:page]).per(5)
+    @reviews = @user.reviews.all.page(params[:reviews_page]).per(5)
   end
 
   def destroy

@@ -24,10 +24,12 @@
     <div class="col">
       <div class="card shadow-sm">
         <% if topic.topic_images.attached? %>
-          <%= image_tag topic.topic_images.first ,class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;" %>
+          <%= image_tag topic.topic_images.first ,class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;", loading:"lazy" %>
+          <%#= loading:"lazy"をimage_tagに入れることで、遅延読み込みを実装する。ページのスクロールに合わせて画面を読み込む%>
         <% else %>
           <svg class="bd-placeholder-img card-img-top", style= "width: 100%; height: 225px">
-            <image x="0" y="0" width="100%" height="100%" href="<%= asset_path('default-image.jpg') %>"></image>
+            <image href="<%= asset_path('default-image.jpg') %>"></image>
+            <!--<image x="0" y="0" width="100%" height="100%" href="<%= asset_path('default-image.jpg') %>"></image>-->
             <text x="50%" y="50%" fill="#00000" dy=".3em" text-anchor="middle" dominant-baseline="middle">no image</text>
           </svg>
         <% end %>
@@ -37,8 +39,8 @@
             <div class="d-flex justify-content-between align-items-center">
               <%= link_to "詳細", topic_path(topic), class:"btn btn-custom text-nowrap" %>
               <% if topic.author_name %>
-                <!--user.name/user.screen_nameが空の文字列についても無しと判断する為、present?を使用する-->
-                <% if topic.user.screen_name.present? || topic.user.name.present? %>
+                <!--user.screen_nameが空の文字列についても無しと判断する為、present?を使用する-->
+                <% if topic.user.screen_name.present? %>
                   <small class="text-muted text-break"><%= topic.user.screen_name.present? ? truncate(topic.user.screen_name) : truncate(topic.user.name) %></small>
                 <% else %>
                   <small class="text-muted">匿名希望</small>

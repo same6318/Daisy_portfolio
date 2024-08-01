@@ -109,27 +109,28 @@ ja:
               blank: "を入力してください"
             content:
               too_short: "は%{count}文字以上で入力してください"
-  enums:
-    user:
-      age:
-        teens: "10代"
-        twenties: "20代"
-        thirties: "30代"
-        forties: "40代"
-      gender:
-        male: "男性"
-        female: "女性"
-        other: "その他"
-      purpose:
-        personal: "個人利用"
-        business: "ビジネス利用" 
-        education: "教育・学習"
-        hobby: "趣味・娯楽"
-      role:
-        general: "一般ユーザ"
-        company: "企業ユーザ"
+    enums:
       user:
-        name: 名前
-        email: メールアドレス
-        password: パスワード
-        password_confirmation: パスワード（確認）
+        age:
+          teens: "10代"
+          twenties: "20代"
+          thirties: "30代"
+          forties: "40代"
+        gender:
+          male: "男性"
+          female: "女性"
+          other: "その他"
+        purpose:
+          personal: "個人利用"
+          business: "ビジネス利用" 
+          education: "教育・学習"
+          hobby: "趣味・娯楽"
+        role:
+          general: "一般ユーザ"
+          company: "企業ユーザ"
+        user:
+          name: 名前
+          email: メールアドレス
+          password: パスワード
+          password_confirmation: パスワード（確認）
+    

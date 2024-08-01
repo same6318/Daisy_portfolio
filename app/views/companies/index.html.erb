@@ -5,12 +5,12 @@
       <div class="justify-content-center align-items-center">
         <%= search_form_for @q, url: companies_path, method: :get do |f| %>
           <p>
-          <%= f.label :name, "企業名検索", class:"col-sm-4 col-form-label" %>
+          <%= f.label :name_cont, "企業名検索", class:"col-sm-4 col-form-label" %>
           <%= f.text_field :name_cont, class:"col-sm-4" %>
           </p>
           <p>
-          <%= f.label :address, "住所検索", class:"col-sm-4 col-form-label" %>
-          <%= f.text_field :name_cont, class:"col-sm-4" %>
+          <%= f.label :address_cont, "住所検索", class:"col-sm-4 col-form-label" %>
+          <%= f.text_field :address_cont, class:"col-sm-4" %>
           </p>
           <p>
           <%= f.submit "検索", class:"btn btn-custom" %>
@@ -24,8 +24,12 @@
   </div>
 </section>
 
-
 <div class="container">
+  <div class="text-center">
+    <p>各企業の詳細情報の閲覧は「詳細」ボタンを押してください</p>
+    <p>各企業のレビュー投稿を行う場合は「投稿」ボタンを押してください</p>
+    <p>各企業のレビュー一覧は「一覧」ボタンを押してください</p>
+  </div>
   <div class="table-responsive">
     <table class="table caption-top">
       <caption>ソート項目は各ボタンを押してください</caption>
@@ -47,15 +51,15 @@
               <% else %>
                 <td class="text-center"><%= link_to "投稿", companies_path, class:"btn btn-custom", data: { confirm: "レビューを投稿する場合は、年代と性別を登録してください"} %></td>
               <% end %>
-              <td class="text-center"><%= link_to "一覧", company_reviews_path(company), class:"btn btn-custom" %></td><br>
+              <td class="text-center"><%= link_to "一覧", company_reviews_path(company), class:"btn btn-custom" %></td>
               <td><%= company.name %></td>
               <td><%= company.address %>
-              <td><%= company.company_reviews_average %><br>
+              <td><%= company.company_reviews_average %>
             </tr>
           <% end %>
         </tbody>
-      </table>
-    </div>
+    </table>
   </div>
+</div>
 
   <%= paginate @companies %>

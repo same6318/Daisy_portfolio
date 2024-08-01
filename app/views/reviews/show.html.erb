@@ -1,49 +1,61 @@
-<div>
-  <h1>レビュー詳細</h1>
-</div>
 
-<div>
-  <p>レビュー企業名： <%= @company.name %></p>
-  <p>ユーザー在籍状態： <%= @review.select %>
-</div>
-
-<div>
-  <p>性別： <%= @user.gender %></p>
-  <p>年代： <%= @user.age %></p>
-</div>
-
-<div>
-  <ul>
-    <li>ワークライフバランス： <%= @review.work_life_balance %></li>
-    <li>職場の雰囲気： <%= @review.workplace_atmosphere %></li>
-    <li>フレックス制度： <%= @review.flex_system %></li>
-    <li>リモート勤務： <%= @review.remote_work %></li>
-    <li>ハラスメント対策： <%= @review.harassment_prevention %></li>
-    <li>育休、介護休暇： <%= @review.parental_care_leave %></li>
-    <li>育児支援制度： <%= @review.childcare_support %></li>
-    <li>福利厚生施設： <%= @review.welfare_facilities %></li>
-    <li>評価制度： <%= @review.evaluation_system %></li>
-    <li>昇進・昇給に関して： <%= @review.promotion_salary %></li>
-    <li>残業、休日出勤： <%= @review.overtime_holiday_work %></li>
-    <li>手当・補助等： <%= @review.allowances_subsidies %></li>
-    <li>研修・教育支援： <%= @review.training_education_support %></li>
-    <li>キャリアアップ支援： <%= @review.career_support %></li>
-    <li>業務の従事に関して： <%= @review.work_engagement%></li>
-  </ul>
-</div>
-
-
-  <div>
-    <p>レビュー評価平均： <%= @review.review_average %></p>
-    <p>レビュー本文：<%= @review.content %></p>
-    <p>作成日時： <%= @review.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+<h2 class="mt-5 mb-5 text-center"><%= @company.name %>：レビュー詳細</h2>
+<div class="account-details">
+  <div class="account-detail">
+    <div class="label">在籍状況</div>
+    <div class="value"><%= @review.select %></div>
   </div>
-
+   <div class="account-detail">
+    <div class="label">年代</div>
+    <div class="value"><%= @user.age %></div>
+  </div>
+  <div class="account-detail">
+    <div class="label">性別</div>
+    <div class="value"><%= @user.gender %></div>
+  </div>
 </div>
 
-<% if current_user.id == @review.user_id %>
-  <%= link_to "編集", edit_company_review_path(@review.company_id, @review) %>
-  <%= link_to "削除", company_review_path(@review.company_id, @review), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>
-<% end %>
-<%= link_to "マイページに戻る", users_path %>
-<%= link_to "企業レビュー一覧に戻る", company_reviews_path(@company) %>
+<div class="table-responsive mb-2">
+  <table class="table table-bordered align-middle text-center caption-top">
+    <caption>作成日時： <%= @review.created_at.strftime('%Y/%m/%d') %></caption>
+    <thead class="custom-thead">
+      <tr>
+        <th scope="col">　</th>
+        <th scope="col">項目</th>
+        <th scope="col">点数</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr>
+        <th scope="row">◇</th>
+        <td>総合評価</td>
+        <td><%= "#{@review.review_average}点 / 5点" %></td>
+      </tr>
+      <% @review.attributes.each do |name, value| %>
+        <% if name.in?(%w[work_life_balance workplace_atmosphere flex_system remote_work harassment_prevention parental_care_leave childcare_support welfare_facilities evaluation_system promotion_salary overtime_holiday_work allowances_subsidies training_education_support career_support work_engagement]) %>
+        <!--ここで数字評価だけのカラムを選びたいので、カラム名を列記している。これがないと、idとかまで★で表示してしまう-->
+          <tr>
+          <th scope="row">◇</th>
+            <td><%= I18n.t("activerecord.attributes.review.#{name}") %></td>
+            <td>
+              <%= render partial: "output_star", locals: { review: @review, attribute_name: name.parameterize, score: value } %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr>
+        <th scope="row">詳細</th>
+        <td colspan="3", class="align-top"><%= @review.content %></td>
+      <tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="d-flex justify-content-center align-items-center gap-2"> <!--gapでボタン同士の距離を離す-->
+  <% if current_user.id == @review.user_id %>
+    <%= link_to "編集", edit_company_review_path(@review.company_id, @review), class:"btn btn-custom mr-2 mb-5" %>
+    <%= link_to "削除", company_review_path(@review.company_id, @review), method: :delete, data: { confirm: "削除しても宜しいですか？"}, class:"btn btn-custom mr-2 mb-5" %>
+  <% end %>
+  <%= link_to "ページトップ", company_review_path, class:"btn btn-custom mr-2 mb-5" %>
+  <%= link_to "一覧に戻る", company_reviews_path(@company), class:"btn btn-custom mr-2 mb-5" %>
+</div>

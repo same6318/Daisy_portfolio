@@ -6,6 +6,7 @@ class Topic < ApplicationRecord
   validates :content, presence: true
 
   has_many_attached :topic_images
+  validates :topic_images, presence: false, blob: { content_type: :image }
   
   # 文字列をひらがなに変換
   def self.to_hiragana(text)

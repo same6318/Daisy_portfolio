@@ -9,16 +9,16 @@
       </div>
     </div>
   
-      <ul class="company-info">
-        <li>資本金： <%= @company.capital %></li>
-        <li>社員人数： <%= @company.employee %></li>
-        <li>売上高： <%= @company.sales %></li>
-        <li>所在地： <%= @company.address %></li>
-        <li>業界・業種： <%= @company.industry %></li>
-        <li>URL： <%= @company_url %></li>
-        <li>お問合せ： <%= @company.contact %></li>
-      </ul>
-    </div>
+    <ul class="company-info">
+      <li>資本金： <%= @company.capital %></li>
+      <li>社員人数： <%= @company.employee %></li>
+      <li>売上高： <%= @company.sales %></li>
+      <li>所在地： <%= @company.address %></li>
+      <li>業界・業種： <%= @company.industry %></li>
+      <li>URL： <%= @company_url %></li>
+      <li>お問合せ： <%= @company.contact %></li>
+    </ul>
+  </div>
  
 
 
@@ -30,7 +30,7 @@
 
   <div>
       <p>
-      <strong>Portrait:</strong>
+      <strong>会社ロゴマーク:</strong>
       <%#= link_to @topic.portrait.filename, @topic.portrait if @topic.portrait.attached? %>
       <%#= image_tag @topic.portrait.variant(resize_to_limit: [100,100]) if @topic.portrait.attached? %>
       <%# 詳細画面でimage_tagを使って画像を表示
@@ -39,30 +39,44 @@
     </p>
   <div>
 
-  <div>
-    <p>作成日時： <%= @company.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+
+  <!--<div>
+    <p>企業レビュー平均： <%= @company.company_reviews_average %></p>
+  </div>-->
+
+  <div class="average-review">
+    <p>企業レビュー平均：</p>
+    <div id="company_reviews_average_raty"></div>
+    <script>
+      var elemAverage = document.querySelector('#company_reviews_average_raty');
+      var optAverage = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        score: <%= @company.company_reviews_average %>,
+        readOnly: true
+      };
+      raty(elemAverage, optAverage);
+    </script>
   </div>
 
   <div>
-    <p>企業レビュー平均： <%= @company.company_reviews_average %></p>
+    <p>作成日時： <%= @company.created_at.strftime('%Y/%m/%d %H:%M') %></p>
   </div>
 
   <div class="pickup-reviews">
       <p>ピックアップレビュー</p>
   </div>
 
-    <div>
-        <% @pickup_reviews.each do |review| %>
-          <div>
-            <p><small><%= link_to "レビュー", company_review_path(review.company_id, review) %>: <%= truncate(review.content, separator: "、") %></small></p>
-            <p><small>レビュー評価平均： <%= review.review_average %></small></p>
-          </div>
-        <% end %>
-    </div>
-  
-  
-
+  <div>
+    <% @pickup_reviews.each do |review| %>
+      <div>
+        <p><small><%= link_to "レビュー", company_review_path(review.company_id, review) %>: <%= truncate(review.content, separator: "、") %></small></p>
+        <p><small>レビュー評価平均： <%= review.review_average %></small></p>
+      </div>
+    <% end %>
+  </div>
 </div>
+
 <div class="btn-actions">
   <%= link_to "戻る", companies_path , class: 'btn btn-secondary custom-btn'%>
 </div>

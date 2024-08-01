@@ -50,12 +50,27 @@ thead th {
 }
 
 .company-description {
-  border-top: 1px solid #ddd; /* 上部のボーダー */
+  border-top: 2px dotted #888; /* 上部のボーダー */
   padding-top: 10px; /* 上部に余白を追加 */
   margin-top: 20px; /* 上部の外側余白を追加 */
 }
 .pickup-reviews {
-  border-top: 1px solid #ddd; /* 上部のボーダー */
+  border-top: 2px dotted #888; /* 上部のボーダー */
   padding-top: 10px; /* 上部に余白を追加 */
   margin-top: 20px; /* 上部の外側余白を追加 */
+}
+
+
+.average-review {
+  margin-top: 20px;
+
+}
+.average-review p {
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: inline-block; /* 追加 */
+  margin-right: 10px; /* 追加 */
+}
+#company_reviews_average_raty {
+  display: inline-block; /* 追加 */
 }

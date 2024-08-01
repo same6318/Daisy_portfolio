@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
       flash[:notice] = t('.created')
       redirect_to company_review_path(@company, @review)
     else
-      flash[:alert] = "レビューの作成に失敗しました"
+      #flash[:alert] = "レビューの作成に失敗しました"
       render :new
     end
   end

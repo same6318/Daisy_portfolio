@@ -21,9 +21,6 @@ thead th {
 
 
 
-
-
-
 .form-container {
   display: flex;
   flex-wrap: wrap;
@@ -39,20 +36,30 @@ thead th {
 .reviews-content-field {
   width: 100%;
 }
+
 .btn-actions {
-  text-align: center;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start; /* ボタンとリンクの間を空ける */
+  align-items: center; /* 縦方向の中央揃え */
+  margin-top: 20px;
+  margin-bottom: 70px;
 }
-.link-back {
-  text-align: right;
-  margin-bottom: 40px;
+.btn-actions .btn-custom {
+  margin-right: 10px; /* ボタンとリンクの間にスペースを設定 */
 }
 
 
 
-
+/* レビュー投稿画面css */
 .reviews-form-group {
   border-bottom: 1px solid #ccc; /* ボーダーの色や太さを調整 */
-  padding-bottom: 10px; /* パディングを調整 */
+  padding-bottom: 20px; /* パディングを調整 */
   margin-bottom: 15px; /* 各フォームグループ間のスペースを調整 */
+  padding-left: 70px;
 }
+/* 隣り合ったカラム間の隙間を調整 */
+.row .col-md-6 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+

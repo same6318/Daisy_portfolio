@@ -1,24 +1,30 @@
 <div>
-  <h1>企業詳細</h1>
+  <h1 class="text-center">企業詳細</h1>
 
-  <div>
-    <p>企業名： <%= @company.name %></p>
-    <p>企業レビュー数： <%= @company.reviews.count %>
-  </div>
+  
+    <div class="company-details">
+      <div class="company-detail">
+        <div class="label">企業名： <%= @company.name %></div>
+        <div class="value">企業レビュー数： <%= @company.reviews.count %></div>
+      </div>
+    </div>
+  
+      <ul class="company-info">
+        <li>資本金： <%= @company.capital %></li>
+        <li>社員人数： <%= @company.employee %></li>
+        <li>売上高： <%= @company.sales %></li>
+        <li>所在地： <%= @company.address %></li>
+        <li>業界・業種： <%= @company.industry %></li>
+        <li>URL： <%= @company_url %></li>
+        <li>お問合せ： <%= @company.contact %></li>
+      </ul>
+    </div>
+ 
 
-  <div>
-    <ul>
-      <li>資本金： <%= @company.capital %></li>
-      <li>社員人数： <%= @company.employee %></li>
-      <li>売上高： <%= @company.sales %></li>
-      <li>所在地： <%= @company.address %></li>
-      <li>業界・業種： <%= @company.industry %></li>
-      <li>URL： <%= @company_url %></li>
-      <li>お問合せ： <%= @company.contact %></li>
-    </ul>
-  </div>
 
-  <div>
+  
+
+  <div class="company-description">
     <p>企業説明：<%= @company.description %></p>
   </div>
 
@@ -41,19 +47,22 @@
     <p>企業レビュー平均： <%= @company.company_reviews_average %></p>
   </div>
 
-  <div>
-    <p>ピックアップレビュー</p>
+  <div class="pickup-reviews">
+      <p>ピックアップレビュー</p>
   </div>
 
-  <div>
-      <% @pickup_reviews.each do |review| %>
-        <div>
-          <p><small><%= link_to "レビュー", company_review_path(review.company_id, review) %>: <%= truncate(review.content, separator: "、") %></small></p>
-          <p><small>レビュー評価平均： <%= review.review_average %></small></p>
-        </div>
-      <% end %>
-  </div>
+    <div>
+        <% @pickup_reviews.each do |review| %>
+          <div>
+            <p><small><%= link_to "レビュー", company_review_path(review.company_id, review) %>: <%= truncate(review.content, separator: "、") %></small></p>
+            <p><small>レビュー評価平均： <%= review.review_average %></small></p>
+          </div>
+        <% end %>
+    </div>
+  
+  
 
 </div>
-
-<%= link_to "戻る", companies_path %>
+<div class="btn-actions">
+  <%= link_to "戻る", companies_path , class: 'btn btn-secondary custom-btn'%>
+</div>

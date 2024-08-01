@@ -41,6 +41,24 @@ ja:
       topic:
         title: "タイトル"
         content: "内容"
+      review:
+        work_life_balance: "ワークライフバランス"
+        workplace_atmosphere: "職場の雰囲気"
+        flex_system: "柔軟な働き方制度"
+        remote_work: "リモートワーク"
+        harassment_prevention: "ハラスメント防止"
+        parental_care_leave: "育児介護休業"
+        childcare_support: "育児支援"
+        welfare_facilities: "福利厚生施設"
+        mental_health_care: "メンタルヘルスケア"
+        evaluation_system: "評価制度"
+        promotion_salary: "昇進・給与"
+        overtime_holiday_work: "残業・休日出勤"
+        allowances_subsidies: "手当・補助金"
+        training_education_support: "研修・教育支援"
+        career_support: "キャリア支援"
+        work_engagement: "仕事のやりがい"
+        content: "コンテンツ"
     errors:
       models:
         user:
@@ -55,6 +73,42 @@ ja:
               blank: "を入力してください"
             content:
               blank: "を入力してください"
+        review:
+          attributes:
+            work_life_balance:
+              blank: "を入力してください"
+            workplace_atmosphere:
+              blank: "を入力してください"
+            flex_system:
+              blank: "を入力してください"
+            remote_work:
+              blank: "を入力してください"
+            harassment_prevention:
+              blank: "を入力してください"
+            parental_care_leave:
+              blank: "を入力してください"
+            childcare_support:
+              blank: "を入力してください"
+            welfare_facilities:
+              blank: "を入力してください"
+            mental_health_care:
+              blank: "を入力してください"
+            evaluation_system:
+              blank: "を入力してください"
+            promotion_salary:
+              blank: "を入力してください"
+            overtime_holiday_work:
+              blank: "を入力してください"
+            allowances_subsidies:
+              blank: "を入力してください"
+            training_education_support:
+              blank: "を入力してください"
+            career_support:
+              blank: "を入力してください"
+            work_engagement:
+              blank: "を入力してください"
+            content:
+              too_short: "は%{count}文字以上で入力してください"
   enums:
     user:
       age:

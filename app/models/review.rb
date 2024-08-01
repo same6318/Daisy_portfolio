@@ -2,6 +2,25 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :company
 
+  validates :work_life_balance, presence: true
+  validates :workplace_atmosphere, presence: true
+  validates :flex_system, presence: true
+  validates :remote_work, presence: true
+  validates :harassment_prevention, presence: true 
+  validates :parental_care_leave, presence: true
+  validates :childcare_support, presence: true
+  validates :welfare_facilities, presence: true
+  validates :mental_health_care, presence: true
+  validates :evaluation_system, presence: true
+  validates :promotion_salary, presence: true
+  validates :overtime_holiday_work, presence: true
+  validates :allowances_subsidies, presence: true
+  validates :training_education_support, presence: true
+  validates :career_support, presence: true
+  validates :work_engagement, presence: true
+  
+  validates :content, presence: true, length: { minimum: 100 }
+
   def review_items #レビューの値をハッシュ化する
     {
       work_life_balance: work_life_balance,

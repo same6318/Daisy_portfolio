@@ -38,6 +38,9 @@ ja:
       user:
         email: "メールアドレス"
         password: "パスワード"
+      topic:
+        title: "タイトル"
+        content: "内容"
     errors:
       models:
         user:
@@ -46,19 +49,12 @@ ja:
               blank: "を入力してください"
             password:
               blank: "を入力してください"
-        topic: "トピック"
-      attributes:
         topic:
-          title: "タイトル"
-          content: "内容"
-      errors:
-        models:
-          topic:
-            attributes:
-              title:
-                blank: "を入力してください"
-              content:
-                blank: "を入力してください"
+          attributes:
+            title:
+              blank: "を入力してください"
+            content:
+              blank: "を入力してください"
   enums:
     user:
       age:

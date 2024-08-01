@@ -28,7 +28,7 @@
   </div>
   <div class="account-detail">
     <div class="label">アカウントのステータス</div>
-    <div class="value"><%= @user.role %></div>
+    <div class="value"><%= @user.role.present? ? t("enums.user.role.#{@user.role}") : '' %></div>
   </div>
 </div>
   <p>※ハンドルネームは、トピック投稿で使用します。</p>

@@ -15,9 +15,7 @@
           <% end %>
 
 
-
-
-            <h1 class="fw-light">トピックス投稿</h1>
+            <h1 class="fw-center">トピックス投稿</h1>
             <%= form_with(model: topic) do |form| %>
 
               <div class="field">
@@ -36,12 +34,23 @@
                 <li><%= form.label :topic_images ,'画像挿入'%>
                 <%= form.file_field :topic_images, multiple: true %></li>
               </div>
+
+              <% if @topic.topic_images.attached? %>
+                <% @topic.topic_images.each do |image| %>
+                  <%= link_to url_for(image) do %>
+                    <%= image_tag image.variant(resize_to_limit: [100,100]) %>
+                  <% end %>
+                <% end %>
+              <% end %>
+
+
+
               <div>
                 <p>※投稿者名として、ハンドルネームを登録していない場合は「匿名希望」で投稿されます</p>
               </div>
               <div class="text-center">
-                <%= form.submit "投稿する",class: "btn btn-outline-dark", class:"btn btn-custom" %>
-                <%= link_to "戻る", topics_path , class: 'btn btn-secondary' %>
+                <%= form.submit "投稿する",class: "btn btn-outline-dark", class:"btn btn-custom custom-btn" %>
+                <%= link_to "戻る", topics_path , class: 'btn btn-secondary custom-btn' %>
               </div>
             <% end %>
           </div>

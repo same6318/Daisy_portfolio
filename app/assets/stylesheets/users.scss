@@ -70,11 +70,22 @@ div.actions {
   width: 50%; /* 選択要素の幅を半分に設定 */
   margin: 0 auto; /* 中央寄せ */
 }
-.actions {
+.actions .mt-3{
   display: flex; /* 横並びにするためにflexboxを使用 */
   justify-content: center; /* 中央寄せ */
 }
+.btn-back {
+  display: flex;
+  justify-content: center; /* 中央に揃える */
+  margin-top: 10px; /* 上に余白を追加 */
+  width: 100%; /* ボタンを親コンテナの幅に合わせる */
+}
 
+.custom-btn {
+  min-width: 150px; /* ボタンの最小幅を指定 */
+  max-width: 200px; /* ボタンの最大幅を指定 */
+  width: 100%; /* ボタンを親コンテナの幅に合わせる */
+}
 
 /*ここまで*/
 

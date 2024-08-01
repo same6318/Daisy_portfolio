@@ -154,8 +154,8 @@
 }
 /* .alert {
   background-color: transparent !important; /* 背景を透明にする */
-  /* border: none; ボーダーをなしにする */
-/* } */ 
+  /* border: none; */
+/* } */ */
 .alert-success {
   color: green; /* 成功メッセージの文字色 */
 }
@@ -166,4 +166,8 @@
   margin: 0 auto;
   font-size: 1.25rem;
   text-align: center;
+}
+
+.flash-messages {
+  margin-top: 10px; /* 上部に20pxのマージンを追加 */
 }

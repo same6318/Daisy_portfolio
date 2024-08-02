@@ -7,11 +7,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    super do |resource|
+      if resource.persisted? # ユーザーが保存された場合
+        flash[:new_user_notice] = "アカウントが作成されました！トピック投稿やレビュー投稿はここから行えます。"
+      end
+    end
     params[:user][:uid] = sign_up_params[:email]
     params[:user][:provider] = :email
     #binding.irb
     #build_resource(uid: params[:user][:email], provider: :email)
-    super
   end
 
   def update

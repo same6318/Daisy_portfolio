@@ -29,18 +29,18 @@
 
                 <div class="form-group mb-3">
                   <%= f.label :age, '年代' %>
-                  <%= f.select :age, options_for_select([['', '']] + User.ages.keys.map { |k| [I18n.t("enums.user.age.#{k}"), k] }, f.object.age || ''), class: 'form-control' %>
+                  <%= f.select :age, options_for_select([['', '']] + User.ages.keys.map { |k| [I18n.t("activerecord.enums.user.age.#{k}"), k] }, f.object.age || ''), class: 'form-control' %>
                 </div>
 
                 <div class="form-group mb-3">
                   <%= f.label :gender, '性別' %>
-                  <%= f.select :gender, options_for_select([['', '']] + User.genders.keys.map { |k| [I18n.t("enums.user.gender.#{k}"), k] }, f.object.gender || '') , class: 'form-control'%>
+                  <%= f.select :gender, options_for_select([['', '']] + User.genders.keys.map { |k| [I18n.t("activerecord.enums.user.gender.#{k}"), k] }, f.object.gender || '') , class: 'form-control'%>
                 </div>
 
                 <div class="form-group mb-3">
                   <% available_roles = User.roles.keys - ['admin'] %> <!-- 管理者ロールを除外 -->
-                  <%= f.label :role, 'ステータス' %>
-                  <%= f.select :role, options_for_select([['', '']] + available_roles.map { |k| [I18n.t("enums.user.role.#{k}"), k] }, f.object.role || '') , class: 'form-control'%>
+                  <%= f.label :role, 'ユーザステータス' %>
+                  <%= f.select :role, options_for_select([['', '']] + available_roles.map { |k| [I18n.t("activerecord.enums.user.role.#{k}"), k] }, f.object.role || '') , class: 'form-control'%>
                 </div>
                 
                 <div class="form-group mb-3">

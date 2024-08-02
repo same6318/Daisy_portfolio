@@ -11,6 +11,7 @@ class ReviewsController < ApplicationController
     sorted_reviews = @q.result
     @company_reviews = Kaminari.paginate_array(sorted_reviews).page(params[:page]).per(5)
     #binding.irb
+    
   end
 
 

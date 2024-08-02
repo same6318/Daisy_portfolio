@@ -10,7 +10,7 @@
             <div id="error_explanation" class="alert alert-danger">
               <ul>
                 <% review.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
+                  <%= message %><br>
                 <% end %>
               </ul>
             </div>
@@ -295,7 +295,7 @@
 
 
             <div class="reviews-content-field">
-              <%= form.label :content,'コンテンツ',class:"form-label" %>
+              <%= form.label :content,'本文',class:"form-label" %>
               <%= form.text_area :content, rows: "8", placeholder:"100文字以上記入 必須",class:"form-control"%>
             </div>
          

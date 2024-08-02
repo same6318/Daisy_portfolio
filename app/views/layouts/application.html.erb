@@ -17,6 +17,9 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light custom-yellow">
     <a class="navbar-brand text-white" href="">Daisy World</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
         <% if user_signed_in? %>
@@ -27,12 +30,12 @@
             <a class="nav-item nav-link" href="<%= admin_companies_path %>">企業一覧</a>
             <a class="nav-item nav-link" href="<%= destroy_admin_session_path %>" data-method="delete">ログアウト</a>
           <% else %>
-            <a class="nav-item nav-link" href="<%= destroy_user_session_path %>" data-method="delete">ログアウト</a>
-            <a class="nav-item nav-link" href="<%= users_path %>">ホーム</a>
+            <a class="nav-item nav-link" href="<%= users_path %>">マイページ</a>
             <a class="nav-item nav-link" href="<%= companies_path %>">企業一覧</a>
             <a class="nav-item nav-link" href="<%= topics_path %>">トピックス一覧</a>
             <a class="nav-item nav-link" href="<%= new_topic_path %>">トピックス投稿</a>
             <a class="nav-item nav-link" href="<%= user_path(current_user) %>">アカウント詳細</a>
+            <a class="nav-item nav-link" href="<%= destroy_user_session_path %>" data-method="delete">ログアウト</a>
           <% end %>
         <% else %>
           <a class="nav-item nav-link" href="<%= new_user_registration_path %>">新規登録</a>
@@ -52,7 +55,7 @@
   <div class="flash-messages">
     <%= render 'shared/flash_messages' %>
   </div>
-  </div>
+</div>
     
   <div class="container">
     <%= yield %>

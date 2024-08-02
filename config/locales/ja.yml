@@ -134,4 +134,11 @@ ja:
           email: メールアドレス
           password: パスワード
           password_confirmation: パスワード（確認）
+      topic:
+        genre:
+          other: "その他"
+          care: "育児・介護"
+          work: "仕事・働き方"
+          life: "生活"
+          event: "イベント・ワーク"
     

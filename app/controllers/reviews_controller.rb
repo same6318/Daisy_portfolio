@@ -7,9 +7,7 @@ class ReviewsController < ApplicationController
   def index
     @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
     @q = @company.reviews.ransack(params[:q])
-
-    sorted_reviews = @q.result
-    @company_reviews = Kaminari.paginate_array(sorted_reviews).page(params[:page]).per(5)
+    @company_reviews = @q.result.order(created_at: :desc).page(params[:page]).per(10)
     #binding.irb
     
   end

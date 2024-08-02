@@ -3,15 +3,15 @@
 <div class="account-details">
   <div class="account-detail">
     <div class="label">在籍状況</div>
-    <div class="value"><%= @review.select %></div>
+    <div class="value"><%= @review.select.present? ? "現職" : "退社済み" %></div>
   </div>
    <div class="account-detail">
     <div class="label">年代</div>
-    <div class="value"><%= @user.age %></div>
+    <div class="value"><%= @user.age.present? ? t("activerecord.enums.user.age.#{@user.age}") : "" %></div>
   </div>
   <div class="account-detail">
     <div class="label">性別</div>
-    <div class="value"><%= @user.gender %></div>
+    <div class="value"><%= @user.gender.present? ? t("activerecord.enums.user.gender.#{@user.gender}") : "" %></div>
   </div>
 </div>
 
@@ -55,6 +55,7 @@
   <% if current_user.id == @review.user_id %>
     <%= link_to "編集", edit_company_review_path(@review.company_id, @review), class:"btn btn-custom mr-2 mb-5" %>
     <%= link_to "削除", company_review_path(@review.company_id, @review), method: :delete, data: { confirm: "削除しても宜しいですか？"}, class:"btn btn-custom mr-2 mb-5" %>
+    <%= link_to "マイページに戻る", users_path, class:"btn btn-custom mr-2 mb-5" %>
   <% end %>
   <%= link_to "ページトップ", company_review_path, class:"btn btn-custom mr-2 mb-5" %>
   <%= link_to "一覧に戻る", company_reviews_path(@company), class:"btn btn-custom mr-2 mb-5" %>

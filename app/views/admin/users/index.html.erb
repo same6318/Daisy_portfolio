@@ -56,7 +56,7 @@
             <tr>
               <td><%= link_to "詳細", admin_user_path(user), class:"btn btn-custom" %>
               <td><%= truncate(user.name, length: 15) %></td>
-              <td><%= user.role %></td>
+              <td><%= t("activerecord.enums.user.role.#{user.role}") %></td>
               <td><%= user.email %></td>
               <td><%= truncate(user.screen_name, length: 15) %></td>
               <td><%= user.topics.count %></td>

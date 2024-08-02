@@ -2,15 +2,15 @@
 <div class="account-details">
   <div class="account-detail">
     <div class="label">在籍状況</div>
-    <div class="value"><%= @review.select %></div>
+    <div class="value"><%= @review.select.present? ? "現職" : "退社済み" %></div>
   </div>
    <div class="account-detail">
     <div class="label">年代</div>
-    <div class="value"><%= @user.age %></div>
+    <div class="value"><%= @review.user.age.present? ? t("activerecord.enums.user.age.#{@review.user.age}") : "" %></div>
   </div>
   <div class="account-detail">
     <div class="label">性別</div>
-    <div class="value"><%= @user.gender %></div>
+    <div class="value"><%= @review.user.gender.present? ? t("activerecord.enums.user.gender.#{@review.user.gender}") : "" %></div>
   </div>
 </div>
 

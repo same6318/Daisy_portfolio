@@ -3,17 +3,23 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show]
   before_action :topic_edit, only:[:edit, :update, :destroy]
 
-  def index #viewから送られてくるパラメータを元にテーブルからデータを検索する
-    if params[:q].present? && params[:q][:title_or_content_cont].present?
-      search_word = params[:q][:title_or_content_cont]
-      hiragana_search_word = Topic.to_hiragana(search_word)
-      katakana_search_word = Topic.to_katakana(search_word)
-      @q = Topic.joins(:user).ransack(m: "or", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word])
-    else
-      @q = Topic.joins(:user).ransack(params[:q])
-    end
+
+  def index
     
-    @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.order(created_at: :desc).page(params[:page]).per(9)
+      #検索ワードの中に文字が入っていたら、以下のif文に入る。
+      if params[:q].present? && params[:q][:title_or_content_cont].present?
+        search_word = params[:q][:title_or_content_cont]
+        hiragana_search_word = Topic.to_hiragana(search_word)
+        katakana_search_word = Topic.to_katakana(search_word)
+        @q = Topic.ransack(m: "or", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word], genre_eq: params[:q][:genre_eq])
+        #binding.irb
+      else
+        @q = Topic.joins(:user).ransack(params[:q])
+
+      end
+    # @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.order(created_at: :desc).page(params[:page]).per(9)
+    @topics = @q.result.includes(:user, topic_images_attachments: :blob).order(created_at: :desc).page(params[:page]).per(9)
+
   end
 
   def new
@@ -27,6 +33,7 @@ class TopicsController < ApplicationController
       redirect_to topic_path(@topic)
     else
       #flash[:alert] = "トピックの作成に失敗しました"
+      # binding.irb
       render :new
     end
   end
@@ -57,8 +64,12 @@ class TopicsController < ApplicationController
 
   private
 
+  # def search_params
+  #   params.fetch(:q, {}).permit(:title_or_content_cont, :genre_eq, :m, :title_or_content_cont_any => [])
+  # end
+
   def topic_params #:topic_imageを追加、モデルはhas_many_attached :topic_image
-    params.require(:topic).permit(:title, :content, :author_name, topic_images: []).merge(user_id: current_user.id, company_id: current_user.company_id)
+    params.require(:topic).permit(:title, :content, :genre, :author_name, topic_images: []).merge(user_id: current_user.id, company_id: current_user.company_id)
   end
 
   def set_topic #今回は人のトピックも見ることができる

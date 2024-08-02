@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
     @q = @company.reviews.ransack(params[:q])
     @company_reviews = @q.result.order(created_at: :desc).page(params[:page]).per(10)
     #binding.irb
+    
   end
 
 

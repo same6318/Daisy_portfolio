@@ -1,17 +1,46 @@
+<!-- app/views/users/mypage.html.erb -->
+<% if flash[:new_user_notice] && !session[:new_user_notice_displayed] %>
+  <div id="flash-new-user-notice" class="alert alert-info">
+    <%= flash[:new_user_notice] %>
+  </div>
+  <% session[:new_user_notice_displayed] = true %> <!-- 一度表示したことを記録 -->
+<% end %>
+
+<div class="welcome-message">
+  <p>ようこそ、<%= current_user.name %>さん！</p>
+  <p>レビュー投稿は「企業一覧」から行えます。</p>
+</div>
 
   <h1 class="text-center"> マイページ</h1>
+
+
+  <h3 class="mypage-count">レビュー件数： <%= current_user.reviews.size %>件</h3>
+  <div class="mypage-details">
+    <% if @current_user_reviews.present? %>
+      <% @current_user_reviews.each do |review| %>
+        <div class="mypage-detail">
+          <div class="detail-content">
+            <h6>企業名：<%= review.company.name %></h6>
+            <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+          </div>
+          <%= link_to "詳細", company_review_path(review.company_id, review), class: "detail-link" ,class:"btn btn-custom" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   
 
-  <h3>トピック件数：<%= current_user.topics.size %>件</h3>
+  <h3 class="mypage-count">トピック件数：<%= current_user.topics.size %>件</h3>
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <% @topics.each do |topic| %>
         <div class="col">
-          <div class="card shadow-sm" style="width: 20rem;">
+          <div class="card shadow-sm" style="width: 100%;">
             <% if topic.topic_images.attached? %>
               <%= image_tag topic.topic_images.first, class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;", loading:"lazy" %>
             <% else %>
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" >
                 <rect width="100%" height="100%" fill="#eeeeee"></rect>
                 <text x="50%" y="50%" fill="#aaaaaa" dy=".3em" text-anchor="middle">No image</text>
               </svg>
@@ -44,9 +73,7 @@
   </div>
 
 
-
-
-  <h3>レビュー件数： <%= current_user.reviews.size %>件</h3>
+  <!--<h3>レビュー件数： <%= current_user.reviews.size %>件</h3>
   <div class="reviews-container">
     <% if @current_user_reviews.present? %>
       <% @current_user_reviews.each do |review| %>
@@ -56,18 +83,13 @@
             <p class="card-text">
               <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div>
             </p>
-            <%= link_to "詳細", user_review_path(current_user, review), class: "card-link" ,class:"btn btn-custom"  %>
+            <%= link_to "詳細",company_review_path(review.company_id, review), class: "card-link" ,class:"btn btn-custom "  %>
           </div>
         </div>
       <% end %>
     <% end %>
   </div>
-</div>
-
-
-
-
-
+</div>-->
 
 
   <div class="d-flex justify-content-center mt-3">
@@ -83,8 +105,7 @@
 
 
 
-
-
+ 
 
 
 

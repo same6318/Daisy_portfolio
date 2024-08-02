@@ -38,6 +38,7 @@ ja:
       user:
         email: "メールアドレス"
         password: "パスワード"
+        password_confirmation: "パスワード(確認)"
       topic:
         title: "タイトル"
         content: "内容"
@@ -58,7 +59,7 @@ ja:
         training_education_support: "研修・教育支援"
         career_support: "キャリア支援"
         work_engagement: "仕事のやりがい"
-        content: "コンテンツ"
+        content: "本文"
     errors:
       models:
         user:
@@ -126,8 +127,8 @@ ja:
           education: "教育・学習"
           hobby: "趣味・娯楽"
         role:
-          general: "一般ユーザ"
-          company: "企業ユーザ"
+          general: "一般"
+          company: "企業"
         user:
           name: 名前
           email: メールアドレス

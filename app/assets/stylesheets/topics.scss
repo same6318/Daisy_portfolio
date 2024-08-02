@@ -2,12 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+
+/*トピックス投稿画面*/
 .topics-page .container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: auto;
   margin-top: 30px;
+  margin-bottom: 50px;
 }
 .form {
   background: rgba(255, 255, 255, 0.767); /* 背景色を白にして透過を追加 */
@@ -18,9 +21,21 @@
 }
 
 .topic-form-control {
-  height: 27vh;
+  height: 25vh;
   width: 62vh;
   border-color: rgba(172, 168, 168, 0.47);
   border-radius: 8px;
 }
+/*ここまで*/
 
+
+/*トピックス編集画面*/
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-container img {
+  margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
+}
+/*ここまで*/

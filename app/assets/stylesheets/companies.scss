@@ -7,12 +7,11 @@ thead th {
   font-weight: bold; // フォントの太さを変更
 }
 
-
+/*企業レビュー投稿と詳細*/
 .company-details {
   border: 1px solid #ddd; /* 全体の枠線の色 */
   padding: 10px; /* 内部余白を追加 */
   margin: 20px auto; /* 上下余白を追加し、中央寄せ */
-  
 }
 .company-detail {
   display: flex; /* フレックスボックスレイアウトを使用 */
@@ -60,10 +59,8 @@ thead th {
   margin-top: 20px; /* 上部の外側余白を追加 */
 }
 
-
 .average-review {
   margin-top: 20px;
-
 }
 .average-review p {
   font-weight: bold;
@@ -73,4 +70,27 @@ thead th {
 }
 #company_reviews_average_raty {
   display: inline-block; /* 追加 */
+}
+.pickup-title {
+  font-size: 2rem; /* 文字サイズを大きく */
+  text-align: center; /* 中央揃え */
+  margin-bottom: 1rem; /* 下に余白を追加 */
+  color: #333; /* 文字の色を変更 */
+}
+/*ここまで*/
+
+/*admin詳細画面*/
+.admin-company-details {
+  border: 1px solid #ddd; /* 全体の枠線の色 */
+  padding: 10px; /* 内部余白を追加 */
+  margin: 20px auto; /* 上下余白を追加し、中央寄せ */
+}
+.admin-company-detail {
+  display: flex; /* フレックスボックスレイアウトを使用 */
+  padding: 5px 0; /* 上下の内部余白を追加 */
+  align-items: center;
+}
+/* 最初の要素の左ボーダーを削除 */
+.admin-company-detail .value:first-child {
+  border-left: none;
 }

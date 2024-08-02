@@ -23,7 +23,6 @@
           </div>
         <% end %>
       </div>
- 
   <% end %>
 
   
@@ -32,11 +31,11 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <% @selected_topics.each do |topic| %>
         <div class="col">
-          <div class="card shadow-sm" style="width: 18rem;">
-            <% if @selected_topics.present? %>
+          <div class="card shadow-sm" style="width: 100%;">
+             <% if topic.topic_images.attached? %>
               <%= image_tag topic.topic_images.first, class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;" %>
             <% else %>
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225">
                 <rect width="100%" height="100%" fill="#eeeeee"></rect>
                 <text x="50%" y="50%" fill="#aaaaaa" dy=".3em" text-anchor="middle">No image</text>
               </svg>

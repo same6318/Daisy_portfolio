@@ -1,14 +1,19 @@
 <div>
-  <h1>企業詳細</h1>
+  <h1 class="text-center">企業詳細</h1>
 
-  <div>
-    <p>企業名： <%= @company.name %></p>
-    <p>企業ユーザー名： <%= @user&.company_id ? @user.name : "" %>
-    <p>企業レビュー数： <%= @company.reviews.count %>
+  <div class="admin-company-details">
+    <div class="admin-company-detail">
+      <div class="label">企業名： <%= @company.name %></div>
+    </div>
+  </div>
+  <div class="admin-company-details">
+    <div class="admin-company-detail">
+      <div class="value">企業ユーザー名： <%= @user&.company_id ? @user.name : "" %></div>
+      <div class="value">企業レビュー数： <%= @company.reviews.count %></div>
+    </div>
   </div>
 
-  <div>
-    <ul>
+    <ul class="company-info">
       <li>資本金： <%= @company.capital %></li>
       <li>社員人数： <%= @company.employee %></li>
       <li>売上高： <%= @company.sales %></li>
@@ -17,17 +22,17 @@
       <li>URL： <%= @company_url %></li>
       <li>お問合せ： <%= @company.contact %></li>
     </ul>
-  </div>
+  
+  <div class="company-description">
+    <div>
+      <p>企業説明：<%= @company.description %></p>
+      <p>作成日時： <%= @company.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+    </div>
 
-  <div>
-    <p>企業説明：<%= @company.description %></p>
-    <p>作成日時： <%= @company.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+    <div>
+      <p>企業レビュー平均： <%= @company.company_reviews_average %></p>
+    </div>
   </div>
-
-  <div>
-    <p>企業レビュー平均： <%= @company.company_reviews_average %></p>
-  </div>
-
 </div>
 
 <%= link_to "削除", admin_company_path(@company), method: :delete, data: { confirm: "削除しても宜しいですか？"} %>

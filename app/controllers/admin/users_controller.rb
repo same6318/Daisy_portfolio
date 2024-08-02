@@ -12,7 +12,7 @@ class Admin::UsersController < ApplicationController
     end
 
     #@users = @q.result(distinct: true).includes(:company).page(params[:page]).per(10)
-    @users = @q.result.page(params[:page]).per(10)
+    @users = @q.result.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

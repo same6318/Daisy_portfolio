@@ -8,14 +8,32 @@
           <%= f.label :title_or_content_cont, "タイトル・本文検索", class:"col-sm-4 col-form-label" %>
           <%= f.text_field :title_or_content_cont, class:"col-sm-4" %>
           <%= f.submit "検索", class:"btn btn-custom" %>
+
+          <div class="form-group m-2">
+            <div class="form-check-inline">
+            <%= f.label :genre_eq, "ジャンル： ", class: "" %>
+              <!-- "指定なし" オプションの追加 -->
+              <%= f.radio_button :genre_eq, nil, id: "genre_any", checked: @q.genre_eq.blank? %>
+              <%= f.label :genre_any, "指定なし", for: "genre_any" %>
+
+              <!-- 残りのジャンルオプション -->
+              <%= f.collection_radio_buttons :genre_eq, Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), k] }, :last, :first do |b| %>
+                  <%= b.radio_button(class: "form-check-input") %>
+                  <%= b.label(class: "form-check-label") %>
+              <% end %>
+            </div>
+          </div>
+
+
         <% end %>
       </div>
-      <div class="align-items-center">
+      <div class="align-items-center mt-2">
         <%= link_to "検索結果をリセット", topics_path, class:"btn btn-custom" %>
       </div>
     </div>
   </div>
 </section>
+
 
 
 <div class="container">
@@ -34,6 +52,7 @@
           </svg>
         <% end %>
         <div class="card-body">
+          <small class="text-muted pd-1">ジャンル <%= topic.genre.present? ? t("activerecord.enums.topic.genre.#{topic.genre}") : "" %></small>          
           <h5 class="card-title text-break"><%= truncate(topic.title, length: 15) %></h5>
           <p class="card-text text-break"><%= truncate(topic.content, length: 25) %></p>
             <div class="d-flex justify-content-between align-items-center">

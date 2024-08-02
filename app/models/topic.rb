@@ -8,6 +8,8 @@ class Topic < ApplicationRecord
   has_many_attached :topic_images
   validates :topic_images, presence: false, blob: { content_type: :image }
   
+  enum genre: { other: 0, care: 1, work: 2, life: 3, event: 4 }
+
   # 文字列をひらがなに変換
   def self.to_hiragana(text)
     NKF.nkf('-w --hiragana', text)
@@ -23,7 +25,7 @@ class Topic < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    super + %w[title content created_at]
+    super + %w[title content genre created_at]
   end
 
   def self.ransackable_associations(auth_object = nil)

@@ -30,9 +30,9 @@
         <tr>
           <td class="text-center"><%= link_to "詳細", company_review_path(review.company_id, review), class:"btn btn-custom" %></td>
           <td class="text-center"><%= review.review_average %></td>
-          <td class="text-center"><%= review.user.age %></td>
-          <td class="text-center"><%= review.user.gender %></td>
-          <td class="text-center"><%= review.select %></td>
+          <td class="text-center"><%= review.user.age.present? ? t("activerecord.enums.user.age.#{review.user.age}") : "" %></td>
+          <td class="text-center"><%= review.user.gender.present? ? t("activerecord.enums.user.gender.#{review.user.gender}") : "" %></td>
+          <td class="text-center"><%= review.select.present? ? "現職" : "退社済み" %></td>
           <td><small><%= truncate(review.content) %></small></td>
           <td class="text-center"><small><%= review.created_at.strftime('%Y/%m/%d') %></small></td>
         </tr>

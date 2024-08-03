@@ -23,12 +23,12 @@
                 <%= form.text_field :title, class: 'form-control' %>
               </div>
                 <div class="field">
-                <%= form.label :content ,'コンテント' %>
-                <%= form.text_area :content , class: 'topic-form-control' %>
+                <%= form.label :content ,'本文' %>
+                <%= form.text_area :content , class: 'topic-form-control', placeholder: "こちらに本文をご記入ください" %>
               </div>
               <div class="field">
-                <%= form.label :genre ,'ジャンル'%>
-                <%= form.select :genre, options_for_select(Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), k] }), include_blank: true, class: 'form-control' %>
+                <%= form.label :genre ,'トピックのジャンルを選択してください'%><br>
+                <%= form.select :genre, options_for_select(Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), k] }), value: "0", class: 'form-control' %>
               </div>
               <div class="field">
                 <li><%= form.label :ハンドルネームで投稿する %>

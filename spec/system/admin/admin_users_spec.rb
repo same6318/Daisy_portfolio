@@ -73,16 +73,45 @@ RSpec.describe "Admin::Users", type: :system do
 
     context "名前とハンドルネームであいまい検索をした場合" do
       it "検索ワードを含むユーザーのみ表示される" do
+        fill_in "q[name_or_screen_name_cont]", with: "ユーザー"
+        click_on "検索"
+        expect(page).to have_content("一般")
+        expect(page).to have_content("きぎょう")
+        users = all("tbody tr")
+        expect(users.size).to eq(3)
+        fill_in "q[name_or_screen_name_cont]", with: "ネーム"
+        click_on "検索"
+        users = all("tbody tr")
+        expect(users.size).to eq(2)
       end
     end
 
     context "メールアドレス検索をした場合" do
       it "検索ワードを含むユーザーのみ表示される" do
+        fill_in "q[email_cont]", with: "2"
+        click_on "検索"
+        rows = all("tbody tr")
+        user_names = rows.map do |row|
+          row.all("td")[1].text
+        end
+        expect(user_names).to eq(["きぎょうユーザー"])
+
       end
     end
 
     context "権限検索をした場合" do
       it "検索したユーザーのみ表示される" do
+        fill_in "q[role_eq]", with: "2"
+        click_on "検索"
+        rows = all("tbody tr")
+        user_names = rows.map do |row|
+          row.all("td")[1].text
+        end
+        expect(user_names).to eq(["管理者"])
+        fill_in "q[role_eq]", with: "0"
+        click_on "検索"
+        users = all("tbody tr")
+        expect(users.size).to eq(2)
       end
     end
 
@@ -91,6 +120,10 @@ RSpec.describe "Admin::Users", type: :system do
   describe "詳細表示機能" do
     context "任意のユーザー詳細画面に遷移した場合" do
       it "そのユーザーの内容が表示される" do
+        user = FactoryBot.create(:user)
+        visit admin_user_path(user)
+        expect(page).to have_content("トピック投稿数")
+        expect(page).to have_content("ユーザー削除")
       end
     end
   end

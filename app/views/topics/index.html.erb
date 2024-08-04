@@ -2,7 +2,7 @@
 <section class="py-5 text-center container">
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light  p-2">トピック一覧</h1>
+      <h1 class="fw-light">トピック一覧</h1>
       <div class="justify-content-center align-items-center">
         <%= search_form_for @q, url: topics_path, method: :get do |f| %>
           <%= f.label :title_or_content_cont, "タイトル・本文検索", class:"col-sm-4 col-form-label" %>

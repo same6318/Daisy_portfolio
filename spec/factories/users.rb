@@ -30,7 +30,7 @@ FactoryBot.define do
     role { 0 }
     name { "一般ゆーざー" }
     age { 0 }
-    gender { 0 }
+    gender { 1 }
     screen_name { "はんどるネーム" }
     password { "password123" }
     password_confirmation { "password123" }

@@ -27,6 +27,7 @@ class Admin::TopicsController < ApplicationController
   def destroy
     @topic = Topic.find(params[:id])
     @topic.destroy
+    flash[:alert] = t('.destroyed')
     redirect_to admin_topics_path
   end
 

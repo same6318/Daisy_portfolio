@@ -38,13 +38,13 @@
                 <li><%= form.label :topic_images ,'画像挿入'%>
                 <%= form.file_field :topic_images, multiple: true %></li>
               </div>
-
+              
+              <p>（現在、挿入されている画像）</p> 
               <% if @topic.topic_images.attached? %>
                 <% @topic.topic_images.each do |image| %>
                   <% if image.blob.content_type.include?("image") %>
                     <%= link_to url_for(image) , class: "image-container" do %>
                       <%= image_tag image.variant(resize_to_limit: [100,100]) %>
-                      <p>（現在、挿入されている画像）</p> 
                     <% end %>
                   <% end %>
                 <% end %>

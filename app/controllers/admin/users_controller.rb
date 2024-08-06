@@ -22,9 +22,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
+    binding.irb
     flash[:alert] = "ユーザーを削除しました"
-    redirect_to new_admin_session_path
+    redirect_to admin_users_path
   end
 
   private

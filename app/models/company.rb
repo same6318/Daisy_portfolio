@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
   has_many :users
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   def company_reviews_average
     if reviews.empty?

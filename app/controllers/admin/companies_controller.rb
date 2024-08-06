@@ -18,6 +18,7 @@ class Admin::CompaniesController < ApplicationController
   def destroy
     @company = Company.find(params[:id])
     @company.destroy
+    flash[:alert] = t('.destroyed')
     redirect_to admin_companies_path
   end
 

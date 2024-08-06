@@ -4,18 +4,12 @@
 /* 公開コンテンツとログインユーザー専用コンテンツのスタイリング */
 
 .public-content {
-  /* 公開コンテンツのスタイリング */
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  margin-top: 30px;
+  margin-top: 70px;
 }
 
 .top-reviews-container {
-  margin: 20px auto; /* 上下のマージンを設定し、中央に配置 */
+  margin: 50px; /* 上下のマージンを設定し、中央に配置 */
   width: 90%; /* 幅を調整、全体のバランスを考慮 */
-  max-width: 1200px; /* 最大幅を設定 */
 }
 
 .top-review {
@@ -40,4 +34,14 @@
 
 .review-count, .average-rating {
   color: #131212;
+}
+
+.top-content {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 20px;
+  justify-content: space-between; /* 要素を均等に配置 */
+  align-items: center; /* 縦方向に中央揃え */
 }

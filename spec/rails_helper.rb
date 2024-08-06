@@ -32,7 +32,9 @@ end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')
-
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include Warden::Test::Helpers, type: :system
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -72,5 +74,7 @@ RSpec.configure do |config|
         end
       end
     end
- 
+
+# この一行を追加
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 end

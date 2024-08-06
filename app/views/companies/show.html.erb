@@ -57,7 +57,7 @@
       <% @pickup_reviews.each do |review| %>
         <div class="card" style="width: 18rem; margin-bottom: 1rem;">
           <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-body-secondary">レビュー評価平均： <%= review.review_average %></h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">総合評価： <%= review.review_average %></h6>
             <p class="card-text">
               <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div>
             </p>

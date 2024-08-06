@@ -5,20 +5,20 @@ class TopicsController < ApplicationController
 
 
   def index
-    
-      #検索ワードの中に文字が入っていたら、以下のif文に入る。
+
+    #検索ワードの中に文字が入っていたら、以下のif文に入る。
       if params[:q].present? && params[:q][:title_or_content_cont].present?
         search_word = params[:q][:title_or_content_cont]
         hiragana_search_word = Topic.to_hiragana(search_word)
         katakana_search_word = Topic.to_katakana(search_word)
         @q = Topic.ransack(m: "or", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word], genre_eq: params[:q][:genre_eq])
-        #binding.irb
       else
         @q = Topic.joins(:user).ransack(params[:q])
 
       end
     # @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.order(created_at: :desc).page(params[:page]).per(9)
     @topics = @q.result.includes(:user, topic_images_attachments: :blob).order(created_at: :desc).page(params[:page]).per(9)
+    # binding.irb
 
   end
 

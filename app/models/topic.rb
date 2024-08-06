@@ -8,7 +8,7 @@ class Topic < ApplicationRecord
   has_many_attached :topic_images
   validates :topic_images, presence: false, blob: { content_type: :image }
   
-  enum genre: { other: 0, care: 1, work: 2, life: 3, event: 4 }
+  enum genre: { care: 0, work: 1, life: 2, event: 3, other: 4 }
 
   # 文字列をひらがなに変換
   def self.to_hiragana(text)

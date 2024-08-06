@@ -1,10 +1,9 @@
 
-<section class="py-5 text-center container">
-  <div class="row py-lg-5">
+<section class="text-center container">
+  <div class="row">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light  p-2"><%= @company.name %>のレビュー一覧</h1>
+      <h1 class="fw-light  p-2"><%= @company.name %>のレビュー</h1>
       <div class="align-items-center">
-        <p>ここにテキストとか入れる??</p>
       </div>
     </div>
   </div>
@@ -17,7 +16,7 @@
       <thead class="text-align-center text-center align-middle custom-thead">
         <tr>
           <th></th>
-          <th>評価平均</th>
+          <th>総合評価</th>
           <th><%= sort_link(@q, :user_age, "年代", hide_indicator: true, class: "btn btn-light") %></th>
           <th><%= sort_link(@q, :user_gender, "性別", hide_indicator: true, class: "btn btn-light") %></th>
           <th><%= sort_link(@q, :select, "在籍状態", hide_indicator: true, class: "btn btn-light") %></th>
@@ -29,7 +28,7 @@
       <% @company_reviews.each do |review| %>
         <tr>
           <td class="text-center"><%= link_to "詳細", company_review_path(review.company_id, review), class:"btn btn-custom" %></td>
-          <td class="text-center"><%= review.review_average %></td>
+          <td class="text-center"><%= "#{review.review_average} /点" %></td>
           <td class="text-center"><%= review.user.age.present? ? t("activerecord.enums.user.age.#{review.user.age}") : "" %></td>
           <td class="text-center"><%= review.user.gender.present? ? t("activerecord.enums.user.gender.#{review.user.gender}") : "" %></td>
           <td class="text-center"><%= review.select.present? ? "現職" : "退社済み" %></td>
@@ -43,7 +42,6 @@
 </div>
   <%= paginate @company_reviews %>
 
-<div class="d-flex justify-content-center align-items-center gap-2"> <!--gapでボタン同士の距離を離す-->
-  <%= link_to "ページトップ", company_reviews_path(@company), class:"btn btn-custom mr-2 mb-5" %>
-  <%= link_to "一覧に戻る", companies_path, class:"btn btn-custom mr-2 mb-5" %>
+<div class="d-flex justify-content-center align-items-center"> <!--gapでボタン同士の距離を離す-->
+  <%= link_to "企業一覧に戻る", companies_path, class:"btn btn-custom mr-2 mb-5" %>
 </div>

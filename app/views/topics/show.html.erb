@@ -1,18 +1,14 @@
 <div class="container">
-  
-  <div class="col w-100 px-5 pt-5">
+
+  <div class="col w-100 pt-5">
     <h2><%= @topic.title %></h2>
   </div>
-
-  <div class="col w-100 p-5">
-    <p class="fs-5"><%= @topic.content %></p>
-  </div>
-
-  <div class="col w-100 px-5">
+  <hr>
+  <div class="col w-100">
     <p>ジャンル： <%= @topic.genre.present? ? t("activerecord.enums.topic.genre.#{@topic.genre}") : "" %></p>
   </div>
 
-  <div class="col w-100 px-5">
+  <div class="col w-100 mb-4">
     <div class="d-flex justify-content-between align-items-center">
       <% if @topic.author_name? %>
         <% if @topic.user.screen_name? %>
@@ -27,21 +23,50 @@
     </div>
   </div>
 
-  <div class="col w-100 p-5 text-center">
-    <p>
-      <% if @topic.topic_images.attached? %>
-        <% @topic.topic_images.each do |image| %>
-          <%= link_to url_for(image) do %>
-            <%= image_tag image.variant(resize_to_fit: [500,500]) %>
+  <div class="row align-items-md-stretch">
+    <% if @topic.topic_images.attached? %>
+      <div class="col-md-6">
+        <div class="fs-5">
+          <div><%= @topic.content %></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <% if @topic.topic_images.attached? %>
+          <%= link_to url_for(@topic.topic_images.first) do %>
+            <%= image_tag @topic.topic_images.first.variant(resize_to_fit: [500,500]), class:"img-fluid align-middle" %>
           <% end %>
         <% end %>
-      <% end %>
-      <%# 詳細画面でimage_tagを使って画像を表示
-          表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
-          (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
-    </p>
+      </div>
+    <% else %>
+      <div class="col-md-12">
+        <div class="fs-5">
+          <div><%= @topic.content %></div>
+        </div>
+      </div>
+    <% end %>
   </div>
 
+  <br>
+  <hr>
+  <br>
+  <div class="row align-items-md-stretch">
+    <div class="d-flex align-middle">
+      <% if @topic.topic_images.attached? && @topic.topic_images.size > 1 %>
+          <% @topic.topic_images.each_with_index do |image, index| %>
+            <% if index >= 1 %>
+              <div class="col m-2 text-center flex-wrap">
+                <%= link_to url_for(image) do %>
+                  <%= image_tag image.variant(resize_to_limit: [400,400]), class:"img-fluid" %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+
+<br>
+<br>
 
   <div class="d-flex justify-content-center align-items-center gap-2"> <!--gapでボタン同士の距離を離す-->
     <% if current_user.id == @topic.user_id %>

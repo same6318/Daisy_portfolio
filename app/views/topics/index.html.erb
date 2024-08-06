@@ -1,39 +1,14 @@
 
-<section class="py-5 text-center container">
+<section class="text-center container">
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light">トピック一覧</h1>
-      <div class="justify-content-center align-items-center">
-        <%= search_form_for @q, url: topics_path, method: :get do |f| %>
-          <%= f.label :title_or_content_cont, "タイトル・本文検索", class:"col-sm-4 col-form-label" %>
-          <%= f.text_field :title_or_content_cont, class:"col-sm-4" %>
-          <div class="form-group m-2">
-            <div class="form-check-inline">
-            <%= f.label :genre_eq, "ジャンル： ", class: "" %>
-              <!-- "指定なし" オプションの追加 -->
-              <%#= f.radio_button :genre_eq, nil, id: "genre_any", checked: @q.genre_eq.blank? %>
-              <%#= f.label :genre_any, "指定なし", for: "genre_any" %>
-
-              <!-- 残りのジャンルオプション -->
-              <%= f.collection_radio_buttons :genre_eq, Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), Topic.genres[k]] }, :last, :first do |b| %>
-                  <%= b.radio_button(class: "form-check-input") %>
-                  <%= b.label(class: "form-check-label") %>
-              <% end %>
-            </div>
-          <%= f.submit "検索", class:"btn btn-custom" %>
-          </div>
-
-
-        <% end %>
-      </div>
-      <div class="align-items-center mt-2">
-        <%= link_to "検索結果をリセット", topics_path, class:"btn btn-custom" %>
-      </div>
+      <h1 class="fw-light mb-1">トピックス一覧</h1>
+      <hr>
+      <p><em>ここでは、誰でも自由にトピックスを投稿できます。<br>
+      子育てや介護、仕事や働き方、生活に関する情報を気軽に発信して他のユーザーと交流しましょう！</em></p>
     </div>
   </div>
 </section>
-
-
 
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -75,4 +50,37 @@
   </div>
 </div>
 
+<br>
 <%= paginate @topics %>
+<br>
+
+
+<div class="m-5">
+  <div class="form container border border-5 shadow" style="width:100%;">
+    <div class="justify-content-center align-items-center">
+      <p class="text-center my-3">トピックス検索はこちらから行えます。タイトルや本文、ジャンルで検索してください。</p>
+      <%= search_form_for @q, url: topics_path, method: :get do |f| %>
+      <div class="form-group mb-3">
+        <%= f.label :title_or_content_cont, "タイトル・本文検索", class:"col-sm-4 col-form-label" %>
+        <%= f.text_field :title_or_content_cont, class:"form-control" %>
+      </div>
+        <div class="form-group mb-3">
+          <div class="form-check-inline">
+          <%= f.label :genre_eq, "ジャンル検索" %>
+            <%= f.collection_radio_buttons :genre_eq, Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), Topic.genres[k]] }, :last, :first do |b| %>
+                <%= b.radio_button(class: "form-check-input ms-1") %>
+                <%= b.label(class: "form-check-label") %>
+            <% end %>
+          </div>
+        </div>
+        <div class="text-center m-2">
+          <%= f.submit "検索", class:"btn btn-custom" %>
+          <%= link_to "検索結果をリセット", topics_path, class:"btn btn-custom ms-2" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>

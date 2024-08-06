@@ -1,5 +1,30 @@
 FactoryBot.define do
-  factory :user do
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  factory :user5, class: User do
     email { "user@test.com" }
     role { 0 }
     name { "いっぱんユーザー" }
@@ -12,7 +37,7 @@ FactoryBot.define do
     uid { "user@test.com" }
   end
 
-  factory :user2, class: User do
+  factory :user6, class: User do
     email { "user2@test.com" }
     role { 1 }
     name { "きぎょうユーザー" }
@@ -25,7 +50,7 @@ FactoryBot.define do
     uid { "user2@test.com" }
   end
 
-  factory :user3, class: User do
+  factory :user7, class: User do
     email { "user4@test.com" }
     role { 0 }
     name { "一般ゆーざー" }

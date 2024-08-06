@@ -1,5 +1,51 @@
 FactoryBot.define do
-  factory :review do
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  factory :review5, class: Review do
     work_life_balance { 3 }
     workplace_atmosphere { 4 }
     flex_system { 2 }
@@ -22,7 +68,7 @@ FactoryBot.define do
     association :company
   end
 
-  factory :review2, class: Review do
+  factory :review6, class: Review do
     work_life_balance { 3 }
     workplace_atmosphere { 4 }
     flex_system { 2 }
@@ -45,7 +91,7 @@ FactoryBot.define do
     association :company
   end
 
-  factory :review3, class: Review do
+  factory :review7, class: Review do
     work_life_balance { 3 }
     workplace_atmosphere { 4 }
     flex_system { 2 }

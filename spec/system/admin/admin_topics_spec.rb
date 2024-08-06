@@ -13,9 +13,9 @@ RSpec.describe "Admin::Topics", type: :system do
 
   describe "一覧表示機能" do
 
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:topic) { FactoryBot.create(:topic, user_id: user.id) }
-    let!(:topic3) { FactoryBot.create(:topic3, user_id: user.id) }
+    let!(:user5) { FactoryBot.create(:user5) }
+    let!(:topic) { FactoryBot.create(:topic, user_id: user5.id) }
+    let!(:topic3) { FactoryBot.create(:topic3, user_id: user5.id) }
 
     context "一覧画面に遷移した場合" do
       it "登録済みのトピック一覧が表示される" do
@@ -26,7 +26,7 @@ RSpec.describe "Admin::Topics", type: :system do
     end
 
     context "新たにトピックを作成した場合" do
-      let!(:topic4) { FactoryBot.create(:topic4, title: "アドミン用で作成しました", user_id: user.id) }
+      let!(:topic4) { FactoryBot.create(:topic4, title: "アドミン用で作成しました", user_id: user5.id) }
       before do
         visit admin_topics_path
       end
@@ -43,10 +43,10 @@ RSpec.describe "Admin::Topics", type: :system do
   end
 
   describe "ソート機能" do
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:topic) { FactoryBot.create(:topic, title:"最後", created_at: "2023/07/01", user_id:user.id) }
-    let!(:topic3) { FactoryBot.create(:topic3, title:"真ん中", created_at: "2023/08/01", user_id:user.id) }
-    let!(:topic4) { FactoryBot.create(:topic4, title:"最初", created_at: "2023/09/01", user_id:user.id) }
+    let!(:user5) { FactoryBot.create(:user5) }
+    let!(:topic) { FactoryBot.create(:topic, title:"最後", created_at: "2023/07/01", user_id:user5.id) }
+    let!(:topic3) { FactoryBot.create(:topic3, title:"真ん中", created_at: "2023/08/01", user_id:user5.id) }
+    let!(:topic4) { FactoryBot.create(:topic4, title:"最初", created_at: "2023/09/01", user_id:user5.id) }
 
     context "「作成日時」のソートボタンをクリックした場合" do
       it "昇順に並び替えられたトピック一覧が表示される" do
@@ -63,10 +63,10 @@ RSpec.describe "Admin::Topics", type: :system do
   end
 
   describe "検索機能" do
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:topic) { FactoryBot.create(:topic, user_id:user.id) }
-    let!(:topic3) { FactoryBot.create(:topic3, user_id:user.id) }
-    let!(:topic4) { FactoryBot.create(:topic4, user_id:user.id) }
+    let!(:user5) { FactoryBot.create(:user5) }
+    let!(:topic) { FactoryBot.create(:topic, user_id:user5.id) }
+    let!(:topic3) { FactoryBot.create(:topic3, user_id:user5.id) }
+    let!(:topic4) { FactoryBot.create(:topic4, user_id:user5.id) }
     before do
       visit admin_topics_path
     end
@@ -84,7 +84,7 @@ RSpec.describe "Admin::Topics", type: :system do
 
     context "ハンドルネームで検索した場合" do
       it "検索ワードを含むトピックのみ表示される" do
-        user2 = FactoryBot.create(:user3)
+        user2 = FactoryBot.create(:user7)
         topic = FactoryBot.create(:topic, title: "HNありで作成しました", user_id: user2.id)
         visit admin_topics_path
         fill_in "q[user_screen_name_cont]", with: "はんどる"
@@ -97,7 +97,7 @@ RSpec.describe "Admin::Topics", type: :system do
 
     context "投稿者名(user.name)で検索した場合" do
       it "検索ワードを含むトピックのみ表示される" do
-        user2 = FactoryBot.create(:user3, name: "2人目のユーザーです")
+        user2 = FactoryBot.create(:user7, name: "2人目のユーザーです")
         topic = FactoryBot.create(:topic, user_id: user2.id)
         visit admin_topics_path
         fill_in "q[user_name_cont]", with: "2人目"
@@ -108,17 +108,17 @@ RSpec.describe "Admin::Topics", type: :system do
   end
 
   describe "詳細表示機能" do
-    let!(:user) { FactoryBot.create(:user) }
+    let!(:user5) { FactoryBot.create(:user5) }
 
     context "任意のトピックス詳細画面に遷移した場合" do
       it "そのトピックスの内容が表示される" do
-        topic = FactoryBot.create(:topic, user_id:user.id)
+        topic = FactoryBot.create(:topic, user_id:user5.id)
         visit admin_topic_path(topic)
         expect(page).to have_content("作成中")
       end
 
       it "そのトピックスの削除ができる" do
-        topic = FactoryBot.create(:topic, user_id:user.id)
+        topic = FactoryBot.create(:topic, user_id:user5.id)
         visit admin_topic_path(topic)
         click_on "削除"
         expect(page).not_to have_content("作成中") #削除後は一覧に戻っているので、表示されてない。

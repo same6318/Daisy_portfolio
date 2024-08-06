@@ -15,8 +15,8 @@ RSpec.describe "Admin::Users", type: :system do
   end
 
   describe "一覧表示機能" do
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:user2) { FactoryBot.create(:user2) }
+    let!(:user5) { FactoryBot.create(:user5) }
+    let!(:user6) { FactoryBot.create(:user6) }
 
     context "一覧画面に遷移した場合" do
       it "登録済みのユーザー一覧が表示される" do
@@ -27,7 +27,7 @@ RSpec.describe "Admin::Users", type: :system do
     end
 
     context "新たにユーザーを作成した場合" do
-      let!(:user3) { FactoryBot.create(:user3) }
+      let!(:user7) { FactoryBot.create(:user7) }
       before do
         visit admin_users_path
       end
@@ -43,9 +43,9 @@ RSpec.describe "Admin::Users", type: :system do
   end
 
   describe "ソート機能" do
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:user2) { FactoryBot.create(:user2) }
-    let!(:user3) { FactoryBot.create(:user3) }
+    let!(:user5) { FactoryBot.create(:user5) }
+    let!(:user6) { FactoryBot.create(:user6) }
+    let!(:user7) { FactoryBot.create(:user7) }
     before do
       visit admin_users_path
     end
@@ -64,9 +64,9 @@ RSpec.describe "Admin::Users", type: :system do
   end
 
   describe "検索機能" do
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:user2) { FactoryBot.create(:user2) }
-    let!(:user3) { FactoryBot.create(:user3) }
+    let!(:user5) { FactoryBot.create(:user5) }
+    let!(:user6) { FactoryBot.create(:user6) }
+    let!(:user7) { FactoryBot.create(:user7) }
     before do
       visit admin_users_path
     end
@@ -120,7 +120,7 @@ RSpec.describe "Admin::Users", type: :system do
   describe "詳細表示機能" do
     context "任意のユーザー詳細画面に遷移した場合" do
       it "そのユーザーの内容が表示される" do
-        user = FactoryBot.create(:user)
+        user = FactoryBot.create(:user5)
         visit admin_user_path(user)
         expect(page).to have_content("トピック投稿数")
         expect(page).to have_content("ユーザー削除")

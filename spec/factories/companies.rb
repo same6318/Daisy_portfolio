@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :company do
+  factory :company5, class: Company do
     name { "株式会社テストカンパニー" }
     capital { 1000000 }
     employee { 100 }

@@ -7,7 +7,7 @@ FactoryBot.define do
     association :user
 
     after(:build) do |topic|
-      topic.topic_images.attach(io: File.open("spec/fixtures/files/test.jpg"), filename: "test.jpg")
+      topic.topic_image.attach(io: File.open("spec/fixtures/files/test.jpg"), filename: "test.jpg")
     end
   end
 
@@ -18,7 +18,7 @@ FactoryBot.define do
     association :user
 
     after(:build) do |topic|
-      topic.topic_images.attach(io: File.open("spec/fixtures/files/test.txt"), filename: "test.txt")
+      topic.topic_image.attach(io: File.open("spec/fixtures/files/test.txt"), filename: "test.txt")
     end
   end
 

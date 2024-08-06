@@ -5,7 +5,7 @@ RSpec.describe "Topics", type: :system do
   #   driven_by(:rack_test)
   # end
 
-  let!(:user) { FactoryBot.create(:user) }
+  let!(:user5) { FactoryBot.create(:user5) }
 
   before do
     visit new_user_session_path
@@ -17,7 +17,7 @@ RSpec.describe "Topics", type: :system do
   describe "登録機能" do
     context "トピックスを登録した場合" do
       it "登録したトピックスが表示される" do
-        topic = FactoryBot.create(:topic3, user_id: user.id)
+        topic = FactoryBot.create(:topic3, user_id: user5.id)
         if topic.save
           visit topic_path(topic)
           expect(page).to have_text("いくじ")
@@ -29,9 +29,9 @@ RSpec.describe "Topics", type: :system do
   end
 
   describe "一覧表示機能" do
-    let!(:topic) { FactoryBot.create(:topic, title:"最後", created_at: "2023-07-01", user_id:user.id) }
-    let!(:topic3) { FactoryBot.create(:topic3, title:"真ん中", created_at: "2023-08-01", user_id:user.id) }
-    let!(:topic4) { FactoryBot.create(:topic4, title:"最初", created_at: "2023-09-01", user_id:user.id) }
+    let!(:topic) { FactoryBot.create(:topic, title:"最後", created_at: "2023-07-01", user_id:user5.id) }
+    let!(:topic3) { FactoryBot.create(:topic3, title:"真ん中", created_at: "2023-08-01", user_id:user5.id) }
+    let!(:topic4) { FactoryBot.create(:topic4, title:"最初", created_at: "2023-09-01", user_id:user5.id) }
 
     context "一覧画面に遷移した場合" do
       it "登録済みのトピックス一覧が表示される" do
@@ -53,7 +53,7 @@ RSpec.describe "Topics", type: :system do
     end
 
     context "新たにトピックスを作成した場合" do
-      let!(:topic4) { FactoryBot.create(:topic4, title:"新規に作成したものです", user_id:user.id) }
+      let!(:topic4) { FactoryBot.create(:topic4, title:"新規に作成したものです", user_id:user5.id) }
       before do
         visit topics_path
       end
@@ -71,9 +71,9 @@ RSpec.describe "Topics", type: :system do
   end
 
   describe "検索機能" do
-    let!(:topic) { FactoryBot.create(:topic, user_id:user.id) }
-    let!(:topic3) { FactoryBot.create(:topic3, user_id:user.id) }
-    let!(:topic4) { FactoryBot.create(:topic4, user_id:user.id) }
+    let!(:topic) { FactoryBot.create(:topic, user_id:user5.id) }
+    let!(:topic3) { FactoryBot.create(:topic3, user_id:user5.id) }
+    let!(:topic4) { FactoryBot.create(:topic4, user_id:user5.id) }
     before do
       visit topics_path
     end
@@ -133,13 +133,13 @@ RSpec.describe "Topics", type: :system do
     describe "詳細表示機能" do
       context "任意のトピックス詳細画面に遷移した場合" do
         it "そのトピックスの内容が表示される" do
-          topic = FactoryBot.create(:topic, user_id:user.id)
+          topic = FactoryBot.create(:topic, user_id:user5.id)
           visit topic_path(topic)
           expect(page).to have_content("作成中")
         end
 
         it "そのトピックスの編集ができる" do
-          topic = FactoryBot.create(:topic, user_id:user.id)
+          topic = FactoryBot.create(:topic, user_id:user5.id)
           visit topic_path(topic)
           click_on "編集"
           fill_in "topic[title]", with: "UPDATEしました"

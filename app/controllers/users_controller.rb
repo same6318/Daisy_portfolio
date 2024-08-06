@@ -10,8 +10,8 @@ class UsersController < ApplicationController
     @topic_count = current_user.topics.size
 
     #ページネーション表示
-    @current_user_reviews = current_user.reviews.page(params[:reviews_page]).per(3)
-    @topics = current_user.topics.page(params[:topics_page]).per(3)
+    @current_user_reviews = current_user.reviews.order(created_at: :desc).page(params[:reviews_page]).per(3)
+    @topics = current_user.topics.order(created_at: :desc).page(params[:topics_page]).per(3)
     @reviews = Review.page(params[:page]).per(3)
   end
 

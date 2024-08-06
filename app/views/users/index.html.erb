@@ -1,15 +1,4 @@
-<!-- app/views/users/mypage.html.erb -->
-<% if flash[:new_user_notice] && !session[:new_user_notice_displayed] %>
-  <div id="flash-new-user-notice" class="alert alert-info">
-    <%= flash[:new_user_notice] %>
-  </div>
-  <% session[:new_user_notice_displayed] = true %> <!-- 一度表示したことを記録 -->
-<% end %>
 
-<div class="welcome-message">
-  <p>ようこそ、<%= current_user.name %>さん！</p>
-  <p>レビュー投稿は「企業一覧」から行えます。</p>
-</div>
 
   <h1 class="text-center"> マイページ</h1>
 
@@ -28,6 +17,9 @@
       <% end %>
     <% end %>
   </div>
+  <div class="d-flex justify-content-center mt-3">
+    <%= paginate @current_user_reviews, param_name: :reviews_page  %>
+  </div>
 
   
 
@@ -41,7 +33,7 @@
               <%= image_tag topic.topic_images.first, class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;", loading:"lazy" %>
             <% else %>
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225" >
-                <rect width="100%" height="100%" fill="#eeeeee"></rect>
+                <image href="<%= asset_path('default-image.jpg') %>"></image>
                 <text x="50%" y="50%" fill="#aaaaaa" dy=".3em" text-anchor="middle">No image</text>
               </svg>
             <% end %>
@@ -92,9 +84,6 @@
 </div>-->
 
 
-  <div class="d-flex justify-content-center mt-3">
-    <%= paginate @current_user_reviews, param_name: :reviews_page  %>
-  </div>
 
 
 

@@ -14,7 +14,7 @@
   <h2>新着レビュー</h2>
   <% if @grouped_reviews.present? %>
 
-      <div class="reviews-container">
+      <div class="top-reviews-container">
         <% @grouped_reviews.each do |company, reviews| %>
           <div class="top-review">
             <div class="company-name">会社名：<%= company.name %></div>
@@ -36,7 +36,7 @@
               <%= image_tag topic.topic_images.first, class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;" %>
             <% else %>
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225">
-                <rect width="100%" height="100%" fill="#eeeeee"></rect>
+                <image href="<%= asset_path('default-image.jpg') %>"></image>
                 <text x="50%" y="50%" fill="#aaaaaa" dy=".3em" text-anchor="middle">No image</text>
               </svg>
             <% end %>
@@ -55,7 +55,9 @@
 
   <figure class="text-center">
     <blockquote class="blockquote">
-    <% unless user_signed_in? %>
-      <p>コンテンツを見るには、<%= link_to 'ログイン', new_user_session_path %> または <%= link_to '新規登録', new_user_registration_path %> してください。</p>
-    <% end %>
-  </blockquote>
+      <div class='top-content'>
+        <% unless user_signed_in? %>
+          <p>コンテンツを見るには、<%= link_to 'ログイン', new_user_session_path %> または <%= link_to '新規登録', new_user_registration_path %> してください。</p>
+        <% end %>
+      </div>
+    </blockquote>

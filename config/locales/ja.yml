@@ -127,8 +127,8 @@ ja:
           education: "教育・学習"
           hobby: "趣味・娯楽"
         role:
-          general: "一般"
-          company: "企業"
+          general: "個人"
+          company: "法人"
         user:
           name: 名前
           email: メールアドレス

@@ -16,7 +16,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light custom-yellow">
-    <a class="navbar-brand text-white" href="">Daisy World</a>
+    <a class="navbar-brand text-white" href="<%= root_path %>">Daisy</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,23 +24,23 @@
       <div class="navbar-nav ms-auto">
         <% if user_signed_in? %>
           <% if current_user.admin? %>
-            <a class="nav-item nav-link" href="<%= admin_users_path %>">ユーザー一覧</a>
+            <a class="nav-item nav-link " href="<%= admin_users_path %>">ユーザー一覧</a>
             <a class="nav-item nav-link" href="<%= admin_topics_path %>">トピック一覧</a>
             <a class="nav-item nav-link" href="<%= admin_reviews_path %>">レビュー一覧</a>
             <a class="nav-item nav-link" href="<%= admin_companies_path %>">企業一覧</a>
             <a class="nav-item nav-link" href="<%= destroy_admin_session_path %>" data-method="delete">ログアウト</a>
           <% else %>
-            <a class="nav-item nav-link" href="<%= users_path %>">マイページ</a>
-            <a class="nav-item nav-link" href="<%= companies_path %>">企業一覧</a>
-            <a class="nav-item nav-link" href="<%= topics_path %>">トピックス一覧</a>
-            <a class="nav-item nav-link" href="<%= new_topic_path %>">トピックス投稿</a>
-            <a class="nav-item nav-link" href="<%= user_path(current_user) %>">アカウント詳細</a>
-            <a class="nav-item nav-link" href="<%= destroy_user_session_path %>" data-method="delete">ログアウト</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= users_path %>">マイページ</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= companies_path %>">企業一覧</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= topics_path %>">トピックス一覧</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= new_topic_path %>">トピックス投稿</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= user_path(current_user) %>">アカウント詳細</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= destroy_user_session_path %>" data-method="delete">ログアウト</a>
           <% end %>
         <% else %>
-          <a class="nav-item nav-link" href="<%= new_user_registration_path %>">新規登録</a>
-          <a class="nav-item nav-link" href="<%= new_user_session_path %>">ログイン</a>
-          <a class="nav-item nav-link" href="<%= root_path %>">Topページ</a>
+          <a class="nav-item nav-link text-white fs-5" href="<%= new_user_registration_path %>">新規登録</a>
+          <a class="nav-item nav-link text-white fs-5" href="<%= new_user_session_path %>">ログイン</a>
+          <a class="nav-item nav-link text-white fs-5" href="<%= root_path %>">Topページ</a>
         <% end %>
       </div>
     </div>

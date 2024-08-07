@@ -2,6 +2,23 @@ class Company < ApplicationRecord
   has_many :users
   has_many :reviews, dependent: :destroy
 
+  def formatted_capital #資本金に単位を付けてで表示する
+    if capital >= 100000000
+      (capital / 1_000_000).to_s + "百万円"
+    else
+      (capital / 10_000).to_s + "万円"
+    end
+  end
+
+  def formatted_sales #売上金に単位を付けてで表示する
+    if sales >= 100000000
+      (sales / 1_000_000).to_s + "百万円"
+    else
+      (sales / 10_000).to_s + "万円"
+    end
+  end
+
+
   def company_reviews_average
     if reviews.empty?
       return "データはありません"

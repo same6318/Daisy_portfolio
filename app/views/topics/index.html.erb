@@ -1,6 +1,5 @@
-
 <section class="text-center container">
-  <div class="row py-lg-5">
+  <div class="row">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light mb-1">トピックス一覧</h1>
       <hr>
@@ -10,53 +9,8 @@
   </div>
 </section>
 
-<div class="container">
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    <% @topics.each do |topic| %>
-    <div class="col">
-      <div class="card shadow-sm">
-        <% if topic.topic_images.attached? %>
-          <%= image_tag topic.topic_images.first ,class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;", loading:"lazy" %>
-          <%#= loading:"lazy"をimage_tagに入れることで、遅延読み込みを実装する。ページのスクロールに合わせて画面を読み込む%>
-        <% else %>
-          <svg class="bd-placeholder-img card-img-top", style= "width: 100%; height: 225px">
-            <image href="<%= asset_path('default-image.jpg') %>"></image>
-            <!--<image x="0" y="0" width="100%" height="100%" href="<%= asset_path('default-image.jpg') %>"></image>-->
-            <text x="50%" y="50%" fill="#00000" dy=".3em" text-anchor="middle" dominant-baseline="middle">no image</text>
-          </svg>
-        <% end %>
-        <div class="card-body">
-          <small class="text-muted pd-1">ジャンル <%= topic.genre.present? ? t("activerecord.enums.topic.genre.#{topic.genre}") : "" %></small>          
-          <h5 class="card-title text-break"><%= truncate(topic.title, length: 15) %></h5>
-          <p class="card-text text-break"><%= truncate(topic.content, length: 25) %></p>
-            <div class="d-flex justify-content-between align-items-center">
-              <%= link_to "詳細", topic_path(topic), class:"btn btn-custom text-nowrap" %>
-              <% if topic.author_name %>
-                <!--user.screen_nameが空の文字列についても無しと判断する為、present?を使用する-->
-                <% if topic.user.screen_name.present? %>
-                  <small class="text-muted text-break"><%= topic.user.screen_name.present? ? truncate(topic.user.screen_name) : truncate(topic.user.name) %></small>
-                <% else %>
-                  <small class="text-muted">匿名希望</small>
-                <% end %>
-              <% else %>
-                <small class="text-muted">匿名希望</small>
-              <% end %>
-              <small class="text-muted"><%= topic.created_at.strftime('%y/%m/%d') %></small>
-            </div>
-          </div>
-        </div>
-    </div>
-    <% end %>
-  </div>
-</div>
-
-<br>
-<%= paginate @topics %>
-<br>
-
-
 <div class="m-5">
-  <div class="form container border border-5 shadow" style="width:100%;">
+  <div class="form container border border-5 shadow-sm" style="width:100%;">
     <div class="justify-content-center align-items-center">
       <p class="text-center my-3">トピックス検索はこちらから行えます。タイトルや本文、ジャンルで検索してください。</p>
       <%= search_form_for @q, url: topics_path, method: :get do |f| %>
@@ -82,5 +36,48 @@
   </div>
 </div>
 <br>
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <% @topics.each do |topic| %>
+    <div class="col">
+      <div class="card shadow-sm h-100">
+        <% if topic.topic_images.attached? %>
+          <%= image_tag topic.topic_images.first ,class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;", loading:"lazy" %>
+          <%#= loading:"lazy"をimage_tagに入れることで、遅延読み込みを実装する。ページのスクロールに合わせて画面を読み込む%>
+        <% else %>
+          <svg class="bd-placeholder-img card-img-top", style= "width: 100%; height: 225px">
+            <image href="<%= asset_path('default-image.jpg') %>"></image>
+            <!--<image x="0" y="0" width="100%" height="100%" href="<%= asset_path('default-image.jpg') %>"></image>-->
+            <text x="50%" y="50%" fill="#00000" dy=".3em" text-anchor="middle" dominant-baseline="middle">no image</text>
+          </svg>
+        <% end %>
+        <div class="card-body d-flex flex-column">
+          <small class="text-muted pd-1">ジャンル <%= topic.genre.present? ? t("activerecord.enums.topic.genre.#{topic.genre}") : "" %></small>          
+          <h5 class="card-title text-break"><%= truncate(topic.title, length: 15) %></h5>
+          <p class="card-text text-break"><%= truncate(topic.content) %></p>
+            <div class="d-flex justify-content-between align-items-center mt-auto">
+              <%= link_to "詳細", topic_path(topic), class:"btn btn-custom text-nowrap" %>
+              <% if topic.author_name %>
+                <!--user.screen_nameが空の文字列についても無しと判断する為、present?を使用する-->
+                <% if topic.user.screen_name.present? %>
+                  <small class="text-muted text-break"><%= topic.user.screen_name.present? ? truncate(topic.user.screen_name) : truncate(topic.user.name) %></small>
+                <% else %>
+                  <small class="text-muted">匿名希望</small>
+                <% end %>
+              <% else %>
+                <small class="text-muted">匿名希望</small>
+              <% end %>
+              <small class="text-muted"><%= topic.created_at.strftime('%y/%m/%d') %></small>
+            </div>
+          </div>
+        </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<br>
+<%= paginate @topics %>
 <br>
 <br>

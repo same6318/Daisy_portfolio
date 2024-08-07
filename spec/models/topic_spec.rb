@@ -19,7 +19,7 @@ RSpec.describe Topic, type: :model do
     context "トピックにimageファイル以外を添付する場合" do
       it "バリデーションに失敗する" do
         user = FactoryBot.create(:user)
-        topic = FactoryBot.create(:topic2, user_id:user.id)
+        topic = FactoryBot.build(:topic2, user_id:user.id)
         expect(topic).not_to be_valid
       end
     end

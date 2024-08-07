@@ -76,7 +76,7 @@ user = User.last #作成したユーザーを代入して、以下のデータ�
     training_education_support: rand(1..5),
     career_support: rand(1..5),
     work_engagement: rand(1..5),
-    content: "これはサンプルレビューの内容です。 #{i + 1} この会社は、働きやすい環境が整っています。社員同士のコミュニケーションも活発で、協力し合いながら業務を進めることができます。福利厚生も充実しており、仕事とプライベートの両立が可能です。特に、リモートワーク制度が整備されており、柔軟な働き方が実現できる点が魅力です。",
+    content: "これはサンプルレビューの内容です。 #{i + 1}\n この会社は、働きやすい環境が整っています。\n社員同士のコミュニケーションも活発で、協力し合いながら業務を進めることができます。\n福利厚生も充実しており、仕事とプライベートの両立が可能です。特に、リモートワーク制度が整備されており、柔軟な働き方が実現できる点が魅力です。",
     select: [true, false].sample,
     created_at: Time.now - i.days # 日付を1日ずつずらして作成
   )
@@ -86,7 +86,7 @@ topic = Topic.create!(
     user: user,
     title: "働き方",
     genre: 1,
-    content: "仕事とワークライフのバランスは、現代社会においてますます重要になっています。効率的な時間管理と柔軟な働き方が、ストレス軽減と生産性向上に繋がります。あなたの経験をシェアしてください。"
+    content: "　仕事とワークライフのバランスは、現代社会においてますます重要になっています。\n効率的な時間管理と柔軟な働き方が、ストレス軽減と生産性向上に繋がります。\nDaisyであなたの経験をシェアしてください。"
   )
 topic.topic_images.attach(io: File.open("public/images/seed_images4.jpg"), filename: "seed_images4.jpg")
 
@@ -94,7 +94,7 @@ topic2 = Topic.create!(
     user: user,
     title: "家族との時間",
     genre: 2,
-    content: "時短勤務は、育児や介護などの家庭の事情と仕事を両立するための素晴らしい選択肢です。勤務時間を短縮することで、家族との時間を増やし、仕事の効率を高めることができます。"
+    content: "　時短勤務は、育児や介護などの家庭の事情と仕事を両立するための素晴らしい選択肢です。\n勤務時間を短縮することで、家族との時間を増やし、仕事の効率を高めることができます。\nあなたにとっての理想のワークライフバランスを見つけましょう。"
   )
 topic2.topic_images.attach(io: File.open("public/images/seed_images2.png"), filename: "seed_images2.png")
 
@@ -102,7 +102,7 @@ topic3 = Topic.create!(
     user: user,
     title: "育休のススメ",
     genre: 0,
-    content: "育休に対する会社からの援助は、働く親にとって非常に大切です。給付金やサポートプログラムを通じて、育児と仕事を両立しやすい環境が整っています。あなたの会社の支援について教えてください。"
+    content: "　育休に対する会社からの援助は、働く親にとって非常に大切です。\n給付金やサポートプログラムを通じて、育児と仕事を両立しやすい環境を整えることが会社には求められます。\nあなたの会社の支援について教えてください。"
   )
 topic3.topic_images.attach(io: File.open("public/images/seed_images1.png"), filename: "seed_images1.png")
 

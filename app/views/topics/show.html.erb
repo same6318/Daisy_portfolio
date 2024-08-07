@@ -25,22 +25,20 @@
 
   <div class="row align-items-md-stretch">
     <% if @topic.topic_images.attached? %>
-      <div class="col-md-6">
-        <div class="fs-5">
-          <div class="mb-1"><%= @topic.content %></div>
+      <div class="col-md-8">
+        <div class="fs-5 lh-base">
+          <div class="mb-1 text-break"><%= simple_format(@topic.content) %></div>
         </div>
       </div>
-      <div class="col-md-6">
-        <% if @topic.topic_images.attached? %>
-          <%= link_to url_for(@topic.topic_images.first) do %>
-            <%= image_tag @topic.topic_images.first.variant(resize_to_fit: [500,500]), class:"img-fluid mb-1 shadow-sm" %>
-          <% end %>
+      <div class="col-md-4 text-center">
+        <%= link_to url_for(@topic.topic_images.first) do %>
+          <%= image_tag @topic.topic_images.first.variant(resize_to_fit: [500,500]), class:"img-fluid mb-1 shadow-sm" %>
         <% end %>
       </div>
     <% else %>
       <div class="col-md-12">
-        <div class="fs-5">
-          <div><%= @topic.content %></div>
+        <div class="fs-5 lh-lg">
+          <p class="text-break"><%= simple_format(@topic.content) %></p>
         </div>
       </div>
     <% end %>
@@ -51,7 +49,7 @@
   <br>
   <div class="row align-items-md-stretch">
     <div class="d-flex gap-2">
-      <% if @topic.topic_images.attached? && @topic.topic_images.size > 3 %>
+      <% if @topic.topic_images.attached? && @topic.topic_images.size >= 3 %>
           <% @topic.topic_images.each_with_index do |image, index| %>
             <% if index >= 1 %>
               <div class="col d-flex flex-wrap justify-content-center align-items-center border border-1 bg-light">
@@ -84,6 +82,6 @@
       <%= link_to "編集", edit_topic_path(@topic), class:"btn btn-custom mr-2 mb-5" %>
       <%= link_to "マイページに戻る", users_path, class:"btn btn-custom mr-2 mb-5" %>
     <% end %>
-    <%= link_to "戻る", topics_path, class:"btn btn-custom mr-2 mb-5" %>
+    <%= link_to "レビュー一覧に戻る", topics_path, class:"btn btn-custom mr-2 mb-5" %>
   </div>
 </div>

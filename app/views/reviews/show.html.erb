@@ -45,7 +45,7 @@
       <% end %>
       <tr>
         <th scope="row">詳細</th>
-        <td colspan="3", class="align-top"><%= @review.content %></td>
+        <td colspan="3", class="align-top text-start"><%= simple_format(@review.content)%></td>
       <tr>
     </tbody>
   </table>

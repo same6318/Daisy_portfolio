@@ -1,5 +1,5 @@
 <section class="text-center container">
-  <div class="row py-lg-5">
+  <div class="row">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light mb-1">企業一覧</h1>
       <hr>
@@ -11,46 +11,8 @@
   </div>
 </section>
 
-<div class="container">
-  <div class="table-responsive">
-    <table class="table caption-top">
-      <caption>ソート項目は各ボタンを押してください</caption>
-      <thead class="text-align-center text-center align-middle custom-thead">
-        <tr>
-          <th>レビュー投稿</th>
-          <th><%= sort_link(@q, :name, "企業名", hide_indicator: true, class: "btn btn-light") %></th>
-          <th><%= sort_link(@q, :address, "住所", hide_indicator: true, class: "btn btn-light") %></th>
-          <th>総合評価</th>
-          <th>レビュー一覧</th>
-        <tr>
-        <tbody class="align-middle">
-          <% @companies.each do |company| %>
-            <tr>
-              <% if current_user.age.present? && current_user.gender.present? %>
-                <td class="text-center"><%= link_to "投稿", new_company_review_path(company), class:"btn btn-custom" %></td>
-              <% else %>
-                <td class="text-center"><%= link_to "投稿", companies_path, class:"btn btn-custom", data: { confirm: "レビューを投稿する場合は、年代と性別を登録してください"} %></td>
-              <% end %>
-              <td><%= link_to "#{company.name}", company_path(company), class:"link-dark link-offset-2" %></td>
-              <td><%= company.address %></td>
-                <% unless company.company_reviews_average == "データはありません" %>
-                  <td class="text-center"><%= "#{company.company_reviews_average} /点" %></td>
-                <% else %>
-                  <td class="text-center"><%= company.company_reviews_average %></td>
-                <% end %>
-              <td class="text-center"><%= link_to "一覧", company_reviews_path(company), class:"btn btn-custom" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-    </table>
-  </div>
-</div>
-
-  <%= paginate @companies %>
-<br>
-
 <div class="m-5">
-  <div class="form container border border-5 shadow" style="width:100%;">
+  <div class="form container border border-5 shadow-sm" style="width:100%;">
     <div class="justify-content-center align-items-center">
       <div class="text center">
         <p class="text-center my-2">
@@ -77,6 +39,44 @@
     </div>
   </div>
 </div>
+
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table caption-top">
+      <caption>ソート項目は各ボタンを押してください</caption>
+      <thead class="text-align-center text-center align-middle custom-thead">
+        <tr>
+          <th>レビュー投稿</th>
+          <th><%= sort_link(@q, :name, "企業名", hide_indicator: true, class: "btn btn-light") %></th>
+          <th><%= sort_link(@q, :address, "住所", hide_indicator: true, class: "btn btn-light") %></th>
+          <th>総合評価</th>
+          <th>レビュー一覧</th>
+        <tr>
+        <tbody class="align-middle">
+          <% @companies.each do |company| %>
+            <tr>
+              <% if current_user.age.present? && current_user.gender.present? %>
+                <td class="text-center"><%= link_to "投稿", new_company_review_path(company), class:"btn btn-custom" %></td>
+              <% else %>
+                <td class="text-center"><%= link_to "投稿", companies_path, class:"btn btn-custom", data: { confirm: "レビューを投稿する場合は、年代と性別を登録してください"} %></td>
+              <% end %>
+              <td class="fw-bold"><%= link_to "#{company.name}", company_path(company), class:"link-dark text-underline" %></td>
+              <td><%= company.address %></td>
+                <% unless company.company_reviews_average == "データはありません" %>
+                  <td class="text-center"><%= "#{company.company_reviews_average} /点" %></td>
+                <% else %>
+                  <td class="text-center"><%= company.company_reviews_average %></td>
+                <% end %>
+              <td class="text-center"><%= link_to "一覧", company_reviews_path(company), class:"btn btn-custom" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+  <%= paginate @companies %>
 <br>
 <br>
 <br>

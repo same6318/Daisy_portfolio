@@ -1,21 +1,32 @@
 // Place all the styles related to the top controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-/* 公開コンテンツとログインユーザー専用コンテンツのスタイリング */
+
 
 .public-content {
   margin-top: 70px;
 }
+// .top-container {
+//   border: 2px solid #F2F2F2; /* 囲み線の色 */
+//   padding: 20px; /* 内側の余白 */
+//   border-radius: 10px; /* 角を丸くする */
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* シャドウを追加して立体感を出す */
+//   background-color: #FFFFFF; /* 背景色を白に設定 */
+//   margin-bottom: 30px;
+// }
 
-.top-reviews-container {
-  margin: 50px; /* 上下のマージンを設定し、中央に配置 */
-  width: 90%; /* 幅を調整、全体のバランスを考慮 */
+.top-head-container {
+  border: 5px double #A3D5FF; /* 二重のボーダー */
+  padding: 20px; /* 内側の余白 */
+  margin: 20px 0; /* 上下の外側の余白 */
+  background-color: #FAF9F9; /* 背景色 */
+  border-radius: 10px; /* 角を丸くする（オプション） */
 }
 
 .top-review {
   padding: 15px; /* 内側の余白 */
+  background-color: #fefefef7;
   margin-bottom: 10px; /* 下部の余白 */
-  background-color: #fff3cd; /* 背景色を明るく */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 影を追加して浮き上がらせる */
   display: flex; /* Flexboxを使用 */
   justify-content: space-between; /* 要素を均等に配置 */
@@ -32,16 +43,59 @@
   font-weight: bold; /* 会社名を太字に */
 }
 
-.review-count, .average-rating {
-  color: #131212;
+.review-count .average-rating {
+  color: #131212; 
 }
 
 .top-content {
-  padding: 10px;
+  padding-top: 20px; /* 内側の余白 */
   border: 1px solid #ccc;
   background-color: #f9f9f9;
   border-radius: 8px;
-  margin-top: 20px;
+  margin-top: 10px;
   justify-content: space-between; /* 要素を均等に配置 */
   align-items: center; /* 縦方向に中央揃え */
 }
+
+/*ヘッダー画像・タイトルまわり*/
+.hero-section {
+  position: relative;
+  background-image: url('daisy2.png'); /* 画像のパスを指定 */
+  background-size: cover;
+  background-position: 0% 100%;
+  border-radius: 10px;
+  height: 45vh; /* 高さを調整 */
+  color: white;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  margin-bottom: 10px; /* セクション間のスペースを調整 */
+}
+
+h2 {
+  font-size: 2.5rem; /* フォントサイズを大きく */
+  color: #4a4a4a; /* 柔らかいグレー */
+  text-align: center; /* 中央揃え */
+  margin: 30px 0; /* 上下のマージンを調整 */
+  font-weight: 700; /* 太さを強調 */
+  letter-spacing: 1px; /* 文字の間隔を広げる */
+  text-transform: uppercase; /* 大文字に変換 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
+}
+/*ここまで*/
+
+/*cardの枠*/
+.topic-card{
+  border: 2px solid #e0e0e0; /* 枠線の色 */
+  border-radius: 8px; /* 角を丸くする */
+  padding: 15px; /* 内側の余白 */
+  margin-bottom: 20px; /* 下のマージン */
+  background-color: #f9f9f9; /* 背景色 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 影をつける */
+}
+/*ここまで*/
+
+
+
+
+

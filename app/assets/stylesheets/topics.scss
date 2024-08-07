@@ -30,12 +30,32 @@
 
 
 /*トピックス編集画面*/
-.image-container {
+// .image-container {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+// .image-container img {
+//   margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
+// }
+// /*ここまで*/
+
+/*トピックス編集画面の画像*/
+.image-wrapper {
+  text-align: center;
+}
+.image-gallery {
   display: flex;
-  align-items: center;
   justify-content: center;
+  gap: 10px; /* 画像間のスペースを調整 */
 }
-.image-container img {
-  margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
+.image-container {
+  display: inline-block;
 }
-/*ここまで*/
+.topic-image {
+  width: 100px; /* 幅を指定 */
+  height: 100px; /* 高さを均一に指定 */
+  border-radius: 10px; /* 画像のふちを丸く */
+  object-fit: cover; /* 画像を切り抜いて指定したサイズにフィットさせる */
+}
+

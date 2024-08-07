@@ -7,7 +7,7 @@
 
 
         <div class="registrations-login-form">
-          <h2 class="custom-heading">アカウント新規登録</h2>
+          <h2 class="custom-heading">新規アカウント登録</h2>
 
           <% if resource.errors.any? %>
             <div id="error_explanation" class="alert alert-danger">
@@ -21,18 +21,6 @@
 
                 
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <div class="form-group mb-3">
-              <%= f.label :email, "メールアドレス" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-            </div>
-            <div class="form-group  mb-3">
-              <%= f.label :password, "パスワード" %>
-              <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-            </div>
-            <div class="form-group  mb-3">
-              <%= f.label :password_confirmation, "パスワード確認" %>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-            </div>
             <div class="form-group  mb-3">
               <%= f.label :name, "氏名" %>
               <%= f.text_field :name, class: 'form-control' %>
@@ -41,8 +29,25 @@
               <%= f.label :screen_name, "ハンドルネーム" %>
               <%= f.text_field :screen_name, class: 'form-control' %>
             </div>
-
-            
+            <div class="form-group mb-3">
+              <%= f.label :email do %>
+                メールアドレス <span style="color: red;">（必須）</span>
+              <% end %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+            </div>
+            <div class="form-group  mb-3">
+              <%= f.label :password do %>
+                パスワード <span style="color: red;">（必須）</span>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+            </div>
+            <div class="form-group  mb-3">
+              <%= f.label :password_confirmation do %>
+              パスワード確認 <span style="color: red;">(必須)</span>
+             <% end %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+            </div>
+     
         <div class="row mb-3" style="max-width: 500px;">
           <div class="col">
             <div class="form-group">
@@ -68,7 +73,7 @@
             
         <div class="form-group  mb-3" style="max-width: 250px;">
           <% available_roles = User.roles.keys - ['admin'] %> <!-- 管理者ロールを除外 -->
-          <%= f.label :role, 'ユーザステータス', class: 'form-label' %>
+          <%= f.label :role, '利用目的', class: 'form-label' %>
           <%= f.select :role, 
                           options_for_select(available_roles.map { |k| [I18n.t("activerecord.enums.user.role.#{k}"), k] }), 
                           { include_blank: false },

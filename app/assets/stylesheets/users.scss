@@ -51,7 +51,7 @@ div.actions {
   border: 1px solid #ddd; /* 全体の枠線の色 */
   border-radius: 5px; /* 角を丸くする */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 影を追加して視覚的に目立たせる */
-  margin-bottom: 50px;
+  margin-bottom: 10%;
 }
 .edit-form {
   display: flex;
@@ -92,7 +92,7 @@ div.actions {
 /*マイページ*/
 .mypage-details {
   margin: 20px auto; /* 上下余白を追加し、中央寄せ */
-  width: 65%;
+  width: 98%;
 }
 .mypage-detail {
   border: 1px solid #ddd; /* 各レビューの枠線 */
@@ -104,7 +104,6 @@ div.actions {
   display: flex; /* フレックスボックスを使用 */
   justify-content: space-between; /* 子要素の間にスペースを追加 */
   align-items: center; /* 垂直方向に中央寄せ */
-
 }
 .mypage-detail:last-child {
   margin-bottom: 0; /* 最後の要素には余白をつけない */
@@ -121,10 +120,20 @@ div.actions {
 /*ここまで*/
 
 
-
-
-
-
+/*マイページにレビューとトピックがない場合のcss*/
+.no-content-message {
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.title {
+  font-size: 2.5rem; /* フォントサイズを大きく */
+  font-weight: bold; /* 太字に */
+  color: #333; /* テキストカラー */
+}
 
 
 

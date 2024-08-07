@@ -84,7 +84,7 @@ RSpec.describe "レビュー管理機能", type: :system, js: true  do
   
         expect(page).to have_content '企業名'
         expect(page).to have_content '住所'
-        expect(page).to have_content '企業評価'
+        expect(page).to have_content '総合評価'
       end
     end
   end

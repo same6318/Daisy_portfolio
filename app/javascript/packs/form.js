@@ -2,7 +2,7 @@
 document.addEventListener('turbolinks:load', () => {
   $("#input-text").on("keyup", function() {
     let countNum = String($(this).val().length);
-    $("#counter").text(countNum + "文字");
+    $("#counter").text("現在 " + countNum + "文字");
 
     // 100文字を超えた場合の処理
     if (countNum > 100) {

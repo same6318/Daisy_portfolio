@@ -119,14 +119,14 @@ RSpec.describe "Topics", type: :system do
     end
 
     context "タイトルとジャンルで検索した場合" do
-      it "検索ワードorジャンルに一致するタスクのみ表示される" do
+      it "検索ワードandジャンルに一致するタスクのみ表示される" do
         fill_in "q[title_or_content_cont]", with: "ジャンル"
         choose "仕事・働き方"
         click_on "検索"
-        expect(page).to have_content("大変困難")
-        expect(page).to have_content("てすとこーど")
+        expect(page).not_to have_content("大変困難")
+        expect(page).not_to have_content("てすとこーど")
         cards = all(".card")
-        expect(cards.size).to eq(2)
+        expect(cards.size).to eq(0)
       end
     end
 

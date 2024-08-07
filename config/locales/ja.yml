@@ -42,6 +42,7 @@ ja:
       topic:
         title: "タイトル"
         content: "内容"
+        topic_images: "画像"
       review:
         work_life_balance: "ワークライフバランス"
         workplace_atmosphere: "職場の雰囲気"
@@ -141,4 +142,16 @@ ja:
           work: "仕事・働き方"
           life: "生活"
           event: "イベント・ワーク"
-    
+  admin:
+    reviews:
+      destroy:
+        destroyed: "レビューが削除されました"
+    topics:
+      destroy:
+        destroyed: "トピックスが削除されました"
+    users:
+      destroy:
+        destroyed: "ユーザーが削除されました"
+    companies:
+      destroy:
+        destroyed: "企業が削除されました"

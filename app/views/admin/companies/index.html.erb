@@ -37,7 +37,8 @@
           <th><%= sort_link(@q, :name, "企業名", hide_indicator: true, class: "btn btn-light") %></th>
           <th><%= sort_link(@q, :address, "住所", hide_indicator: true, class: "btn btn-light") %></th>
           <th>レビュー件数</th>
-          <th>企業評価</th>
+          <th>総合評価</th>
+          <th><%= sort_link(@q, :created_at, "登録日時", hide_indicator: true, class: "btn btn-light") %></th>
         <tr>
         <tbody class="align-middle">
           <% @companies.each do |company| %>
@@ -45,8 +46,9 @@
               <td class="text-center"><%= link_to "詳細", admin_company_path(company), class:"btn btn-custom" %></td>
               <td class="text-center"><%= company.name %></td>
               <td><%= company.address %>
-              <td class="text-center"><%= company.reviews_count %>
-              <td class="text-center"><%= company.company_reviews_average %><br>
+              <td class="text-center"><%= "#{company.reviews_count} 件" %>
+              <td class="text-center"><%= "#{company.company_reviews_average} /点" %><br>
+              <td class="text-center"><%= company.created_at.strftime('%Y/%m/%d') %></td>
             </tr>
           <% end %>
         </tbody>

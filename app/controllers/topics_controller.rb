@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
         search_word = params[:q][:title_or_content_cont]
         hiragana_search_word = Topic.to_hiragana(search_word)
         katakana_search_word = Topic.to_katakana(search_word)
-        @q = Topic.ransack(m: "or", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word], genre_eq: params[:q][:genre_eq])
+        @q = Topic.ransack(m: "and", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word], genre_eq: params[:q][:genre_eq])
       else
         @q = Topic.joins(:user).ransack(params[:q])
 
@@ -57,9 +57,19 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic.destroy
-    flash[:notice] = t('.destroyed')
-    redirect_to users_path
+    if @topic.topic_images.attached?
+      if @topic.topic_images.purge && @topic.destroy
+        flash[:notice] = t('.destroyed')
+        redirect_to users_path
+      else
+        flash[:alert] = "削除に失敗しました"
+        redirect_to users_path
+      end
+    else
+      @topic.destroy
+      flash[:notice] = t('.destroyed')
+      redirect_to users_path
+    end
   end
 
   private

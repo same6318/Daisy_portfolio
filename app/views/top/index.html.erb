@@ -15,7 +15,7 @@
     </section>
   </div>
       <div class="public-content">
-        <h2>\ 新着レビュー /</h2>
+        <h2>【 新着レビュー 】</h2>
         <% if @grouped_reviews.present? %>
             <div class="top-reviews-container">
               <% @grouped_reviews.each do |company, reviews| %>
@@ -34,7 +34,7 @@
 
   
 
-    <h2>\ 新着トピック /</h2>
+    <h2>【 新着トピック 】</h2>
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <% @selected_topics.each do |topic| %>
@@ -74,7 +74,7 @@
     </div>
 
 
-    <figure class="text-center">
+ <!--   <figure class="text-center">
       <div class="top-content">
         <blockquote class="blockquote">
           <% unless user_signed_in? %>
@@ -83,7 +83,7 @@
       </blockquote>
       </div>
     </figure>
-  </div>
+  </div>-->
 
 
 

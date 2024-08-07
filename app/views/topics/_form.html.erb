@@ -27,7 +27,7 @@
                 <%= form.text_area :content , class: 'topic-form-control', placeholder: "こちらに本文をご記入ください" %>
               </div>
               <div class="field">
-                <%= form.label :genre ,'トピックのジャンルを選択してください'%><br>
+                <%= form.label :genre ,'トピックスのジャンルを選択してください'%><br>
                 <%= form.select :genre, options_for_select(Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), k] }), value: "0", class: 'form-control' %>
               </div>
               <div class="field">
@@ -38,18 +38,32 @@
                 <li><%= form.label :topic_images ,'画像挿入'%>
                 <%= form.file_field :topic_images, multiple: true %></li>
               </div>
-              
-              <p>（現在、挿入されている画像）</p> 
+
+              <%# if @topic.topic_images.attached? %>
+                <%# @topic.topic_images.each do |image| %>
+                  <%# if image.blob.content_type.include?("image") %>
+                    <%#= link_to url_for(image) , class: "image-container" do %>
+                      <%#= image_tag image.variant(resize_to_limit: [100,100]) %>
+                      <!--<p>（現在、挿入されている画像）</p> -->
+                    <%# end %>
+                  <%# end %>
+                <%# end %>
+              <%# end %>
+
+            <div class="image-wrapper">
               <% if @topic.topic_images.attached? %>
-                <% @topic.topic_images.each do |image| %>
-                  <% if image.blob.content_type.include?("image") %>
-                    <%= link_to url_for(image) , class: "image-container" do %>
-                      <%= image_tag image.variant(resize_to_limit: [100,100]) %>
+                <div class="image-gallery">
+                  <% @topic.topic_images.each do |image| %>
+                    <% if image.blob.content_type.include?("image") %>
+                      <div class="image-container">
+                        <%= image_tag image.variant(resize_to_limit: [100, 100]), class: "topic-image" %>
+                      </div>
                     <% end %>
                   <% end %>
-                <% end %>
+                </div>
+                <p>（現在、挿入中の画像）</p> 
               <% end %>
-           
+            </div>
 
             <div class="text-center">
               <%= form.submit "投稿する",class: "btn btn-outline-dark", class:"btn btn-custom custom-btn" %>

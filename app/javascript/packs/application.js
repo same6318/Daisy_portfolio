@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import * as OauthButton from "./oauth_button_toggle.js"
+import * as Form from "./form.js"
 
 Rails.start()
 Turbolinks.start()

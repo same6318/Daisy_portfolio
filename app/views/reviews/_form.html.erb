@@ -76,7 +76,7 @@
             </div>
             <div class="col-md-6">
               <div class="reviews-form-group row" id="remote_work_field">
-                <%= form.label :remote_work, '▶︎ リモート勤務',class: "form-label" %>
+                <%= form.label :remote_work, '▶︎ リモートワーク',class: "form-label" %>
                 <%= form.hidden_field :remote_work%>
                 <div id="remote_work_raty"></div>
                 <script>
@@ -268,7 +268,7 @@
               </div>
               <div class="col-md-6">
                 <div class="reviews-form-group row" id="work_engagement_field">
-                  <%= form.label :work_engagement, '▶︎ 業務の従事に関して',class: "form-label" %>
+                  <%= form.label :work_engagement, '▶︎ 仕事のやりがい',class: "form-label" %>
                   <%= form.hidden_field :work_engagement%>
                   <div id="work_engagement_raty"></div>
                   <script>
@@ -292,7 +292,7 @@
             </div>-->
 
           <div class="reviews-content-field">
-            <%= form.label :content, '本文', class: "form-label" %>
+            <%= form.label :content, '自由記入欄', class: "form-label" %>
             <%= form.text_area :content, rows: 8, placeholder: review_placeholder , class: "form-control" , id: "input-text"%>
             <p id="counter" style="text-align: right;">0文字</p>
           </div>

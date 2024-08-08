@@ -24,11 +24,11 @@
       <div class="navbar-nav ms-auto">
         <% if user_signed_in? %>
           <% if current_user.admin? %>
-            <a class="nav-item nav-link " href="<%= admin_users_path %>">ユーザー一覧</a>
-            <a class="nav-item nav-link" href="<%= admin_topics_path %>">トピック一覧</a>
-            <a class="nav-item nav-link" href="<%= admin_reviews_path %>">レビュー一覧</a>
-            <a class="nav-item nav-link" href="<%= admin_companies_path %>">企業一覧</a>
-            <a class="nav-item nav-link" href="<%= destroy_admin_session_path %>" data-method="delete">ログアウト</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= admin_users_path %>">ユーザー一覧</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= admin_topics_path %>">トピックス一覧</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= admin_reviews_path %>">レビュー一覧</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= admin_companies_path %>">企業一覧</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= destroy_admin_session_path %>" data-method="delete">ログアウト</a>
           <% else %>
             <a class="nav-item nav-link text-white fs-5" href="<%= users_path %>">マイページ</a>
             <a class="nav-item nav-link text-white fs-5" href="<%= companies_path %>">企業一覧</a>

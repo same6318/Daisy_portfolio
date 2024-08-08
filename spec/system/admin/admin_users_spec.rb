@@ -122,7 +122,7 @@ RSpec.describe "Admin::Users", type: :system do
       it "そのユーザーの内容が表示される" do
         user = FactoryBot.create(:user5)
         visit admin_user_path(user)
-        expect(page).to have_content("トピック投稿数")
+        expect(page).to have_content("トピックス投稿数")
         expect(page).to have_content("ユーザー削除")
       end
     end

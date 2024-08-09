@@ -16,10 +16,8 @@ class TopicsController < ApplicationController
         @q = Topic.joins(:user).ransack(params[:q])
 
       end
-    # @topics = @q.result(distinct: true).includes(:user, topic_images_attachments: :blob).all.order(created_at: :desc).page(params[:page]).per(9)
     @topics = @q.result.includes(:user, topic_images_attachments: :blob).order(created_at: :desc).page(params[:page]).per(9)
     # binding.irb
-
   end
 
   def new

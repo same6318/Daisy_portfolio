@@ -42,6 +42,16 @@ class Review < ApplicationRecord
     }
   end
 
+  # 文字列をひらがなに変換
+  def self.to_hiragana(text)
+    NKF.nkf('-w --hiragana', text)
+  end
+
+  # 文字列をカタカナに変換
+  def self.to_katakana(text)
+    NKF.nkf('-w --katakana', text)
+  end  
+
   def review_average #レビューの平均値。
     item_values = review_items.values
     (item_values.sum.to_f / review_items.size).round(1)

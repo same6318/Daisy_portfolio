@@ -55,93 +55,6 @@
   color: #fff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  .custom-yellow {
   background-color: #FF644E;
  }
@@ -172,7 +85,7 @@
 
 /* app/assets/stylesheets/application.css */
 .alert {
-  padding: 15px;
+  /* padding: 15px; */
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;

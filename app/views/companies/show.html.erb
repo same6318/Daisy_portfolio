@@ -3,69 +3,95 @@
 
   <div class="company-details">
     <div class="company-detail">
-      <div class="label">企業名： <%= @company.name %></div>
-      <div class="value">企業レビュー数： <%= @company.reviews.count %></div>
+      <div class="label"><%= @company.name %></div>
+      <div class="value">企業レビュー数： <%= "#{@company.reviews.count} 件" %></div>
+    </div>
+    <div class="company-detail">
+      <div class="label">総合評価</div>
+        <div class="value">
+        <% if @company.reviews.count == 0 %>
+          <%= @company.company_reviews_average %>
+        <% else %>
+          <%= "#{@company.company_reviews_average} / 5点" %>
+        <% end %>
+        </div>
     </div>
   </div>
 
-  <ul class="company-info">
-    <li>資本金： <%= @company.capital %></li>
-    <li>社員人数： <%= @company.employee %></li>
-    <li>売上高： <%= @company.sales %></li>
-    <li>所在地： <%= @company.address %></li>
-    <li>業界・業種： <%= @company.industry %></li>
-    <li>URL： <%= @company_url %></li>
-    <li>お問合せ： <%= @company.contact %></li>
-  </ul>
+  <p>基本情報</p>
+  <div class="account-details">
+    <div class="account-detail">
+      <div class="label">資本金</div>
+      <div class="value"><%= @company.formatted_capital %></div>
+    </div>
+
+    <div class="account-detail">
+      <div class="label">社員人数</div>
+      <div class="value"><%= "#{@company.employee} 人" %></div>
+    </div>
+
+    <div class="account-detail">
+      <div class="label">売上高</div>
+      <div class="value"><%= @company.formatted_sales %></div>
+    </div>
+
+    <div class="account-detail">
+      <div class="label">所在地</div>
+      <div class="value"><%= @company.address %></div>
+    </div>
+
+    <div class="account-detail">
+      <div class="label">業界・業種</div>
+      <div class="value"><%= @company.industry %></div>
+    </div>
+
+    <div class="account-detail">
+      <div class="label">企業URL</div>
+      <div class="value"><%= @company.company_url %></div>
+    </div>
+
+    <div class="account-detail">
+      <div class="label">企業連絡先</div>
+      <div class="value"><%= @company.contact %></div>
+    </div>
+
+  </div>
 
   <div class="company-description">
-    <p>
-      <strong>会社ロゴマーク:</strong>
-      <%#= link_to @topic.portrait.filename, @topic.portrait if @topic.portrait.attached? %>
-      <%#= image_tag @topic.portrait.variant(resize_to_limit: [100,100]) if @topic.portrait.attached? %>
-      <%# 詳細画面でimage_tagを使って画像を表示
-          表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
-          (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
-    </p>
+    <% if @company.company_image.attached? %>
+    <div>
+      <div class="col d-flex flex-wrap justify-content-center align-items-center border border-1 bg-light">
+        <%= link_to url_for( @company.company_image) do %>
+          <%= image_tag  @company.company_image.variant(resize_to_limit: [400,400]), class:"img-fluid shadow-sm" %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
   </div>
-  
+  <div>
     <p>企業説明：<%= simple_format(@company.description) %></p>
   </div>
 
   <div>
-    <p>企業レビュー平均： <%= @company.company_reviews_average %></p>
+    <p>作成日時： <%= @company.created_at.strftime('%Y/%m/%d') %></p>
   </div>
 
-  <div>
-    <p>作成日時： <%= @company.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-  </div>
-
-  <div class="pickup-reviews">
-    <p class="pickup-title">ピックアップレビュー </p>
-  </div>
-
-  <!--<div>
-    <% @pickup_reviews.each do |review| %>
-      <div>
-        <p><small><%= link_to "レビュー", company_review_path(review.company_id, review) %>: <%= truncate(review.content, separator: "、") %></small></p>
-        <p><small>レビュー評価平均： <%= review.review_average %></small></p>
-      </div>
-    <% end %>
-  </div>-->
-  
-  <div class="reviews-container">
+  <% if current_user.general? %>
+    <div class="pickup-reviews">
+      <p class="pickup-title">ピックアップレビュー </p>
+    </div>
+    
+    <div class="mypage-details" style="width:80%;">
       <% @pickup_reviews.each do |review| %>
-        <div class="card" style="width: 18rem; margin-bottom: 1rem;">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-body-secondary">総合評価： <%= review.review_average %></h6>
-            <p class="card-text">
-              <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div>
-            </p>
-            <%= link_to "レビュー", company_review_path(review.company_id, review) %>: <%= truncate(review.content, separator: "、") %>
-          </div>
+        <div class="mypage-detail">
+          <%= truncate(review.content, separator: "、") %>
+          <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d') %></div>
+          <h6>総合評価：<%= "#{review.review_average} /5点" %></h6>
+          <%= link_to "詳細", company_review_path(review.company_id, review), class:"btn btn-custom" %>
         </div>
       <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 
 <div class="btn-actions">

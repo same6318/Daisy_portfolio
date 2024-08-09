@@ -3,11 +3,12 @@ class Admin::CompaniesController < ApplicationController
 
   def index
     @q = Company.ransack(params[:q])
-    @companies = @q.result(distinct: true).left_joins(:reviews) #企業テーブルにレビューテーブルを結合
+    @companies = @q.result.left_joins(:reviews) #企業テーブルにレビューテーブルを結合
                         .select('companies.*, COUNT(reviews.id) AS reviews_count') #レビューidの数をカウントする
                         .group('companies.id') #集計する為にグループ化する
+                        .order(created_at: :desc)
                         .page(params[:page]).per(10)
-                      end
+  end
 
   def show
     @company = Company.find(params[:id])

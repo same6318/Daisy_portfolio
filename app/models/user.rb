@@ -13,9 +13,17 @@ class User < ApplicationRecord
   # purpose: { personal: 0, business: 1, education: 2, hobby: 3 }
   enum role: { general: 0, company: 1, admin: 2 }
   
-  validates :password, confirmation: true, length: { minimum: 6 }
+  # validates :password, confirmation: true, length: { minimum: 6 }
 
+  #userが法人ユーザーであるかの確認メソッド
+  def role_is_company?
+    self.company?
+  end
 
+  #userが企業登録済みかの確認メソッド
+  def registrations_company?
+    self.company
+  end
 
   #Googleログイン
   def self.create_unique_string
@@ -34,13 +42,6 @@ class User < ApplicationRecord
     user.save
     user
   end
-
-
-
-
-
-
-
 
   #admin画面でのユーザー検索関連
   def self.ransackable_attributes(auth_object = nil)

@@ -4,6 +4,7 @@ class Topic < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
+  validates :genre, presence: true
 
   enum genre: { care: 0, work: 1, life: 2, event: 3, other: 4 }
 
@@ -11,6 +12,17 @@ class Topic < ApplicationRecord
   FILE_NUMBER_LIMIT = 3 #画像枚数の制限
   validate :validate_number_of_files
   validates :topic_images, presence: false, blob: { content_type: :image }
+  validate :images_size
+
+  def images_size
+    if topic_images.attached?
+      topic_images.blobs.each do |blob|
+        if blob.byte_size > 2.megabyte
+          errors.add(:topic_images, "は2MB以下のファイルをアップロードしてください")
+        end
+      end
+    end
+  end
 
   def validate_number_of_files
     if topic_images.size > FILE_NUMBER_LIMIT

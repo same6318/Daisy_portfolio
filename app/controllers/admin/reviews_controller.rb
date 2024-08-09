@@ -2,11 +2,16 @@ class Admin::ReviewsController < ApplicationController
   before_action :require_admin
 
   def index
-    @q = Review.joins(:company).ransack(params[:q])
-    #@reviews = @q.result(distinct: true).includes(:user, :company).page(params[:page]).per(10)
-    @reviews = @q.result.includes(:user, :company).order(created_at: :desc).page(params[:page]).per(10)
+    if params[:q].present? && params[:q][:content_cont].present?
+      search_word = params[:q][:content_cont]
+      hiragana_search_word = Review.to_hiragana(search_word)
+      katakana_search_word = Review.to_katakana(search_word)
+      @q = Review.joins(:company).ransack(m: "and", content_cont_any: [search_word, hiragana_search_word, katakana_search_word], company_name_cont: params[:q][:company_name_cont])
+    else
+      @q = Review.joins(:company).ransack(params[:q])
+    end
     #distinctを使って並べ替えをするときは、一意であることが前提になる。
-    #binding.irb
+    @reviews = @q.result.includes(:user, :company).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

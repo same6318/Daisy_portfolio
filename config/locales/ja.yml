@@ -13,6 +13,13 @@ ja:
       updated: "レビューが更新されました。"
     destroy:
       destroyed: "レビューが正常に削除されました。"
+  companies:
+    create:
+      created: "登録が完了しました"
+    update:
+      updated: "情報を更新しました"
+    destroy:
+      destroyed: "情報を削除しました"
   devise:
     failure:
       user:
@@ -42,6 +49,7 @@ ja:
       topic:
         title: "タイトル"
         content: "内容"
+        genre: "ジャンル"
         topic_images: "画像"
       review:
         work_life_balance: "ワークライフバランス"
@@ -111,6 +119,19 @@ ja:
               blank: "を入力してください"
             content:
               too_short: "は%{count}文字以上で入力してください"
+        company:
+          attributes:
+            name:
+              blank: ""
+            captial:
+              blank: ""
+            employee:
+              blank: ""
+            sales:
+              blank: ""
+            description:
+              blank: ""
+            
     enums:
       user:
         age:
@@ -130,6 +151,7 @@ ja:
         role:
           general: "個人"
           company: "法人"
+          admin: "管理者"
         user:
           name: 名前
           email: メールアドレス

@@ -9,25 +9,36 @@
       <hr>
       <div class="justify-content-center align-items-center">
         <%= search_form_for @q, url: admin_topics_path, method: :get do |f| %>
-          <p>
-            <%= f.label :title_or_content_cont, "キーワード検索", class:"col-sm-4 col-form-label" %>
-            <%= f.text_field :title_or_content_cont, class:"col-sm-4" %>
-          </p>
-          <p>
-            <%= f.label :user_screen_name_cont, "ハンドルネーム名", class:"col-sm-4 col-form-label" %>
-            <%= f.text_field :user_screen_name_cont, class:"col-sm-4" %>
-          </p>
-          <p>
-            <%= f.label :user_name_cont, "投稿者名", class:"col-sm-4 col-form-label" %>
-            <%= f.text_field :user_name_cont, class:"col-sm-4" %>
-          </p>
-          <p>
-          <%= f.submit "検索", class:"btn btn-custom" %>
-          </p>
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <%= f.label :title_or_content_cont, "キーワード検索", class:"d-block" %>
+              <%= f.text_field :title_or_content_cont, class:"form-control mx-auto" %>
+            </div>
+            <div class="col-6">
+              <%= f.label :user_screen_name_cont, "ハンドルネーム名", class:"d-block" %>
+              <%= f.text_field :user_screen_name_cont, class:"form-control mx-auto" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <%= f.label :user_name_cont, "投稿者名", class:"d-block" %>
+              <%= f.text_field :user_name_cont, class:"form-control mx-auto" %>
+            </div>
+          </div>
+          <div class="form-check-inline my-3">
+            <%= f.label :genre_eq, "ジャンル検索" %>
+            <%= f.collection_radio_buttons :genre_eq, Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), Topic.genres[k]] }, :last, :first do |b| %>
+                <%= b.radio_button(class: "form-check-input ms-1") %>
+                <%= b.label(class: "form-check-label") %>
+            <% end %>
+          </div>
+          <div class="mt-auto">
+            <div class="d-flex justify-content-center align-items-center gap-2">
+              <%= f.submit "検索", class:"btn btn-custom" %>
+              <%= link_to "検索結果をリセット", admin_topics_path, class:"btn btn-custom" %>
+            </div>
+          </div>
         <% end %>
-      </div>
-      <div class="align-items-center">
-        <p><%= link_to "検索結果をリセット", admin_topics_path, class:"btn btn-custom" %></p>
       </div>
     </div>
   </div>
@@ -42,6 +53,7 @@
           <th></th>
           <th>タイトル</th>
           <th>本文</th>
+          <th>ジャンル</th>
           <th>投稿者名</th>
           <th>ハンドルネーム</th>
           <th><%= sort_link(@q, :created_at, "作成日時", hide_indicator: true, class: "btn btn-light") %></th>
@@ -53,9 +65,10 @@
             <tr>
               <td class="text-center"><%= link_to "詳細", admin_topic_path(topic), class:"btn btn-custom" %>
               <td class="text-center"><%= truncate(topic.title, length: 15) %></td>
-              <td><%= truncate(topic.content) %></td>
-              <td class="text-center"><%= truncate(topic.user.name, length: 15) %></td>
-              <td class="text-center"><%= truncate(topic.user.screen_name, length: 15) %></td>
+              <td><%= truncate(topic.content, length: 25) %></td>
+              <td class="text-center"><%= t("activerecord.enums.topic.genre.#{topic.genre}") %>
+              <td class="text-center"><%= truncate(topic.user.name, length: 10) %></td>
+              <td class="text-center"><%= truncate(topic.user.screen_name, length: 10) %></td>
               <td class="text-center"><%= topic.created_at.strftime('%Y/%m/%d') %></td>
               <td class="text-center"><%= topic.topic_images.attached? ? "あり": "なし" %></td>
             </tr>

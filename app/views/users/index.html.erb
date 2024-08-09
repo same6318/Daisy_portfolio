@@ -26,8 +26,6 @@
     <%= paginate @current_user_reviews, param_name: :reviews_page  %>
   </div>
 
-  
-
   <h3 class="mypage-count">トピックス件数：<%= current_user.topics.size %>件</h3>
   <div class="container"> 
     <% if @topics.present? %>
@@ -76,26 +74,6 @@
       </div>
     <% end %>
   </div>
-
-
-  <!--<h3>レビュー件数： <%= current_user.reviews.size %>件</h3>
-  <div class="reviews-container">
-    <% if @current_user_reviews.present? %>
-      <% @current_user_reviews.each do |review| %>
-        <div class="card" style="width: 18rem; margin-bottom: 1rem;">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-body-secondary">企業名：<%= review.company.name %></h6>
-            <p class="card-text">
-              <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div>
-            </p>
-            <%= link_to "詳細",company_review_path(review.company_id, review), class: "card-link" ,class:"btn btn-custom "  %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>-->
-
 
 
 

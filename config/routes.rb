@@ -82,5 +82,6 @@ Rails.application.routes.draw do
   resources :companies do #企業のidを選んだ上でレビューする。
     resources :reviews
   end
-
+  #get '*path', to: 'application#render404'
+  #match "/404", to: "errors#not_found", via: :all
 end

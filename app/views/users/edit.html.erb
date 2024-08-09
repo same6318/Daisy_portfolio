@@ -38,8 +38,8 @@
                 </div>
 
                 <div class="form-group mb-3">
-                  <% available_roles = User.roles.keys - ['admin'] %> <!-- 管理者ロールを除外 -->
-                  <%= f.label :role, 'ユーザステータス' %>
+                  <% available_roles = User.roles.keys - ['admin', 'company'] %> <!-- 管理者ロールを除外 -->
+                  <%= f.label :role, '利用目的' %>
                   <%= f.select :role, options_for_select([['', '']] + available_roles.map { |k| [I18n.t("activerecord.enums.user.role.#{k}"), k] }, f.object.role || '') , class: 'form-control'%>
                 </div>
                 

@@ -42,7 +42,7 @@
 
     <div class="account-detail">
       <div class="label">業界・業種</div>
-      <div class="value"><%= @company.industry %></div>
+      <div class="value"><%= @company.industry.present? ? t("activerecord.enums.company.industry.#{@company.industry}") : "" %></div>
     </div>
 
     <div class="account-detail">
@@ -56,23 +56,29 @@
     </div>
   </div>
 
+  <div class="col-md-12">
+    <div class="fs-5 lh-lg">
+      企業説明：
+      <p class="text-break"><%= simple_format(@company.description) %></p>
+    </div>
+  </div>
+
   <div class="company-description">
     <% if @company.company_image.attached? %>
     <div>
       <div class="col d-flex flex-wrap justify-content-center align-items-center border border-1 bg-light">
         <%= link_to url_for( @company.company_image) do %>
-          <%= image_tag  @company.company_image.variant(resize_to_limit: [400,400]), class:"img-fluid shadow-sm" %>
+          <%= image_tag  @company.company_image.variant(resize_to_limit: [300,400]), class:"img-fluid shadow-sm" %>
         <% end %>
       </div>
     </div>
     <% end %>
   </div>
-  <div>
-    <p>企業説明：<%= simple_format(@company.description) %></p>
-  </div>
 
-  <div>
-    <p>作成日時： <%= @company.created_at.strftime('%Y/%m/%d') %></p>
+  <div class="row">
+    <div class="text-end">
+      登録日時： <%= @company.created_at.strftime('%Y/%m/%d') %>
+    </div>
   </div>
 
   <% if current_user.general? %>
@@ -92,6 +98,7 @@
     </div>
   <% end %>
 </div>
+
 
 <div class="btn-actions">
   <%= link_to "戻る", companies_path , class: 'btn btn-secondary custom-btn'%>

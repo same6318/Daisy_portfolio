@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  before_action :authenticate_user! #ログインしてなかったらログイン画面に自動的に遷移
+  before_action :company_edit, only:[:edit, :update, :destroy]
 
   def index
     @q = Company.ransack(params[:q])
@@ -60,6 +62,14 @@ class CompaniesController < ApplicationController
     params.require(:company).permit(:name, :capital, :employee, :sales, :description,
                                     :address, :industry, :company_url, :contact,
                                     :company_image)
+  end
+
+  def company_edit #edit、update、destoryで他人が入れないようにする
+    @company = Company.find_by(id: params[:id])
+    unless @company.id == current_user.company_id
+      flash[:alert] = "ページのロードに失敗しました"
+      redirect_to users_path
+    end
   end
 
 end

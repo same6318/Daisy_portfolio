@@ -1,75 +1,90 @@
 <body class="edit-page">
   <div class="container mt-5">
     <div class="edit-form-container">
-      <h1 class="text-center">登録・編集ページ</h1>
+      <h1 class="text-center m-2">企業フォームページ</h1>
 
           <% if @company.errors.any? %>
             <div id="error_explanation" class="alert alert-danger">
-              <ul>
+              <div>
                 <% @company.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
+                  <%= message %><br>
                 <% end %>
-              </ul>
+              </div>
             </div>
           <% end %>
 
             <%= form_with(model: @company, local: true, class: "edit-form") do |f| %>
               <div class="form-group mb-3">
-                  <%= f.label :name ,"企業名"%>
-                  <%= f.text_field :name, class: 'form-control' %>
-              </div>    
-                <div class="form-group mb-3">
-                  <%= f.label :capital, "資本金"%>
-                  <%= f.text_field :capital, class: 'form-control'%>
-                </div>
-                <div class="form-group mb-3">
-                  <%= f.label :employee ,"社員人数"%>
-                  <%= f.text_field :employee , class: 'form-control'%>
-                </div>
-
-                <div class="form-group mb-3">
-                  <%= f.label :sales, '売上高' %>
-                  <%= f.text_field :sales,  class: 'form-control' %>
-                </div>
-
-                <div class="form-group mb-3">
-                  <%= f.label :address, '所在地' %>
-                  <%= f.text_field :address, class: 'form-control'%>
-                </div>
-
-                <div class="form-group mb-3">
-                  <%= f.label :industry, '業界・業種' %>
-                  <%= f.select :industry, options_for_select(Company.industries.keys.map { |k| [I18n.t("activerecord.enums.company.industry.#{k}"), k] }), include_blank: true, class: 'form-control'%>
-                </div>
-                
-                <div class="form-group mb-3">
-                  <%= f.label :company_url, "企業URL" %>
-                  <%= f.text_field :company_url, class: 'form-control' %>
-                </div>
-
-                <div class="form-group mb-3">
-                  <%= f.label :contact, "企業連絡先"%>
-                  <%= f.text_field :contact, class: 'form-control'%>
-                </div>
-
-                <div class="form-group mb-3">
-                  <%= f.label :description, "企業説明"%>
-                  <%= f.text_area :description, class: 'form-control'%>
-                </div>
-
-                <div class="field">
-                  <%= f.label :company_image ,'画像挿入（会社ロゴ等）'%>
-                  <%= f.file_field :company_image %>
-                </div>
-
-                <div class="actions mt-3">
-                  <% if !current_user.registrations_company? %>
-                    <%= f.submit "登録する", class:"btn btn-custom" %>
-                  <% else %>
-                    <%= f.submit "更新する", class:"btn btn-custom" %>
+                  <%= f.label :name do %>
+                    企業名<span style="color: red;">（必須）</span>
                   <% end %>
-                </div>
-              <% end %>
+                  <%= f.text_field :name, class: 'form-control' %>
+              </div>
+              <div class="form-group mb-3">
+                <%= f.label :capital do %>
+                  資本金<span style="color: red;">（必須）</span>
+                <% end %>
+                <%= f.text_field :capital, class: 'form-control'%>
+              </div>
+              <div class="form-group mb-3">
+                <%= f.label :employee do %>
+                  社員人数<span style="color: red;">（必須）</span>
+                <% end %>
+                <%= f.text_field :employee , class: 'form-control'%>
+              </div>
+
+              <div class="form-group mb-3">
+                <%= f.label :sales do %>
+                  売上高<span style="color: red;">（必須）</span>
+                <% end %>
+                <%= f.text_field :sales,  class: 'form-control' %>
+              </div>
+
+              <div class="form-group mb-3">
+                <%= f.label :address do %>
+                  所在地<span style="color: red;">（必須）</span>
+                <% end %>
+                <%= f.text_field :address, class: 'form-control'%>
+              </div>
+
+              <div class="form-group mb-3">
+                <%= f.label :industry do %>
+                  業界・業種<span style="color: red;">（必須）</span>
+                <% end %>
+                <%= f.select :industry, options_for_select(Company.industries.keys.map { |k| [I18n.t("activerecord.enums.company.industry.#{k}"), k] }), class: 'form-control'%>
+              </div>
+              
+              <div class="form-group mb-3">
+                <%= f.label :company_url, "企業URL" %>
+                <%= f.text_field :company_url, class: 'form-control' %>
+              </div>
+
+              <div class="form-group mb-3">
+                <%= f.label :contact, "企業連絡先"%>
+                <%= f.text_field :contact, class: 'form-control'%>
+              </div>
+
+              <div class="form-group mb-3">
+                <%= f.label :description do %>
+                  企業説明<span style="color: red;">（必須）</span>
+                <% end %>
+                <%= f.text_area :description, rows: 5, placeholder: "100文字以上で入力してください", class: 'form-control', id: "input-text" %>
+                <p id="counter" style="text-align: right;">0文字</p>
+              </div>
+
+              <div class="field">
+                <%= f.label :company_image ,'画像挿入（会社ロゴ等）'%>
+                <%= f.file_field :company_image %>
+              </div>
+
+              <div class="actions mt-3">
+                <% if !current_user.registrations_company? %>
+                  <%= f.submit "登録する", class:"btn btn-custom" %>
+                <% else %>
+                  <%= f.submit "更新する", class:"btn btn-custom" %>
+                <% end %>
+              </div>
+            <% end %>
 
               <div class="btn-back">
                 <%= link_to "戻る", :back, class: 'btn btn-secondary custom-btn' %>

@@ -3,15 +3,22 @@ class Company < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_one_attached :company_image
   validates :company_image, presence: false, blob: { content_type: :image }
-  # validate :image_size
-  enum industry: { manufacturing: 0, service: 1, information_technology: 2, commerce: 3, construction: 4 }
+  validates :name, presence: true
+  validates :capital, presence: true
+  validates :employee, presence: true
+  validates :sales, presence: true
+  validates :description, presence: true, length: { minimum: 100 }
+  validates :address, presence: true
+  validates :industry, presence: true
 
-  # def image_size
-  #   if company_image.attached?
-  #     company_image.blob.byte_size > 2.megabyte
-  #     errors.add(:company_image, "は2MB以下のファイルをアップロードしてください")
-  #   end
-  # end
+  validate :image_size
+  enum industry: { manufacturing: 0, service: 1, information_technology: 2, commerce: 3, construction: 4, other: 5}
+
+  def image_size
+    if company_image.attached? && company_image.blob.byte_size > 2.megabyte
+      errors.add(:company_image, "は2MB以下のファイルをアップロードしてください")
+    end
+  end
 
   def formatted_capital #資本金に単位を付けてで表示する
     if capital >= 100000000

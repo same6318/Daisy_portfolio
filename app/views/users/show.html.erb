@@ -1,5 +1,5 @@
 
-<h1 class="text-center">アカウント詳細</h1>
+<h1 class="text-center">アカウント</h1>
 
     <p>登録メールアドレス（ID）</p>
   <div class="account-details">
@@ -32,7 +32,7 @@
     </div>
     
     <div class="account-detail">
-      <div class="label">ユーザステータス</div>
+      <div class="label">利用目的</div>
       <div class="value"><%= @user.role.present? ? t("activerecord.enums.user.role.#{@user.role}") : '' %></div>
     </div>
   </div>

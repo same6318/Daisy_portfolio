@@ -16,7 +16,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light custom-yellow">
-    <a class="navbar-brand text-white" href="<%= root_path %>">Daisy</a>
+    <a class="navbar-brand text-white" >Daisy</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,14 +28,14 @@
             <a class="nav-item nav-link text-white fs-5" href="<%= admin_topics_path %>">トピックス一覧</a>
             <a class="nav-item nav-link text-white fs-5" href="<%= admin_reviews_path %>">レビュー一覧</a>
             <a class="nav-item nav-link text-white fs-5" href="<%= admin_companies_path %>">企業一覧</a>
-            <a class="nav-item nav-link text-white fs-5" href="<%= destroy_admin_session_path %>" data-method="delete">ログアウト</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= destroy_admin_session_path %>" data-confirm="本当にログアウトしますか？", data-method="delete">ログアウト</a>
           <% else %>
             <a class="nav-item nav-link text-white fs-5" href="<%= users_path %>">マイページ</a>
             <a class="nav-item nav-link text-white fs-5" href="<%= companies_path %>">企業一覧</a>
-            <a class="nav-item nav-link text-white fs-5" href="<%= topics_path %>">トピックス一覧</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= topics_path %>">トピックス</a>
             <a class="nav-item nav-link text-white fs-5" href="<%= new_topic_path %>">トピックス投稿</a>
             <a class="nav-item nav-link text-white fs-5" href="<%= user_path(current_user) %>">アカウント</a>
-            <a class="nav-item nav-link text-white fs-5" href="<%= destroy_user_session_path %>" data-method="delete">ログアウト</a>
+            <a class="nav-item nav-link text-white fs-5" href="<%= destroy_user_session_path %>" data-confirm="本当にログアウトしますか？" , data-method="delete">ログアウト</a>
           <% end %>
         <% else %>
           <a class="nav-item nav-link text-white fs-5" href="<%= new_user_registration_path %>">新規登録</a>

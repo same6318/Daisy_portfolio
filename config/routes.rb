@@ -37,5 +37,8 @@ Rails.application.routes.draw do
     resources :companies, only: [:index, :show, :destroy]
   end
 
-
+  resources :topics
+  resources :companies do #企業のidを選んだ上でレビューする。
+    resources :reviews
+  end
 end

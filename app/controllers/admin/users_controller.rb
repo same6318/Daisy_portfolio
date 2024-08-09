@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
       search_word = params[:q][:name_or_screen_name_cont]
       hiragana_search_word = User.to_hiragana(search_word)
       katakana_search_word = User.to_katakana(search_word)
-      @q = User.ransack(m: "or", name_or_screen_name_cont_any: [search_word, hiragana_search_word, katakana_search_word])
+      @q = User.ransack(m: "and", name_or_screen_name_cont_any: [search_word, hiragana_search_word, katakana_search_word], email_cont: params[:q][:email_cont], role_eq: params[:q][:role_eq])
     else
       @q = User.ransack(params[:q])
     end

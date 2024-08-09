@@ -76,7 +76,7 @@
 <br>
 <br>
 
-  <div class="d-flex justify-content-center align-items-center gap-2"> <!--gapでボタン同士の距離を離す-->
+  <div class="d-flex justify-content-center align-items-center gap-2">
     <% if current_user.id == @topic.user_id %>
       <%= link_to "削除", topic_path(@topic), method: :delete, data: { confirm: "削除しても宜しいですか？"}, class:"btn btn-custom mr-2 mb-5" %>
       <%= link_to "編集", edit_topic_path(@topic), class:"btn btn-custom mr-2 mb-5" %>

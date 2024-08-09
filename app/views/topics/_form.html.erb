@@ -1,4 +1,4 @@
-<body class="topics-page">
+<div class="topics-page">
   <div class="container">
     <div class="form"> 
       <div class="row justify-content-center">
@@ -6,11 +6,11 @@
 
           <% if topic.errors.any? %>
             <div id="error_explanation" class="alert alert-danger">
-              <ul>
+              <div>
                 <% topic.errors.full_messages.each do |message| %>
                   <%= message %><br>
                 <% end %>
-              </ul>
+              </div>
             </div>
           <% end %>
 
@@ -28,10 +28,10 @@
               </div>
               <div class="field">
                 <%= form.label :genre ,'トピックスのジャンルを選択してください'%><br>
-                <%= form.select :genre, options_for_select(Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), k] }), value: "0", class: 'form-control' %>
+                <%= form.select :genre, options_for_select(Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), k] }), include_blank: true, class: 'form-control' %>
               </div>
               <div class="field">
-                <li><%= form.label :ハンドルネームで投稿する %>
+                <li><%= form.label ,'ハンドルネームで投稿する' %>
                 <span><%= form.check_box :author_name %></span></li>
               </div>
               <div class="field">
@@ -74,4 +74,4 @@
       </div>
     </div>
   </div>
-</body>
+</div>

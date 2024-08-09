@@ -3,25 +3,29 @@
   <div class="row">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light p-2">企業一覧</h1>
-      <p>企業名と住所にて検索可能</p>
+      <p>企業名と住所にて検索可能です</p>
       <hr>
       <div class="justify-content-center align-items-center">
         <%= search_form_for @q, url: admin_companies_path, method: :get do |f| %>
-          <p>
-          <%= f.label :name_cont, "企業名", class:"col-sm-4 col-form-label" %>
-          <%= f.text_field :name_cont, class:"col-sm-4" %>
-          </p>
-          <p>
-          <%= f.label :address_cont, "住所", class:"col-sm-4 col-form-label" %>
-          <%= f.text_field :address_cont, class:"col-sm-4" %>
-          </p>
-          <p>
-          <%= f.submit "検索", class:"btn btn-custom" %>
-          </p>
+          <div class="row justify-content-center">
+            <div class="col-6">
+            <%= f.label :name_cont, "企業名", class:"d-block" %>
+            <%= f.text_field :name_cont, class:"form-control mx-auto" %>
+            </div>
+            <div class="col-6">
+              <%= f.label :address_cont, "住所", class:"d-block" %>
+              <%= f.text_field :address_cont, class:"form-control mx-auto" %>
+            </div>
+          </div>
+          <div class="row justify-content-center my-3">
+            <div class="col-6 mt-auto">
+              <div class="d-flex justify-content-center align-items-center gap-2 text-nowrap">
+                <%= f.submit "検索", class:"btn btn-custom" %>
+                <%= link_to "検索結果をリセット", admin_companies_path, class:"btn btn-custom" %>
+              </div>
+            </div>
+          </div>
         <% end %>
-      </div>
-      <div class="align-items-center">
-        <p><%= link_to "検索結果をリセット", admin_companies_path, class:"btn btn-custom" %></p>
       </div>
     </div>
   </div>

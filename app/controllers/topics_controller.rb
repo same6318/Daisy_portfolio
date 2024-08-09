@@ -72,10 +72,6 @@ class TopicsController < ApplicationController
 
   private
 
-  # def search_params
-  #   params.fetch(:q, {}).permit(:title_or_content_cont, :genre_eq, :m, :title_or_content_cont_any => [])
-  # end
-
   def topic_params #:topic_imageを追加、モデルはhas_many_attached :topic_image
     params.require(:topic).permit(:title, :content, :genre, :author_name, topic_images: []).merge(user_id: current_user.id, company_id: current_user.company_id)
   end

@@ -6,7 +6,7 @@ class Topic < ApplicationRecord
   validates :content, presence: true
   validates :genre, presence: true
 
-  enum genre: { care: 0, work: 1, life: 2, event: 3, other: 4 }
+  enum genre: { career: 0, parenting: 1, caregiving: 2, learning: 3, relationships: 4, beauty: 5, health: 6, finance: 7, partnership: 8, diversity: 9, other: 10 }
 
   has_many_attached :topic_images
   FILE_NUMBER_LIMIT = 3 #画像枚数の制限

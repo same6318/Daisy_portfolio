@@ -31,7 +31,7 @@
                 <%= form.select :genre, options_for_select(Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), k] }), include_blank: true, class: 'form-control' %>
               </div>
               <div class="field">
-                <li><%= form.label ,'ハンドルネームで投稿する' %>
+                <li><%= form.label 'ハンドルネームで投稿する' %>
                 <span><%= form.check_box :author_name %></span></li>
               </div>
               <div class="field">

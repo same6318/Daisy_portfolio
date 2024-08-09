@@ -47,7 +47,10 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
+    #binding.irb
+    @company = Company.find(params[:id])
     @company.destroy
+    flash[:notice] = "削除しました"
     redirect_to users_path
   end
 

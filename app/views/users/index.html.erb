@@ -2,7 +2,14 @@
 
   <h1 class="title text-center"> マイページ</h1>
 
-
+  <% if current_user.registrations_company? && @company.present?%>
+    <div class="account-detail">
+      <div class="label">資本金</div>
+      <div class="value"><%= @company.capital %></div>
+    </div>
+    <%= link_to "削除", company_path(id: current_user.company_id), data: { confirm: "本当に削除してもよろしいですか？" }, method: :delete, class: "detail-link" ,class:"btn btn-custom" %>
+    <%= link_to "編集", edit_company_path(id: current_user.company_id) ,class:"btn btn-custom custom-btn" %>
+  <% else %>
   <h3 class="mypage-count">レビュー件数： <%= current_user.reviews.size %>件</h3>
   <div class="mypage-details">
       <% if @current_user_reviews.present? %>
@@ -16,15 +23,19 @@
           </div>
         <% end %>
     <% else %>
+      <% unless current_user.role = 'company'%>
       <div class="no-content-message">
         <p>レビューがまだありません。</p>
         <%= link_to 'レビューを投稿する', companies_path, class: 'btn btn-primary' %>
       </div>
+      <% end %>
     <% end %>
   </div>
   <div class="d-flex justify-content-center mt-3">
     <%= paginate @current_user_reviews, param_name: :reviews_page  %>
   </div>
+<%end%>
+
 
   <h3 class="mypage-count">トピックス件数：<%= current_user.topics.size %>件</h3>
   <div class="container"> 
@@ -86,10 +97,6 @@
 
 
  
-
-
-
-
 
 
 

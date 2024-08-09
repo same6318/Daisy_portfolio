@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  has_many :users
+  has_many :users, dependent: :nullify
   has_many :reviews, dependent: :destroy
   has_one_attached :company_image
   validates :company_image, presence: false, blob: { content_type: :image }

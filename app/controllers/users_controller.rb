@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @current_user_reviews = current_user.reviews.order(created_at: :desc).page(params[:reviews_page]).per(3)
     @topics = current_user.topics.order(created_at: :desc).page(params[:topics_page]).per(3)
     @reviews = Review.page(params[:page]).per(3)
+    @company = current_user.company
   end
 
   def show

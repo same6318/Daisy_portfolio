@@ -69,6 +69,15 @@ ja:
         career_support: "キャリアアップ支援"
         work_engagement: "仕事のやりがい"
         content: "自由記入欄"
+      company:
+        name: "企業名"
+        capital: "資本金"
+        employee: "社員人数"
+        sales: "売上高"
+        description: "企業説明"
+        address: "所在地"
+        industry: "業界・業種"
+        company_image: "画像"
     errors:
       models:
         user:
@@ -122,16 +131,20 @@ ja:
         company:
           attributes:
             name:
-              blank: ""
+              blank: "を入力してください"
             captial:
-              blank: ""
+              blank: "を入力してください"
             employee:
-              blank: ""
+              blank: "を入力してください"
             sales:
-              blank: ""
+              blank: "を入力してください"
             description:
-              blank: ""
-            
+              blank: "を入力してください"
+              too_short: "は%{count}文字以上で入力してください"
+            address:
+              blank: "を入力してください"
+            industry:
+              blank: "を選択してください"
     enums:
       user:
         age:
@@ -159,11 +172,25 @@ ja:
           password_confirmation: パスワード（確認）
       topic:
         genre:
+          career: "キャリア"
+          parenting: "子育て"
+          caregiving: "介護"
+          learning: "学び"
+          relationships: "人間関係"
+          beauty: "美容"
+          health: "健康"
+          finance: "お金"
+          partnership: "夫婦関係"
+          diversity: "ダイバーシティ"
           other: "その他"
-          care: "育児・介護"
-          work: "仕事・働き方"
-          life: "生活"
-          event: "イベント・ワーク"
+      company:
+        industry:
+          manufacturing: "製造業"
+          service: "サービス業"
+          information_technology: "情報通信業"
+          commerce: "商業"
+          construction: "建設業"
+          other: "その他"
   admin:
     reviews:
       destroy:

@@ -36,6 +36,7 @@ FactoryBot.define do
     industry { 2 }
     company_url { "http://www.iot-solutions.com" }
     contact { "contact@iot-solutions.com" }
+  end
 
   factory :company7, class: Company do
     name { "株式会社テスト会社" }

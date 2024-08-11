@@ -1,5 +1,7 @@
-<p>企業名： <%= @review.company.name %></p>
+<div class="reviews-container">
+   <h1 class="fw-light p-2">レビュー対象企業：<%= @company.name %></h1>
+</div>
 
 <%= render 'form', review: @review %>
 
-<%= link_to "戻る", companies_path %>
+<%#= link_to "戻る", companies_path %>

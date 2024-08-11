@@ -37,6 +37,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @company = @review.company
   end
 
   def update

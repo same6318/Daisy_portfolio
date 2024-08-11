@@ -198,7 +198,7 @@ ja:
         destroyed: "レビューが削除されました"
     topics:
       destroy:
-        destroyed: "トピックが削除されました"
+        destroyed: "トピックスが削除されました"
     users:
       destroy:
         destroyed: "ユーザーが削除されました"

@@ -4,7 +4,8 @@ FactoryBot.define do
     capital { 1000000 }
     employee { 50 }
     sales { 5000000 }
-    description { "テスト会社の説明" }
+    description { "私たちは、製造業において環境への配慮を最優先に考え、持続可能な製品開発を行っています。\n
+                  省エネルギー技術とリサイクル資源の活用で、地球に優しい製造プロセスを追求しています。" }
     address { "テスト住所" }
     industry { 1 }
     company_url { "http://testcompany.com" }
@@ -34,17 +35,17 @@ FactoryBot.define do
   end
 
   factory :first_review, parent: :review do
-    select {true } 
+    enrollment_status {true } 
     content { "ファーストレビューの本文がここに入ります。" * 7 }
   end
 
   factory :second_review, parent: :review do
-    select { false }
+    enrollment_status { false }
     content { "セカンドレビューの本文がここに入ります。" * 7 }
   end
 
   factory :third_review, parent: :review do
-    select { true } 
+    enrollment_status { true } 
     content { "サードレビューの本文がここに入ります。" * 7 }
   end 
 
@@ -66,7 +67,7 @@ FactoryBot.define do
     career_support { 4 }
     work_engagement { 5 }
     content { "株式会社サンプル3の福利厚生は非常に充実しています。社員の健康と幸福を第一に考え、各種手当や保険制度が整備されており、安心して働ける環境が提供されています。特に健康診断やフィットネス支援が魅力的です。" }
-    select { true }
+    enrollment_status { true }
     association :user
     association :company
   end
@@ -89,7 +90,7 @@ FactoryBot.define do
     career_support { 1 }
     work_engagement { 1 }
     content { "株式会社サンプル3の職場環境は非常に良好です。オフィスは清潔で快適、同僚とのコミュニケーションも活発で、働きやすさを感じる職場です。チームワークが重要視され、社員同士のサポート体制も整っています。さらに、定期的な社内イベントも開催され、社員間の連携が強化されています。" }
-    select { false }
+    enrollment_status { false }
     association :user
     association :company
   end
@@ -112,7 +113,7 @@ FactoryBot.define do
     career_support { 3 }
     work_engagement { 1 }
     content { "株式会社サンプル3の有給休暇取得率は非常に高いです。社員がバランスの取れた生活を送れるように、有給休暇の取得が奨励されており、プライベートの時間も大切にできます。柔軟な休暇制度が整っており、安心して休暇を取ることができます。" }
-    select { true }
+    enrollment_status { true }
     association :user
     association :company
   end

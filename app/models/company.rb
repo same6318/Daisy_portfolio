@@ -20,7 +20,7 @@ class Company < ApplicationRecord
     end
   end
 
-  def formatted_capital #資本金に単位を付けてで表示する
+  def formatted_capital #資本金に単位を付けて表示する
     if capital >= 100000000
       (capital / 1_000_000).to_s + "百万円"
     else
@@ -28,7 +28,7 @@ class Company < ApplicationRecord
     end
   end
 
-  def formatted_sales #売上金に単位を付けてで表示する
+  def formatted_sales #売上高に単位を付けて表示する
     if sales >= 100000000
       (sales / 1_000_000).to_s + "百万円"
     else
@@ -47,7 +47,7 @@ class Company < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[name address created_at]
+    %w[name address industry created_at]
   end
 
   def self.ransackable_associations(auth_object = nil)

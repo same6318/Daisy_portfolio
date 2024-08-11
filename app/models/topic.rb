@@ -1,6 +1,5 @@
 class Topic < ApplicationRecord
   belongs_to :user
-  belongs_to :company, optional: true
 
   validates :title, presence: true
   validates :content, presence: true

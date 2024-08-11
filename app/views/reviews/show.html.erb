@@ -3,7 +3,7 @@
 <div class="account-details">
   <div class="account-detail">
     <div class="label">在籍状況</div>
-    <div class="value"><%= @review.select.present? ? "現職" : "退社済み" %></div>
+    <div class="value"><%= @review.enrollment_status.present? ? "現職" : "退社済み" %></div>
   </div>
    <div class="account-detail">
     <div class="label">年代</div>
@@ -57,5 +57,5 @@
     <%= link_to "削除", company_review_path(@review.company_id, @review), method: :delete, data: { confirm: "削除しても宜しいですか？"}, class:"btn btn-custom mr-2 mb-5" %>
     <%= link_to "マイページに戻る", users_path, class:"btn btn-custom mr-2 mb-5" %>
   <% end %>
-  <%= link_to "レビュー一覧に戻る", company_reviews_path(@company), class:"btn btn-custom mr-2 mb-5" %>
+  <%= link_to "企業レビューに戻る", company_reviews_path(@company), class:"btn btn-custom mr-2 mb-5" %>
 </div>

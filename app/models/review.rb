@@ -2,6 +2,7 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :company
 
+  validates :enrollment_status, presence: true
   validates :work_life_balance, presence: true
   validates :workplace_atmosphere, presence: true
   validates :flex_system, presence: true
@@ -58,7 +59,7 @@ class Review < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[select content created_at company_name name age gender] #親クラスのメソッドを呼び出し、追加でレビューに追加したい属性を記載。
+    %w[enrollment_status content created_at company_name name age gender] #親クラスのメソッドを呼び出し、追加でレビューに追加したい属性を記載。
     #user_nameやcompany_nameはransackで使用する仮の属性名。カラムが無くても使える。
   end
 

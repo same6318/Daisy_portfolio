@@ -52,7 +52,7 @@ class CompaniesController < ApplicationController
     #binding.irb
     @company = Company.find(params[:id])
     @company.destroy
-    flash[:notice] = "削除しました"
+    flash[:notice] = t('.destroyed')
     redirect_to users_path
   end
 

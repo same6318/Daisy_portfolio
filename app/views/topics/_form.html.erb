@@ -15,7 +15,7 @@
           <% end %>
 
 
-          <h1 class="text-center">トピックス投稿</h1>
+          <h1 class="text-center">トピック投稿</h1>
           <%= form_with(model: topic) do |form| %>
 
             <div class="field">
@@ -23,12 +23,12 @@
                 <%= form.text_field :title, class: 'form-control' %>
               </div>
                 <div class="field">
-                <%= form.label :content ,'本文' %>
+                <%= form.label :content ,'本文', class:"flex" %>
                 <%= form.text_area :content , class: 'topic-form-control', placeholder: "こちらに本文をご記入ください" %>
               </div>
               <div class="field">
-                <%= form.label :genre ,'トピックスのジャンルを選択してください'%><br>
-                <%= form.select :genre, options_for_select(Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), k] }), include_blank: true, class: 'form-control' %>
+                <%= form.label :genre ,'トピックのジャンルを選択してください'%><br>
+                <%= form.select :genre, options_for_select(Topic.genres.keys.map { |k| [I18n.t("activerecord.enums.topic.genre.#{k}"), k] }, @topic.genre), include_blank: true, class: 'form-control' %>
               </div>
               <div class="field">
                 <li><%= form.label 'ハンドルネームで投稿する' %>
@@ -61,12 +61,12 @@
                     <% end %>
                   <% end %>
                 </div>
-                <p>（現在、挿入中の画像）</p> 
+                <p>（現在、挿入中の画像）</p>
               <% end %>
             </div>
 
-            <div class="text-center">
-              <%= form.submit "投稿する",class: "btn btn-outline-dark", class:"btn btn-custom custom-btn" %>
+            <div class="d-flex justify-content-center gap-3 mt-3">
+              <%= form.submit "投稿する", class:"btn btn-custom custom-btn" %>
               <%= link_to "戻る", topics_path , class: 'btn btn-secondary custom-btn' %>
             </div>
           <% end %>

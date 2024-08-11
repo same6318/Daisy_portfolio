@@ -23,7 +23,7 @@ FactoryBot.define do
   end
 
   factory :topic3, class: Topic do
-    title { "ジャンルは育児・介護" }
+    title { "ジャンルはキャリア" }
     content { "いくじとカイゴ、それぞれの両立は大変困難である" }
     genre { 0 }
     author_name { "false" }

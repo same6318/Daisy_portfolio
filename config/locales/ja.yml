@@ -15,11 +15,11 @@ ja:
       destroyed: "レビューが正常に削除されました。"
   companies:
     create:
-      created: "登録が完了しました"
+      created: "企業登録が完了しました"
     update:
-      updated: "情報を更新しました"
+      updated: "企業情報を更新しました"
     destroy:
-      destroyed: "情報を削除しました"
+      destroyed: "企業情報を削除しました"
   devise:
     failure:
       user:
@@ -69,6 +69,7 @@ ja:
         career_support: "キャリアアップ支援"
         work_engagement: "仕事のやりがい"
         content: "自由記入欄"
+        enrollment_status: "在籍状態"
       company:
         name: "企業名"
         capital: "資本金"
@@ -197,7 +198,7 @@ ja:
         destroyed: "レビューが削除されました"
     topics:
       destroy:
-        destroyed: "トピックスが削除されました"
+        destroyed: "トピックが削除されました"
     users:
       destroy:
         destroyed: "ユーザーが削除されました"

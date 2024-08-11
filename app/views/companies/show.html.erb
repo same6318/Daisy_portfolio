@@ -63,43 +63,59 @@
     </div>
   </div>
 
-  <div class="company-description">
-    <% if @company.company_image.attached? %>
-    <div>
-      <div class="col d-flex flex-wrap justify-content-center align-items-center border border-1 bg-light">
-        <%= link_to url_for( @company.company_image) do %>
-          <%= image_tag  @company.company_image.variant(resize_to_limit: [300,400]), class:"img-fluid shadow-sm" %>
-        <% end %>
-      </div>
+  <% if @company.company_image.attached? %>
+  <div>
+    <div class="col d-flex flex-wrap justify-content-center align-items-center border border-1 bg-light">
+      <%= link_to url_for(@company.company_image) do %>
+        <%= image_tag  @company.company_image.variant(resize_to_limit: [300,400]), class:"img-fluid shadow-sm" %>
+      <% end %>
     </div>
-    <% end %>
   </div>
+  <% end %>
 
   <div class="row">
-    <div class="text-end">
+    <div class="text-end my-2">
       登録日時： <%= @company.created_at.strftime('%Y/%m/%d') %>
     </div>
   </div>
 
   <% if current_user.general? %>
-    <div class="pickup-reviews">
-      <p class="pickup-title">ピックアップレビュー </p>
-    </div>
-    
-    <div class="mypage-details" style="width:80%;">
-      <% @pickup_reviews.each do |review| %>
-        <div class="mypage-detail">
-          <%= truncate(review.content, separator: "、") %>
-          <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d') %></div>
-          <h6>総合評価：<%= "#{review.review_average} /5点" %></h6>
-          <%= link_to "詳細", company_review_path(review.company_id, review), class:"btn btn-custom" %>
-        </div>
-      <% end %>
-    </div>
+    <% if @company.reviews.size >= 1 %>
+      <div class="pickup-reviews">
+        <p class="pickup-title mt-2">ピックアップレビュー </p>
+      </div>
+      
+      <div class="mypage-details" style="width:80%;">
+        <% @pickup_reviews.each do |review| %>
+          <div class="row mb-3">
+          <div class="mypage-detail p-3">
+            <%= link_to "詳細", company_review_path(review.company_id, review), class:"btn btn-custom" %>
+            <div class="col-8">
+              <%= truncate(review.content, length: 60) %>
+            </div>
+            <div class="row">
+              <div class="ms-auto">
+                <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d') %></div>
+                <div>総合評価：<%= "#{review.review_average} /5点" %></div>
+              </div>
+            </div>
+          </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
-
-<div class="btn-actions">
-  <%= link_to "戻る", companies_path , class: 'btn btn-secondary custom-btn'%>
-</div>
+<% if current_user.company_id == @company.id %>
+  <div class="d-flex justify-content-center align-items-center gap-2">
+    <%= link_to "マイページに戻る", users_path, class: "btn btn-custom custom-btn" %>
+    <%= link_to "戻る", companies_path , class: 'btn btn-secondary custom-btn'%>
+  </div>
+<% else %>
+  <div class="btn-actions">
+    <%= link_to "戻る", companies_path , class: 'btn btn-secondary custom-btn'%>
+  </div>
+<% end %>
+<br>
+<br>

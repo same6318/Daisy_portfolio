@@ -21,7 +21,7 @@ RSpec.describe "Admin::Topics", type: :system do
       it "登録済みのトピック一覧が表示される" do
         visit admin_topics_path
         expect(page).to have_content("TEST")
-        expect(page).to have_content("育児・介護")
+        expect(page).to have_content("キャリア")
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe "Admin::Topics", type: :system do
         topic_titles = topics.map do |topic|
           topic.all("td")[1].text
         end
-        expect(topic_titles).to eq(["アドミン用で作成しました", "ジャンルは育児・介護", "TEST"])
+        expect(topic_titles).to eq(["アドミン用で作成しました", "ジャンルはキャリア", "TEST"])
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe "Admin::Topics", type: :system do
         click_on "作成日時"
         topics = all("tbody tr")
         topic_dates = topics.map do |topic|
-          topic.all("td")[5].text
+          topic.all("td")[6].text
         end
         expect(topic_dates).to eq(["2023/07/01", "2023/08/01", "2023/09/01"])
       end

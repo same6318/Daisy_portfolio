@@ -77,7 +77,7 @@ user = User.last #作成したユーザーを代入して、以下のデータ�
     career_support: rand(1..5),
     work_engagement: rand(1..5),
     content: "これはサンプルレビューの内容です。 #{i + 1}\n この会社は、働きやすい環境が整っています。\n社員同士のコミュニケーションも活発で、協力し合いながら業務を進めることができます。\n福利厚生も充実しており、仕事とプライベートの両立が可能です。特に、リモートワーク制度が整備されており、柔軟な働き方が実現できる点が魅力です。",
-    select: [true, false].sample,
+    enrollment_status: [true, false].sample,
     created_at: Time.now - i.days # 日付を1日ずつずらして作成
   )
 end

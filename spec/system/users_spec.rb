@@ -59,7 +59,7 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         fill_in 'user[screen_name]', with: 'あああ'
         select '20代', from: 'user[age]'
         select '女性', from: 'user[gender]'
-        select '一般', from: 'user[role]'
+        select '個人', from: 'user[role]'
         check 'agreement-checkbox'
         
         click_button '登録する'
@@ -96,7 +96,7 @@ RSpec.describe 'ユーザ管理機能', type: :system do
 
       it '自分の詳細画面にアクセスできる' do
         visit user_path(user.id)
-        expect(page).to have_content 'アカウント詳細'
+        expect(page).to have_content 'アカウント'
         expect(page).to have_content '登録メールアドレス（ID）'
       end
 

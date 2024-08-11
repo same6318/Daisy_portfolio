@@ -58,7 +58,7 @@
 
                 <div class="actions mt-3">                
                   <%= f.submit "更新する", class:"btn btn-custom" %>
-                  <%= link_to "登録解除", users_path, data: { confirm: "登録解除を行いますが、よろしいですか？" }, method: :delete, class: 'btn btn-outline-danger' %>
+                  <%= link_to "登録解除", users_path, data: { confirm: "登録解除を行いますが、よろしいですか？\n法人区分のユーザーは登録済みの企業情報も削除されます。" }, method: :delete, class: 'btn btn-outline-danger' %>
                 </div>
               <% end %>
 

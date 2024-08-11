@@ -2,7 +2,7 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :company
 
-  validates :enrollment_status, presence: true
+  validates :enrollment_status, inclusion: {in: [true, false]}
   validates :work_life_balance, presence: true
   validates :workplace_atmosphere, presence: true
   validates :flex_system, presence: true

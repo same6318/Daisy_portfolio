@@ -42,5 +42,27 @@ RSpec.describe Review, type: :model do
         expect(review.errors[:content]).to include('は100文字以上で入力してください')
       end
     end
+
+    context '在籍状態' do
+      context 'trueの場合' do
+        it '有効' do
+          review.enrollment_status = true
+          expect(review.valid?).to be_truthy
+        end
+      end
+      context 'falseの場合' do
+        it '有効' do
+          review.enrollment_status = false
+          binding.irb
+          expect(review.valid?).to be_truthy
+        end
+      end
+      context 'nilの場合' do
+        it '有効でfalseになる' do
+          review.enrollment_status = ""
+          expect(review.valid?).to be_truthy
+        end
+      end
+    end
   end
 end

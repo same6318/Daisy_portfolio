@@ -8,6 +8,8 @@ FactoryBot.define do
     age { "twenties" } # ここで年齢を指定
     gender { "female" } # 性別を指定
     role { "general" } # ユーザステータスを指定
+    provider { "email" }
+    uid { "user@example.com" }
 
     trait :female do
       email { 'female@gmail.com'}
@@ -20,6 +22,19 @@ FactoryBot.define do
       uid { 'male@gmail.com' }
       gender { 'male' }
     end
+  end
+
+  factory :user1, class: User do
+    email { "juristische@test.com" }
+    role { 1 }
+    name { "法人" }
+    age { 1 }
+    gender { 0 }
+    screen_name { "法人" }
+    password { "password123" }
+    password_confirmation { "password123" }
+    provider { "juridical" }
+    uid { "juristische@test.com" } # ユニークなuidを生成
   end
 
   factory :user5, class: User do

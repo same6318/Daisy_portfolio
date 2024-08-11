@@ -1,20 +1,26 @@
+require 'rails_helper'
+
 RSpec.describe "companies", type: :system do
-
-
-  before do
-    sign_in 
-  end
-
   describe "登録機能" do
-    context "トピックスを登録した場合" do
-      it "登録したトピックスが表示される" do
-        topic = FactoryBot.create(:topic3, user_id: user5.id)
-        if topic.save
-          visit topic_path(topic)
-          expect(page).to have_text("いくじ")
-        else
-          visit new_topic_path
-        end
+    let!(:user1) { create(:user1) }
+    let!(:company7) { create(:company7) }
+
+    before do
+      visit new_user_session_path
+      fill_in "user[email]", with: user1.email
+      fill_in "user[password]", with: user1.password
+      click_button "ログイン"
+      visit new_company_path
+    end
+
+    context "企業情報を登録した場合" do
+      it "登録した企業情報が表示される" do
+        #binding.irb
+        company = FactoryBot.create(:company7)  
+        visit company_path(company)
+        expect(page).to have_text("株式会社テスト会社")
       end
     end
   end
+end
+

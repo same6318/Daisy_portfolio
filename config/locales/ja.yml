@@ -24,7 +24,7 @@ ja:
     failure:
       user:
         not_found_in_database: "ユーザーが見つかりませんでした。"
-        already_authenticated: "ログアウトしてください"
+        already_authenticated: "ログイン中です"
         invalid: "無効なメールアドレスまたはパスワードです"
         unauthenticated: "ログインしてください"
     omniauth_callbacks:

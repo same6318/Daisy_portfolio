@@ -20,7 +20,7 @@ class TopController < ApplicationController
   private
   def redirect_if_logged_in
     if user_signed_in?
-      redirect_to users_path, alert: 'ログアウトしてください'
+      redirect_to users_path
     end
   end
 end

@@ -4,7 +4,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def new
    super
-   flash[:alert] = 'ログアウトしてください' if user_signed_in? && current_user.role == 'companies'
+  # flash[:notice] = 'ログインしてます' if user_signed_in?
   end
 
 

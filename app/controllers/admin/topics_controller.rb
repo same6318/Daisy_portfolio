@@ -7,7 +7,7 @@ class Admin::TopicsController < ApplicationController
       search_word = params[:q][:title_or_content_cont]
       hiragana_search_word = Topic.to_hiragana(search_word)
       katakana_search_word = Topic.to_katakana(search_word)
-      @q = Topic.joins(:user).ransack(m: "and", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word], user_screen_name_cont: params[:q][:user_screen_name_cont], user_name_cont: params[:q][:user_name_cont])
+      @q = Topic.joins(:user).ransack(m: "and", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word], user_screen_name_cont: params[:q][:user_screen_name_cont], user_name_cont: params[:q][:user_name_cont], genre_eq: params[:q][:genre_eq])
       #binding.irb
     else
       @q = Topic.joins(:user).ransack(params[:q])

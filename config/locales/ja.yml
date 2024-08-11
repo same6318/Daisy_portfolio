@@ -37,7 +37,7 @@ ja:
         signed_out: "ログアウトしました"
     registrations:
       signed_up: '登録が完了しました'
-      destroyed: 'アカウントを削除しました'
+      destroyed: 'アカウントの登録解除が完了しました'
     passwords:
       blank: "パスワードを入力してください"
   activerecord:

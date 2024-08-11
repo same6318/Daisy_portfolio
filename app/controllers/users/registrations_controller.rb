@@ -32,7 +32,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     ActiveRecord::Base.transaction do
       resource.destroy
       # raise
-      resource.company.destroy
+      if resource.company?
+        resource.company.destroy
+      end
     end
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message! :notice, :destroyed

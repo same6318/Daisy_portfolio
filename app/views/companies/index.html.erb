@@ -6,8 +6,8 @@
   </div>
   <hr>
     <div class="justify-content-center align-items-center">
-        <p class="text-center my-2">
-          企業検索はこちらから行えます。企業名や住所を入力して検索してください。
+        <p class="text-center m-0">
+          企業検索はこちらから行えます。企業名や住所、業界・業種を選択して検索してください。
         </p>
         <%= search_form_for @q, url: companies_path, method: :get do |f| %>
           <!--<div class="align-items-center d-flex">-->
@@ -19,6 +19,15 @@
             <div class="col-6">
                 <%= f.label :address_cont, "住所", class:"col-form-label d-block" %>
                 <%= f.text_field :address_cont, class:"form-control mx-auto", style:"width: 80%;" %>
+            </div>
+          </div>
+          <div class="form-group my-3">
+            <div class="form-check-inline">
+            <%= f.label :industry_eq, "業界・業種" %>
+              <%= f.collection_radio_buttons :industry_eq, Company.industries.keys.map { |k| [I18n.t("activerecord.enums.company.industry.#{k}"), Company.industries[k]] }, :last, :first do |b| %>
+                  <%= b.radio_button(class: "form-check-input ms-1") %>
+                  <%= b.label(class: "form-check-label") %>
+              <% end %>
             </div>
           </div>
           <hr>
@@ -49,20 +58,26 @@
         <tr>
           <th>レビュー投稿</th>
           <th><%= sort_link(@q, :name, "企業名", hide_indicator: true, class: "btn btn-light") %></th>
-          <th><%= sort_link(@q, :address, "住所", hide_indicator: true, class: "btn btn-light") %></th>
+          <th>所在地</th>
+          <th>業界・業種</th>
           <th>総合評価</th>
           <th>レビューの一覧</th>
         <tr>
         <tbody class="align-middle">
           <% @companies.each do |company| %>
             <tr>
-              <% if current_user.age.present? && current_user.gender.present? %>
-                <td class="text-center"><%= link_to "投稿", new_company_review_path(company), class:"btn btn-custom" %></td>
+              <% if current_user.role_is_company? %>
+                <td class="text-center"><%= link_to "投稿", companies_path, class:"btn btn-custom", data: { confirm: "法人区分のユーザーはレビュー投稿はできません"} %></td>
               <% else %>
-                <td class="text-center"><%= link_to "投稿", companies_path, class:"btn btn-custom", data: { confirm: "レビューを投稿する場合は、年代と性別を登録してください"} %></td>
+                <% if current_user.age.present? && current_user.gender.present? %>
+                  <td class="text-center"><%= link_to "投稿", new_company_review_path(company), class:"btn btn-custom" %></td>
+                <% else %>
+                  <td class="text-center"><%= link_to "投稿", companies_path, class:"btn btn-custom", data: { confirm: "レビューを投稿する場合は、年代と性別を登録してください"} %></td>
+                <% end %>
               <% end %>
               <td class="fw-bold"><%= link_to "#{company.name}", company_path(company), class:"link-dark text-underline" %></td>
               <td><%= company.address %></td>
+              <td class="text-center"><%= t("activerecord.enums.company.industry.#{company.industry}") %></td>
                 <% unless company.company_reviews_average == "データはありません" %>
                   <td class="text-center"><%= "#{company.company_reviews_average} /5点" %></td>
                 <% else %>

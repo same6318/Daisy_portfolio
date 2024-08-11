@@ -99,16 +99,12 @@ RSpec.describe "Topics", type: :system do
         expect(page).to have_content("TEST")
         cards = all(".card")
         expect(cards.size).to eq(2)
-        # input = "てすと"
-        # search = Topic.ransack(title_or_content_cont: input) #ここでransack検索を使って、代入する
-        # result = search.result #ransackの結果は.resultを実行してから値に代入する必要がある
-        # expect(result.count).to eq 2
       end
     end
 
     context "ジャンルで検索した場合" do
       it "検索したジャンルに一致するトピックスのみ表示される" do
-        choose "育児・介護" #ラジオボタンの選択はラベルのテキストを渡す
+        choose "キャリア" #ラジオボタンの選択はラベルのテキストを渡す
         # binding.irb
         click_on "検索"
         expect(page).to have_content("大変困難")
@@ -121,7 +117,7 @@ RSpec.describe "Topics", type: :system do
     context "タイトルとジャンルで検索した場合" do
       it "検索ワードandジャンルに一致するタスクのみ表示される" do
         fill_in "q[title_or_content_cont]", with: "ジャンル"
-        choose "仕事・働き方"
+        choose "子育て"
         click_on "検索"
         expect(page).not_to have_content("大変困難")
         expect(page).not_to have_content("てすとこーど")

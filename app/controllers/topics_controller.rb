@@ -73,7 +73,7 @@ class TopicsController < ApplicationController
   private
 
   def topic_params #:topic_imageを追加、モデルはhas_many_attached :topic_image
-    params.require(:topic).permit(:title, :content, :genre, :author_name, topic_images: []).merge(user_id: current_user.id, company_id: current_user.company_id)
+    params.require(:topic).permit(:title, :content, :genre, :author_name, topic_images: []).merge(user_id: current_user.id)
   end
 
   def set_topic #今回は人のトピックも見ることができる

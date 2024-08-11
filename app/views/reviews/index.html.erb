@@ -20,7 +20,7 @@
           <th>総合評価</th>
           <th><%= sort_link(@q, :user_age, "年代", hide_indicator: true, class: "btn btn-light") %></th>
           <th><%= sort_link(@q, :user_gender, "性別", hide_indicator: true, class: "btn btn-light") %></th>
-          <th><%= sort_link(@q, :select, "在籍状態", hide_indicator: true, class: "btn btn-light") %></th>
+          <th><%= sort_link(@q, :enrollment_status, "在籍状態", hide_indicator: true, class: "btn btn-light") %></th>
           <th>本文</th>
           <th><%= sort_link(@q, :created_at, "作成日時", hide_indicator: true, class: "btn btn-light") %></th>
         </tr>
@@ -32,7 +32,7 @@
           <td class="text-center"><%= "#{review.review_average} /点" %></td>
           <td class="text-center"><%= review.user.age.present? ? t("activerecord.enums.user.age.#{review.user.age}") : "" %></td>
           <td class="text-center"><%= review.user.gender.present? ? t("activerecord.enums.user.gender.#{review.user.gender}") : "" %></td>
-          <td class="text-center"><%= review.select.present? ? "現職" : "退社済み" %></td>
+          <td class="text-center"><%= review.enrollment_status.present? ? "現職" : "退社済み" %></td>
           <td><small><%= truncate(review.content) %></small></td>
           <td class="text-center"><small><%= review.created_at.strftime('%Y/%m/%d') %></small></td>
         </tr>

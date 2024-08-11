@@ -2,7 +2,7 @@
 <div class="account-details">
   <div class="account-detail">
     <div class="label">在籍状況</div>
-    <div class="value"><%= @review.select.present? ? "現職" : "退社済み" %></div>
+    <div class="value"><%= @review.enrollment_status.present? ? "現職" : "退社済み" %></div>
   </div>
    <div class="account-detail">
     <div class="label">年代</div>

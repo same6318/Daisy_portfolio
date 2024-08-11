@@ -31,7 +31,7 @@ RSpec.describe "Admin::Reviews", type: :system do
       it "新しいレビューが一番上に表示される" do
         user2 = FactoryBot.create(:user7)
         company = FactoryBot.create(:company5)
-        review = FactoryBot.create(:review5, select: true, user_id:user2.id, company_id:company.id)
+        review = FactoryBot.create(:review5, enrollment_status: true, user_id:user2.id, company_id:company.id)
         visit admin_reviews_path
         rows = all("tbody tr")
         reviews_select = rows.map do |row|

@@ -78,7 +78,7 @@ class ReviewsController < ApplicationController
       :career_support,
       :work_engagement,
       :content,
-      :select).merge(user_id: current_user.id)
+      :enrollment_status).merge(user_id: current_user.id)
   end
 
   def set_review #今回は人のレビューも見ることができる

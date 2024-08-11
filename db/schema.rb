@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_10_021937) do
+ActiveRecord::Schema.define(version: 2024_08_11_072633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2024_08_10_021937) do
     t.integer "career_support", default: 0, null: false
     t.integer "work_engagement", default: 0, null: false
     t.text "content"
-    t.boolean "enrollment_status"
+    t.boolean "enrollment_status", default: false
     t.bigint "user_id", null: false
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2024_08_10_021937) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "author_name", default: false
-    t.integer "genre", default: 0
+    t.integer "genre", default: 0, null: false
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
 

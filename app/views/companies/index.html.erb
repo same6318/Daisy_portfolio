@@ -36,12 +36,6 @@
             <%= f.submit "検索", class:"btn btn-custom" %>
             <%= link_to "検索結果をリセット", companies_path, class:"btn btn-custom ms-2" %>
           </div>
-          <!--企業のロールを持っている、且つ企業を登録していない場合のみ、ボタン表示-->
-          <div class="col-4 ms-auto">
-            <% if current_user.role_is_company? && !current_user.registrations_company? %>
-              <%= link_to "企業登録", new_company_path, class:"btn btn-warning" %>
-            <% end %>
-          </div>
         </div>
         <% end %>
       </div>

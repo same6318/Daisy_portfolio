@@ -1,40 +1,75 @@
 
 
-  <h1 class="title text-center"> マイページ</h1>
-
-  <% if current_user.registrations_company? && @company.present?%>
-    <div class="account-detail">
-      <div class="label">資本金</div>
-      <div class="value"><%= @company.capital %></div>
-    </div>
-    <%= link_to "削除", company_path(id: current_user.company_id), data: { confirm: "本当に削除してもよろしいですか？" }, method: :delete, class: "detail-link" ,class:"btn btn-custom" %>
-    <%= link_to "編集", edit_company_path(id: current_user.company_id) ,class:"btn btn-custom custom-btn" %>
-  <% else %>
-  <h3 class="mypage-count">レビュー件数： <%= current_user.reviews.size %>件</h3>
-  <div class="mypage-details">
-      <% if @current_user_reviews.present? %>
-        <% @current_user_reviews.each do |review| %>
-          <div class="mypage-detail">
-            <div class="detail-content">
-              <h6>企業名：<%= review.company.name %></h6>
-              <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div>
-            </div>
-            <%= link_to "詳細", company_review_path(review.company_id, review), class: "detail-link" ,class:"btn btn-custom" %>
-          </div>
-        <% end %>
-    <% else %>
-      <% unless current_user.role = 'company'%>
-      <div class="no-content-message">
-        <p>レビューがまだありません。</p>
-        <%= link_to 'レビューを投稿する', companies_path, class: 'btn btn-primary' %>
+  <h1 class=" text-center"> マイページ</h1>
+    <% if current_user.registrations_company? && @company.present?%>
+    <div class="account-details">
+      <div class="account-detail">
+        <div class="label">資本金</div>
+        <div class="value"><%= @company.formatted_capital %></div>
       </div>
-      <% end %>
+      <div class="account-detail">
+        <div class="label">社員人数</div>
+        <div class="value"><%= "#{@company.employee} 人" %></div>
+      </div>
+      <div class="account-detail">
+        <div class="label">売上高</div>
+        <div class="value"><%= @company.formatted_sales %></div>
+      </div>
+      <div class="account-detail">
+        <div class="label">所在地</div>
+        <div class="value"><%= @company.address %></div>
+      </div>
+      <div class="account-detail">
+        <div class="label">業界・業種</div>
+        <div class="value"><%= @company.industry.present? ? t("activerecord.enums.company.industry.#{@company.industry}") : "" %></div>
+      </div>
+      <div class="account-detail">
+        <div class="label">企業URL</div>
+        <div class="value"><%= @company.company_url %></div>
+      </div>
+      <div class="account-detail">
+        <div class="label">企業連絡先</div>
+        <div class="value"><%= @company.contact %></div>
+      </div>
+   </div>
+  <div class= "text-center">
+    <%= link_to "詳細", company_path(@company), class: "btn btn-custom " %>
+    <%= link_to "編集", edit_company_path(id: current_user.company_id) ,class:"btn btn-custom " %>
+    <%= link_to "削除", company_path(id: current_user.company_id), data: { confirm: "本当に削除してもよろしいですか？" }, method: :delete, class: "detail-link" ,class:"btn btn-outline-danger" %>
+  </div>
+  <% else %>
+    <%unless current_user.role == 'company'%>
+    <h3 class="mypage-count">レビュー件数： <%= current_user.reviews.size %>件</h3>
     <% end %>
-  </div>
-  <div class="d-flex justify-content-center mt-3">
-    <%= paginate @current_user_reviews, param_name: :reviews_page  %>
-  </div>
-<%end%>
+    <div class="mypage-details">
+        <% if @current_user_reviews.present? %>
+          <% @current_user_reviews.each do |review| %>
+            <div class="mypage-detail">
+              <div class="detail-content">
+                <h6>企業名：<%= review.company.name %></h6>
+                <div>作成日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+              </div>
+              <%= link_to "詳細", company_review_path(review.company_id, review), class: "detail-link" ,class:"btn btn-custom" %>
+            </div>
+          <% end %>
+      <% else %>
+        <div class="no-content-message">
+           <% if current_user.role_is_company? && !current_user.registrations_company? %>
+            <p>企業情報登録はこちらから。</p>
+            <%= link_to "企業情報を登録", new_company_path, class: "btn btn-primary" %>
+              <!--企業のロールを持っている、且つ企業を登録していない場合のみ、ボタン表示-->
+          <% else %>
+        <%# unless current_user.role = 'company'%>
+          <p>レビューがまだありません。</p>
+          <%= link_to 'レビューを投稿する', companies_path, class: 'btn btn-primary' %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <%= paginate @current_user_reviews, param_name: :reviews_page  %>
+    </div>
+  <%end%>
 
 
   <h3 class="mypage-count">トピックス件数：<%= current_user.topics.size %>件</h3>

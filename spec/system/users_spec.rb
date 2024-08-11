@@ -55,7 +55,7 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         fill_in 'user[email]', with: 'user@example.com'
         fill_in 'user[password]', with: '123456'
         fill_in 'user[password_confirmation]', with: '123456'
-        fill_in 'user[name]', with: '一般ユーザ'
+        fill_in 'user[name]', with: '個人'
         fill_in 'user[screen_name]', with: 'あああ'
         select '20代', from: 'user[age]'
         select '女性', from: 'user[gender]'
@@ -79,7 +79,7 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       # describe 'deviseログイン機能' do
       #   let!(:user) { FactoryBot.create(:user) }
 
-    context '登録済みのユーザでログインした場合' do
+    context '登録済み個人ユーザでログインした場合' do
       let!(:user) { FactoryBot.create(:user) }
 
       before do
@@ -92,6 +92,8 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       it 'マイページに遷移し「ログインしました」というメッセージが表示される' do
         expect(page).to have_content 'ログインしました'
         expect(page).to have_content 'マイページ'
+        expect(page).to have_content 'レビューを投稿する'
+
       end
 
       it '自分の詳細画面にアクセスできる' do
@@ -118,21 +120,32 @@ RSpec.describe 'ユーザ管理機能', type: :system do
 
         expect(page).to have_content 'アカウントを更新しました'
       end
-
-      # it 'ユーザを削除できる' do
-      #   visit edit_user_path(user.id)
-
-      #   page.accept_confirm do
-      #     click_button '削除'
-      #   end
-      #   expect(page).to have_content 'アカウントを削除しました'
-
-      # end
     
 
       it 'ログアウトするとログイン画面に遷移し、「ログアウトしました」というメッセージが表示される' do
         click_link 'ログアウト'
         expect(page).to have_content 'ログアウトしました'
+      end
+    end
+
+    context '法人ユーザでログインした場合' do
+      let!(:user1) { create(:user1) }
+      before do
+        visit new_user_session_path
+        fill_in "user[email]", with: user1.email
+        fill_in "user[password]", with: user1.password
+        click_button "ログイン"
+      end
+
+      it '企業一覧ページでき' do
+      end
+
+      it 'マイページに企業情報登録ボタンが表示される' do
+        visit users_path  # マイページへのパスを指定
+        #binding.irb
+        #puts page.html 
+        
+        expect(page).to have_content '企業情報を登録'
       end
     end
   end

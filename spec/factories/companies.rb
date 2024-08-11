@@ -25,7 +25,7 @@ FactoryBot.define do
     contact { "contact@shipmanufacturer.com" }
   end
 
-  factory :company7, class: Company do
+  factory :company8, class: Company do
     name { "株式会社IOTソリューションズ" }
     capital { 3000000 }
     employee { 200 }
@@ -36,5 +36,24 @@ FactoryBot.define do
     industry { 2 }
     company_url { "http://www.iot-solutions.com" }
     contact { "contact@iot-solutions.com" }
+
+  factory :company7, class: Company do
+    name { "株式会社テスト会社" }
+    capital { 1000000 }
+    employee { 100 }
+    sales { 10000000 }
+    description { "a" * 100 }
+    address { "大阪府大阪市北区梅田2-2-2" }
+    industry { 1 }
+    company_url { "http://www.testcompany.com" }
+    contact { "contact@testcompany.com" }
+
+
+    after(:build) do |company|
+      company.company_image.attach(io: File.open("spec/fixtures/files/test.jpg"), filename: "test.jpg")
+    end
   end
 end
+  
+
+

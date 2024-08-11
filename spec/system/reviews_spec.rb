@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "レビュー管理機能", type: :system, js: true  do
-  
+RSpec.describe "レビュー管理機能", type: :system, js: true do
   describe '登録機能' do
     let!(:user) { FactoryBot.create(:user) }
     let!(:company) { FactoryBot.create(:company) }
@@ -13,45 +12,61 @@ RSpec.describe "レビュー管理機能", type: :system, js: true  do
 
     context 'レビューを登録した場合' do
       it '登録したレビューが表示される' do
-      
         visit new_company_review_path(company.id)
-        #binding.irb
-        find('#work_life_balance_field').find("img[alt='5']").click
-        find('#workplace_atmosphere_field').find("img[alt='5']").click
-        find('#flex_system_field').find("img[alt='5']").click
-        find('#remote_work_field').find("img[alt='5']").click
-        find('#harassment_prevention_field').find("img[alt='5']").click
-        find('#parental_care_leave_field').find("img[alt='5']").click
-        find('#childcare_support_field').find("img[alt='5']").click
-        find('#welfare_facilities_field').find("img[alt='5']").click
-        find('#mental_health_care_field').find("img[alt='5']").click
-        find('#evaluation_system_field').find("img[alt='5']").click
-        find('#promotion_salary_field').find("img[alt='5']").click
-        find('#overtime_holiday_work_field').find("img[alt='5']").click
-        find('#allowances_subsidies_field').find("img[alt='5']").click
-        find('#training_education_support_field').find("img[alt='5']").click
-        find('#career_support_field').find("img[alt='5']").click
-        find('#work_engagement_field').find("img[alt='5']").click
-        fill_in 'review[content]', with: " セカンドレビューの本文がここに入ります。" * 7
+
+        # 評価項目のリスト
+        ratings = %w[
+          work_life_balance_field
+          workplace_atmosphere_field
+          flex_system_field
+          remote_work_field
+          harassment_prevention_field
+          parental_care_leave_field
+          childcare_support_field
+          welfare_facilities_field
+          mental_health_care_field
+          evaluation_system_field
+          promotion_salary_field
+          overtime_holiday_work_field
+          allowances_subsidies_field
+          training_education_support_field
+          career_support_field
+          work_engagement_field
+        ]
+
+        # 各評価項目に対して評価をクリック
+        ratings.each do |field|
+          find("##{field}").find("img[alt='5']").click
+        end
+
+        fill_in 'review[content]', with: "a" * 100
 
         click_button '登録する'
 
-        expect(page).to have_content 'ワークライフバランス'
-        expect(page).to have_content '職場の雰囲気'
-        expect(page).to have_content 'フレックス制度'
-        expect(page).to have_content 'リモートワーク'
-        expect(page).to have_content 'ハラスメント対策'
-        expect(page).to have_content '育児介護休暇'
-        expect(page).to have_content '育児支援制度'
-        expect(page).to have_content '福利厚生施設'
-        expect(page).to have_content 'メンタルヘルスケア'
-        expect(page).to have_content '評価制度'
-        expect(page).to have_content '昇進・給与に関して'
-        expect(page).to have_content '残業・休日出勤'
-        expect(page).to have_content '手当・補助等'
-        expect(page).to have_content '研修・教育支援'
-        expect(page).to have_content 'キャリアアップ支援'
-        expect(page).to have_content '仕事のやりがい'
+        # 確認する項目のリスト
+        confirmation_texts = [
+          'ワークライフバランス',
+          '職場の雰囲気',
+          'フレックス制度',
+          'リモートワーク',
+          'ハラスメント対策',
+          '育児介護休暇',
+          '育児支援',
+          '福利厚生施設',
+          'メンタルヘルスケア',
+          '評価制度',
+          '昇進・給与に関して',
+          '残業・休日出勤',
+          '手当・補助等',
+          '研修・教育支援',
+          'キャリアアップ支援',
+          '仕事のやりがい'
+        ]
+
+        # 各確認項目がページに表示されていることを検証
+        confirmation_texts.each do |text|
+          expect(page).to have_content text
+        end
       end
     end
 

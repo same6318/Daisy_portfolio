@@ -4,8 +4,7 @@ FactoryBot.define do
     capital { 1000000 }
     employee { 50 }
     sales { 5000000 }
-    description { "私たちは、製造業において環境への配慮を最優先に考え、持続可能な製品開発を行っています。\n
-                  省エネルギー技術とリサイクル資源の活用で、地球に優しい製造プロセスを追求しています。" }
+    description { "a" * 100 }
     address { "テスト住所" }
     industry { 1 }
     company_url { "http://testcompany.com" }

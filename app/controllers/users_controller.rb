@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user! #理由が分からない。, only:[:edit,:update]
-  before_action :set_user, only: [:show, :edit, :update]
-  before_action :authorize_user, only: [:show]
+  before_action :set_and_authorize_user, only: [:show, :edit, :update,:destroy]
 
 
   def index
@@ -34,23 +33,17 @@ class UsersController < ApplicationController
 
   private
 
-  def set_user
+  def set_and_authorize_user
     # @user = User.find(params[:id])
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to root_path
+      flash[:alert] = 'アクセス権限がありません'
+      redirect_to users_path
     end
   end
 
   def user_params
     params.require(:user)
     .permit(:name, :age, :gender, :email, :screen_name, :role, :password, :password_confirmation)
-  end
-
-  def authorize_user
-    unless current_user == @user
-      flash[:alert] = 'アクセス権限がありません'
-      redirect_to users_path
-    end
   end
 end

@@ -4,7 +4,7 @@ FactoryBot.define do
     capital { 1000000 }
     employee { 50 }
     sales { 5000000 }
-    description { "テスト会社の説明" }
+    description { "a" * 100 }
     address { "テスト住所" }
     industry { 1 }
     company_url { "http://testcompany.com" }

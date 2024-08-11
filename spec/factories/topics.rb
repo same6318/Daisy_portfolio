@@ -38,6 +38,4 @@ FactoryBot.define do
     author_name { "true" }
     association :user
   end
-
-
 end

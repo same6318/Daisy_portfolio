@@ -305,10 +305,11 @@
             <div class="btn-actions">
               <% if @review.new_record? %>
                 <%= form.submit id: "create-user", class:"btn btn-custom custom-btn" %>
+                <%= link_to "戻る", companies_path , class: 'btn btn-secondary custom-btn'%>
               <% else %>
                 <%= form.submit id: "update-user", class:"btn btn-custom custom-btn" %>
+                <%= link_to "戻る", company_review_path , class: 'btn btn-secondary custom-btn'%>
               <% end %>
-              <%= link_to "戻る", companies_path , class: 'btn btn-secondary custom-btn'%>
             </div>
           </div>
         <% end %>

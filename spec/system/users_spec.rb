@@ -106,7 +106,7 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         other_user = FactoryBot.create(:user, email: 'other_user@example.com', uid: SecureRandom.hex(10), provider: 'email')  
         visit user_path(other_user.id) 
         expect(page).to have_content 'マイページ'
-        expect(page).to have_content 'ログアウトしてください'
+        expect(page).to have_content 'アクセス権限がありません'
       end
 
       it 'アカウント編集画面から、編集できる' do
@@ -127,25 +127,39 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         expect(page).to have_content 'ログアウトしました'
       end
     end
-
+  end
+  
+  describe '法人ユーザ管理機能' do
+    let(:user) { create(:user1) } # 法人ユーザを作成
     context '法人ユーザでログインした場合' do
-      let!(:user1) { create(:user1) }
+
       before do
         visit new_user_session_path
-        fill_in "user[email]", with: user1.email
-        fill_in "user[password]", with: user1.password
+        fill_in "user[email]", with: user.email
+        fill_in "user[password]", with: user.password
         click_button "ログイン"
-      end
-
-      it '企業一覧ページでき' do
+        visit users_path
       end
 
       it 'マイページに企業情報登録ボタンが表示される' do
-        visit users_path  # マイページへのパスを指定
         #binding.irb
         #puts page.html 
-        
         expect(page).to have_content '企業情報を登録'
+      end
+      
+      it '一度、企業情報を登録すると、登録できない' do
+        visit new_company_path
+        fill_in "company[name]", with: "株式会社テスト会社"
+        fill_in "company[capital]", with: 1000000
+        fill_in "company[employee]", with: 100
+        fill_in "company[sales]", with: 10000000
+        fill_in "company[description]", with: "a" * 100
+        fill_in "company[address]", with: "大阪府大阪市北区梅田2-2-2"
+        select "サービス業", from: 'company[industry]'
+        click_button "登録" 
+        visit users_path
+        # 企業情報が既に登録されていることを前提としたテスト
+        expect(page).not_to have_content '企業情報を登録'
       end
     end
   end

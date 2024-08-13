@@ -12,7 +12,7 @@
           <div class="row justify-content-center">
             <div class="col-6">
               <%= f.label :title_or_content_cont, "キーワード検索", class:"d-block" %>
-              <%= f.text_field :title_or_content_cont, class:"form-control mx-auto" %>
+              <%= f.text_field :title_or_content_cont, value: params.dig(:q, :title_or_content_cont), class:"form-control mx-auto" %>
             </div>
             <div class="col-6">
               <%= f.label :user_screen_name_cont, "ハンドルネーム名", class:"d-block" %>

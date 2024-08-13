@@ -21,7 +21,7 @@
           <div class="row justify-content-center">
             <div class="col-6">
               <%= f.label :content_cont, "キーワード(本文内)検索", class:"d-block" %>
-              <%= f.text_field :content_cont, class:"form-control mx-auto" %>
+              <%= f.text_field :content_cont, value: params.dig(:q, :content_cont), class:"form-control mx-auto" %>
             </div>
             <div class="col-6 mt-auto">
               <div class="d-flex justify-content-center-between align-items-center gap-2">

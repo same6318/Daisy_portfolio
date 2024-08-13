@@ -106,7 +106,7 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         other_user = FactoryBot.create(:user, email: 'other_user@example.com', uid: SecureRandom.hex(10), provider: 'email')  
         visit user_path(other_user.id) 
         expect(page).to have_content 'マイページ'
-        expect(page).to have_content 'ログアウトしてください'
+        expect(page).to have_content 'アクセス権限がありません'
       end
 
       it 'アカウント編集画面から、編集できる' do
@@ -135,9 +135,6 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         fill_in "user[email]", with: user1.email
         fill_in "user[password]", with: user1.password
         click_button "ログイン"
-      end
-
-      it '企業一覧ページでき' do
       end
 
       it 'マイページに企業情報登録ボタンが表示される' do

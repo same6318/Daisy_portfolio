@@ -29,7 +29,8 @@ RSpec.describe Company, type: :model do
         company.company_image.attach(io: File.open("spec/fixtures/files/test.txt"), filename: "test.txt")
         
         expect(company).not_to be_valid
-        expect(company.errors[:company_image]).to include("のファイル形式が不正です。") 
+        expect(company.errors[:company_image]).to include("のファイル形式が不正です。")
+      end 
     end
   end
 end

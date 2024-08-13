@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
       redirect_to company_review_path(@company, @review)
     else
       #flash[:alert] = "レビューの作成に失敗しました"
-      render :new
+      render :new, status: :unprocessable_entity #エラーが起こった時のステータスコードが返る
     end
   end
 

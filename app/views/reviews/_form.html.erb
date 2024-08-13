@@ -3,335 +3,52 @@
     <div class="col-md-8">
       <div class="form-container">
 
-        <%= form_with(model: [:company, review], local: true) do |form| %>
+         <%= form_with(model: [:company, review], local: true) do |form| %>
+            <% if review.errors.any? %>
+              <div id="error_explanation" class="alert alert-danger">
+                <div>
+                  <% review.errors.full_messages.each do |message| %>
+                    <%= message %><br>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
 
-          <% if review.errors.any? %>
-            <div id="error_explanation" class="alert alert-danger">
-              <div>
-                <% review.errors.full_messages.each do |message| %>
-                  <%= message %><br>
-                <% end %>
+            <div class="reviews-field">
+              <div class="form-check">
+                <%= form.check_box :enrollment_status, { class: "form-check-input" } %>
+                <%= form.label :enrollment_status, '在籍状態', class: "form-check-label" %>
               </div>
+              <p class="text-muted">（※ 在籍中の方は、在籍状態にチェックをしてください。）</p>
             </div>
-          <% end %>
-          <div class="reviews-field">
-            <div class="form-check">
-              <%= form.check_box :enrollment_status, { class: "form-check-input" } %>
-              <%= form.label :enrollment_status, '在籍状態', class: "form-check-label" %>
-            </div>
-            <p class="text-muted">（※ 在籍中の方は、在籍状態にチェックをしてください。）</p>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="reviews-form-group " id="work_life_balance_field">
-                <%= form.label :work_life_balance,'▶︎ ワークライフバランス' ,class: "form-label" %>
-                <%= form.hidden_field :work_life_balance %>
-                <div id="work_life_balance_raty"></div>
-                <script>
-                    var elem = document.querySelector('#work_life_balance_raty');
-                    var score = <%= form.object.work_life_balance || 0 %>; //form.objectに値があるとき、または選択されてない＝0の時、scoreに保存する
-                    var opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      score: score,
-                      scoreName: 'review[work_life_balance]',
-                      click: function(score) {
-                      // スコアがクリックされたときにhidden_fieldを更新
-                        document.querySelector('input[name="review[workplace_atmosphere]"]').value = score;
-                      }
-                    };
-                    raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="workplace_atmosphere_field">
-                <%= form.label :workplace_atmosphere, '▶︎ 職場の雰囲気',class: "form-label" %>
-                <%= form.hidden_field :workplace_atmosphere %>
-                <div id="workplace_atmosphere_raty"></div>
-                <script>
-                  var elem = document.querySelector('#workplace_atmosphere_raty');
-                  var score = <%= form.object.workplace_atmosphere || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[workplace_atmosphere]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-            <div class="reviews-form-group row" id="flex_system_field">
-                <%= form.label :flex_system, '▶︎ フレックス制度',class: "form-label" %>
-                <%= form.hidden_field :flex_system %>
-                <div id="flex_system_raty"></div>
-                <script>
-                  var elem = document.querySelector('#flex_system_raty');
-                  var score = <%= form.object.flex_system || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[flex_system]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="remote_work_field">
-                <%= form.label :remote_work, '▶︎ リモートワーク',class: "form-label" %>
-                <%= form.hidden_field :remote_work%>
-                <div id="remote_work_raty"></div>
-                <script>
-                  var elem = document.querySelector('#remote_work_raty');
-                  var score = <%= form.object.remote_work || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[remote_work]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="harassment_prevention_field">
-                <%= form.label :harassment_prevention,'▶︎ ハラスメント対策', class: "form-label" %>
-                <%= form.hidden_field :harassment_prevention%>
-                <div id="harassment_prevention_raty"></div>
-                <script>
-                  var elem = document.querySelector('#harassment_prevention_raty');
-                  var score = <%= form.object.harassment_prevention || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[harassment_prevention]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="parental_care_leave_field">
-                <%= form.label :parental_care_leave, '▶︎ 育児・介護休暇',class: "form-label" %>
-                <%= form.hidden_field :parental_care_leave%>
-                <div id="parental_care_leave_raty"></div>
-                <script>
-                  var elem = document.querySelector('#parental_care_leave_raty');
-                  var score = <%= form.object.parental_care_leave || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[parental_care_leave]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="childcare_support_field">
-                <%= form.label :childcare_support, '▶︎ 育児支援制度',class: "form-label" %>
-                <%= form.hidden_field :childcare_support%>
-                <div id="childcare_support_raty"></div>
-                <script>
-                  var elem = document.querySelector('#childcare_support_raty');
-                  var score = <%= form.object.childcare_support || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[childcare_support]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="welfare_facilities_field">
-                <%= form.label :welfare_facilities, '▶︎ 福利厚生施設',class: "form-label" %>
-                <%= form.hidden_field :welfare_facilities%>
-                <div id="welfare_facilities_raty"></div>
-                <script>
-                  var elem = document.querySelector('#welfare_facilities_raty');
-                  var score = <%= form.object.welfare_facilities || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[welfare_facilities]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div> <!-- col-md-6 -->  
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="mental_health_care_field">
-                <%= form.label :mental_health_care,'▶︎ メンタルヘルスケア', class: "form-label" %>
-                <%= form.hidden_field :mental_health_care%>
-                <div id="mental_health_care_raty"></div>
-                <script>
-                  var elem = document.querySelector('#mental_health_care_raty');
-                  var score = <%= form.object.mental_health_care || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[mental_health_care]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="evaluation_system_field">
-                <%= form.label :evaluation_system,'▶︎ 評価制度', class: "form-label" %>
-                <%= form.hidden_field :evaluation_system%>
-                <div id="evaluation_system_raty"></div>
-                <script>
-                  var elem = document.querySelector('#evaluation_system_raty');
-                  var score = <%= form.object.evaluation_system || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[evaluation_system]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="promotion_salary_field">
-                <%= form.label :promotion_salary,'▶︎ 昇進・昇給に関して', class: "form-label" %>
-                <%= form.hidden_field :promotion_salary%>
-                <div id="promotion_salary_raty"></div>
-                <script>
-                  var elem = document.querySelector('#promotion_salary_raty');
-                  var score = <%= form.object.promotion_salary || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[promotion_salary]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="reviews-form-group row" id="overtime_holiday_work_field">
-                <%= form.label :overtime_holiday_work, '▶︎ 残業、休日出勤',class: "form-label" %>
-                <%= form.hidden_field :overtime_holiday_work%>
-                <div id="overtime_holiday_work_raty"></div>
-                <script>
-                  var elem = document.querySelector('#overtime_holiday_work_raty');
-                  var score = <%= form.object.overtime_holiday_work || 0 %>;
-                  var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    score: score,
-                    scoreName: 'review[overtime_holiday_work]',
-                  };
-                  raty(elem, opt);
-                </script>
-              </div>
-            </div>
-              <div class="col-md-6">
-                <div class="reviews-form-group row" id="allowances_subsidies_field">
-                  <%= form.label :allowances_subsidies,'▶︎ 手当・補助等',class: "form-label" %>
-                  <%= form.hidden_field :allowances_subsidies%>
-                  <div id="allowances_subsidies_raty"></div>
-                  <script>
-                    var elem = document.querySelector('#allowances_subsidies_raty');
-                    var score = <%= form.object.allowances_subsidies || 0 %>;
-                    var opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      score: score,
-                      scoreName: 'review[allowances_subsidies]',
-                    };
-                    raty(elem, opt);
-                  </script>
+
+            <div class="row">
+              <% @review_form_attr.each do |field, label| %>
+                <div class="col-md-6">
+                  <div class="reviews-form-group row" id="<%= field %>_field">
+                    <%= form.label field, "▶︎ #{label}", class: "form-label" %>
+                    <%= form.hidden_field field %>
+                    <div id="<%= field %>_raty"></div>
+                    <script>
+                      var elem = document.querySelector('#<%= field %>_raty');
+                      var score = <%= form.object.send(field) || 0 %>;
+                      var opt = {
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starOff: "<%= asset_path('star-off.png') %>",
+                        score: score,
+                        scoreName: 'review[<%= field %>]',
+                      };
+                      raty(elem, opt);
+                    </script>
                   </div>
-              </div>
-              <div class="col-md-6">
-                <div class="reviews-form-group row" id="training_education_support_field">
-                  <%= form.label :training_education_support,'▶︎ 研修・教育支援', class: "form-label" %>
-                  <%= form.hidden_field :training_education_support%>
-                  <div id="training_education_support_raty"></div>
-                  <script>
-                    var elem = document.querySelector('#training_education_support_raty');
-                    var score = <%= form.object.training_education_support || 0 %>;
-                    var opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      score: score,
-                      scoreName: 'review[training_education_support]',
-                    };
-                    raty(elem, opt);
-                  </script>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="reviews-form-group row" id="career_support_field">
-                  <%= form.label :career_support, '▶︎ キャリアアップ支援',class: "form-label" %>
-                  <%= form.hidden_field :career_support%>
-                  <div id="career_support_raty"></div>
-                  <script>
-                    var elem = document.querySelector('#career_support_raty');
-                    var score = <%= form.object.career_support || 0 %>;
-                    var opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      score: score,
-                      scoreName: 'review[career_support]',
-                    };
-                    raty(elem, opt);
-                  </script>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="reviews-form-group row" id="work_engagement_field">
-                  <%= form.label :work_engagement, '▶︎ 仕事のやりがい',class: "form-label" %>
-                  <%= form.hidden_field :work_engagement%>
-                  <div id="work_engagement_raty"></div>
-                  <script>
-                    var elem = document.querySelector('#work_engagement_raty');
-                    var score = <%= form.object.work_engagement || 0 %>;
-                    var opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      score: score,
-                      scoreName: 'review[work_engagement]',
-                    };
-                    raty(elem, opt);
-                </script>
-              </div>
-            </div> <!-- col-md-6 -->
-          </div> <!-- row -->
+              <% end %>
+            </div> <!-- row -->
 
-
-            <!--<div class="reviews-content-field">
-              <%= form.label :content,'本文',class:"form-label" %>
-              <%= form.text_area :content, rows: "8", placeholder:"100文字以上記入 必須",class:"form-control"%>
-              <p id="counter">0文字</p>
-            </div>-->
-
-          <div class="reviews-content-field">
-            <%= form.label :content, '自由記入欄', class: "form-label" %>
-            <%= form.text_area :content, rows: 8, placeholder: review_placeholder , class: "form-control" , id: "input-text"%>
-            <p id="counter" style="text-align: right;">0文字</p>
-          </div>
-
-            <div class="field">
-              <%#= form.label :company_portrait %>
-              <%#= form.file_field :portrait ここ要らない。企業のフォームの時だけ%>
+            <div class="reviews-content-field">
+              <%= form.label :content, '自由記入欄', class: "form-label" %>
+              <%= form.text_area :content, rows: 8, placeholder: review_placeholder , class: "form-control" , id: "input-text"%>
+              <p id="counter" style="text-align: right;">0文字</p>
             </div>
     
             <div class="btn-actions">
@@ -349,4 +66,6 @@
     </div>
   </div>
 </div>
+
+
 

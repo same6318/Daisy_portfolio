@@ -43,6 +43,27 @@ class Review < ApplicationRecord
     }
   end
 
+  def self.form_attr
+    {
+    work_life_balance: 'ワークライフバランス',
+    workplace_atmosphere: '職場の雰囲気',
+    flex_system: 'フレックス制度',
+    remote_work: 'リモートワーク',
+    harassment_prevention: 'ハラスメント対策',
+    parental_care_leave: '育児・介護休暇',
+    childcare_support: '育児支援制度',
+    welfare_facilities: '福利厚生施設',
+    mental_health_care: 'メンタルヘルスケア',
+    evaluation_system: '評価制度',
+    promotion_salary: '昇進・昇給に関して',
+    overtime_holiday_work: '残業、休日出勤',
+    allowances_subsidies: '手当・補助等',
+    training_education_support: '研修・教育支援',
+    career_support: 'キャリアアップ支援',
+    work_engagement: '仕事のやりがい'
+  }
+  end
+
   # 文字列をひらがなに変換
   def self.to_hiragana(text)
     NKF.nkf('-w --hiragana', text)

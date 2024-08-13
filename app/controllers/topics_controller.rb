@@ -11,13 +11,12 @@ class TopicsController < ApplicationController
         search_word = params[:q][:title_or_content_cont]
         hiragana_search_word = Topic.to_hiragana(search_word)
         katakana_search_word = Topic.to_katakana(search_word)
-        @q = Topic.ransack(m: "and", title_or_content_cont: [search_word, hiragana_search_word, katakana_search_word], genre_eq: params[:q][:genre_eq])
+        @q = Topic.ransack(m: "and", title_or_content_cont_any: [search_word, hiragana_search_word, katakana_search_word], genre_eq: params[:q][:genre_eq])
       else
         @q = Topic.joins(:user).ransack(params[:q])
 
       end
     @topics = @q.result.includes(:user, topic_images_attachments: :blob).order(created_at: :desc).page(params[:page]).per(9)
-    binding.irb
   end
 
   def new

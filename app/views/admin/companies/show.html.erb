@@ -1,12 +1,23 @@
 <div>
   <h1 class="text-center">企業詳細</h1>
 
-  <div class="admin-company-details">
+  <div class="admin-company-details mb-0">
     <div class="admin-company-detail">
       <div class="label">企業名： <%= @company.name %></div>
     </div>
   </div>
-  <div class="admin-company-details">
+  <div class="admin-company-details my-0">
+    <div class="admin-company-detail">
+        <div class="label">総合評価：
+          <% if @company.reviews.count == 0 %>
+            <%= @company.company_reviews_average %>
+          <% else %>
+            <%= "#{@company.company_reviews_average} / 5点" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <div class="admin-company-details mt-0">
     <div class="admin-company-detail">
       <div class="value">企業ユーザー名： <%= @user&.company_id ? @user.name : "" %></div>
       <div class="value">企業レビュー数： <%= "#{@company.reviews.count} 件" %></div>
@@ -37,7 +48,7 @@
 
     <div class="account-detail">
       <div class="label">業界・業種</div>
-      <div class="value"><%= @company.industry %></div>
+      <div class="value"><%= @company.industry.present? ? t("activerecord.enums.company.industry.#{@company.industry}") : "" %></div>
     </div>
 
     <div class="account-detail">
@@ -52,27 +63,32 @@
 
   </div>
   
-  <div class="company-description" >
-    <p>
-      <strong>会社ロゴマーク:</strong>
-      <%#= link_to @topic.portrait.filename, @topic.portrait if @topic.portrait.attached? %>
-      <%#= image_tag @topic.portrait.variant(resize_to_limit: [100,100]) if @topic.portrait.attached? %>
-      <%# 詳細画面でimage_tagを使って画像を表示
-          表示する画像サイズをvariantメソッドを使ってリサイズ可能にして、
-          (resize_to_limit: [100,100])で縦横比を維持したままサイズを指定。今回は縦横100pxの画像表示%>
-    </p>
-    <div>
-      <p>企業説明：<%= simple_format(@company.description) %></p>
-    </div>
-
-    <div>
-      <p>登録日時： <%= @company.created_at.strftime('%Y/%m/%d') %></p>
-      <p>総合評価： <%= @company.company_reviews_average %></p>
+  <div class="col-md-12">
+    <div class="fs-5 lh-lg">
+      企業説明：
+      <p class="text-break"><%= simple_format(@company.description) %></p>
     </div>
   </div>
-</div>
+
+  <% if @company.company_image.attached? %>
+  <div>
+    <div class="col d-flex flex-wrap justify-content-center align-items-center border border-1 bg-light">
+      <%= link_to url_for(@company.company_image) do %>
+        <%= image_tag  @company.company_image.variant(resize_to_limit: [300,400]), class:"img-fluid shadow-sm" %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="row">
+    <div class="text-end my-2">
+      登録日時： <%= @company.created_at.strftime('%Y/%m/%d') %>
+    </div>
+  </div>
 
 <div class="d-flex justify-content-center align-items-center gap-2"> <!--gapでボタン同士の距離を離す-->
   <%= link_to "削除", admin_company_path(@company), method: :delete, data: { confirm: "削除しても宜しいですか？"}, class:"btn btn-custom" %>
   <%= link_to "戻る", admin_companies_path, class: 'btn btn-secondary' %>
 </div>
+<br>
+<br>

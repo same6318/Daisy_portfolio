@@ -53,14 +53,13 @@ RSpec.describe Review, type: :model do
       context 'falseの場合' do
         it '有効' do
           review.enrollment_status = false
-          binding.irb
           expect(review.valid?).to be_truthy
         end
       end
       context 'nilの場合' do
         it '有効でfalseになる' do
-          review.enrollment_status = ""
-          expect(review.valid?).to be_truthy
+          review.enrollment_status = nil
+          expect(review.valid?).to be_falsey
         end
       end
     end

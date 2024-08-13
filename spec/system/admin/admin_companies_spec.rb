@@ -14,7 +14,7 @@ RSpec.describe "Admin::Companies", type: :system do
   describe "一覧表示機能" do
     let!(:company5) { FactoryBot.create(:company5) }
     let!(:company6) { FactoryBot.create(:company6) }
-    let!(:company7) { FactoryBot.create(:company7) }
+    let!(:company8) { FactoryBot.create(:company8) }
 
     context "一覧画面に遷移した場合" do
       it "登録済みの企業一覧が表示される" do
@@ -26,7 +26,7 @@ RSpec.describe "Admin::Companies", type: :system do
     end
 
     context "新たに企業を作成した場合" do
-      let!(:company7) { FactoryBot.create(:company7, name:"株式会社新規作成") }
+      let!(:company8) { FactoryBot.create(:company8, name:"株式会社新規作成") }
       before do
         visit admin_companies_path
       end
@@ -45,7 +45,7 @@ RSpec.describe "Admin::Companies", type: :system do
   describe "ソート機能" do
     let!(:company5) { FactoryBot.create(:company5, created_at: "2023/07/01") }
     let!(:company6) { FactoryBot.create(:company6, created_at: "2023/08/01") }
-    let!(:company7) { FactoryBot.create(:company7, created_at: "2023/09/01") }
+    let!(:company8) { FactoryBot.create(:company8, created_at: "2023/09/01") }
     before do
       visit admin_companies_path
     end
@@ -77,7 +77,7 @@ RSpec.describe "Admin::Companies", type: :system do
   describe "検索機能" do
     let!(:company5) { FactoryBot.create(:company5, name: "検索会社") }
     let!(:company6) { FactoryBot.create(:company6, address: "京都府京都市中京区烏丸通御池上る二条殿町542") }
-    let!(:company7) { FactoryBot.create(:company7) }
+    let!(:company8) { FactoryBot.create(:company8) }
     before do
       visit admin_companies_path
     end

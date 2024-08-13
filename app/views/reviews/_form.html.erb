@@ -29,9 +29,11 @@
                 <div id="work_life_balance_raty"></div>
                 <script>
                     var elem = document.querySelector('#work_life_balance_raty');
+                    var score = <%= form.object.work_life_balance || 0 %>; //form.objectに値があるとき、または選択されてない＝0の時、scoreに保存する
                     var opt = {
                       starOn: "<%= asset_path('star-on.png') %>",
                       starOff: "<%= asset_path('star-off.png') %>",
+                      score: score,
                       scoreName: 'review[work_life_balance]',
                       click: function(score) {
                       // スコアがクリックされたときにhidden_fieldを更新
@@ -49,9 +51,11 @@
                 <div id="workplace_atmosphere_raty"></div>
                 <script>
                   var elem = document.querySelector('#workplace_atmosphere_raty');
+                  var score = <%= form.object.workplace_atmosphere || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[workplace_atmosphere]',
                   };
                   raty(elem, opt);
@@ -65,9 +69,11 @@
                 <div id="flex_system_raty"></div>
                 <script>
                   var elem = document.querySelector('#flex_system_raty');
+                  var score = <%= form.object.flex_system || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[flex_system]',
                   };
                   raty(elem, opt);
@@ -81,9 +87,11 @@
                 <div id="remote_work_raty"></div>
                 <script>
                   var elem = document.querySelector('#remote_work_raty');
+                  var score = <%= form.object.remote_work || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[remote_work]',
                   };
                   raty(elem, opt);
@@ -97,9 +105,11 @@
                 <div id="harassment_prevention_raty"></div>
                 <script>
                   var elem = document.querySelector('#harassment_prevention_raty');
+                  var score = <%= form.object.harassment_prevention || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[harassment_prevention]',
                   };
                   raty(elem, opt);
@@ -113,9 +123,11 @@
                 <div id="parental_care_leave_raty"></div>
                 <script>
                   var elem = document.querySelector('#parental_care_leave_raty');
+                  var score = <%= form.object.parental_care_leave || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[parental_care_leave]',
                   };
                   raty(elem, opt);
@@ -129,9 +141,11 @@
                 <div id="childcare_support_raty"></div>
                 <script>
                   var elem = document.querySelector('#childcare_support_raty');
+                  var score = <%= form.object.childcare_support || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[childcare_support]',
                   };
                   raty(elem, opt);
@@ -145,9 +159,11 @@
                 <div id="welfare_facilities_raty"></div>
                 <script>
                   var elem = document.querySelector('#welfare_facilities_raty');
+                  var score = <%= form.object.welfare_facilities || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[welfare_facilities]',
                   };
                   raty(elem, opt);
@@ -161,9 +177,11 @@
                 <div id="mental_health_care_raty"></div>
                 <script>
                   var elem = document.querySelector('#mental_health_care_raty');
+                  var score = <%= form.object.mental_health_care || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[mental_health_care]',
                   };
                   raty(elem, opt);
@@ -177,9 +195,11 @@
                 <div id="evaluation_system_raty"></div>
                 <script>
                   var elem = document.querySelector('#evaluation_system_raty');
+                  var score = <%= form.object.evaluation_system || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[evaluation_system]',
                   };
                   raty(elem, opt);
@@ -193,9 +213,11 @@
                 <div id="promotion_salary_raty"></div>
                 <script>
                   var elem = document.querySelector('#promotion_salary_raty');
+                  var score = <%= form.object.promotion_salary || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[promotion_salary]',
                   };
                   raty(elem, opt);
@@ -209,9 +231,11 @@
                 <div id="overtime_holiday_work_raty"></div>
                 <script>
                   var elem = document.querySelector('#overtime_holiday_work_raty');
+                  var score = <%= form.object.overtime_holiday_work || 0 %>;
                   var opt = {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
+                    score: score,
                     scoreName: 'review[overtime_holiday_work]',
                   };
                   raty(elem, opt);
@@ -220,18 +244,20 @@
             </div>
               <div class="col-md-6">
                 <div class="reviews-form-group row" id="allowances_subsidies_field">
-                    <%= form.label :allowances_subsidies,'▶︎ 手当・補助等',class: "form-label" %>
-                    <%= form.hidden_field :allowances_subsidies%>
-                    <div id="allowances_subsidies_raty"></div>
-                    <script>
-                      var elem = document.querySelector('#allowances_subsidies_raty');
-                      var opt = {
-                        starOn: "<%= asset_path('star-on.png') %>",
-                        starOff: "<%= asset_path('star-off.png') %>",
-                        scoreName: 'review[allowances_subsidies]',
-                      };
-                      raty(elem, opt);
-                    </script>
+                  <%= form.label :allowances_subsidies,'▶︎ 手当・補助等',class: "form-label" %>
+                  <%= form.hidden_field :allowances_subsidies%>
+                  <div id="allowances_subsidies_raty"></div>
+                  <script>
+                    var elem = document.querySelector('#allowances_subsidies_raty');
+                    var score = <%= form.object.allowances_subsidies || 0 %>;
+                    var opt = {
+                      starOn: "<%= asset_path('star-on.png') %>",
+                      starOff: "<%= asset_path('star-off.png') %>",
+                      score: score,
+                      scoreName: 'review[allowances_subsidies]',
+                    };
+                    raty(elem, opt);
+                  </script>
                   </div>
               </div>
               <div class="col-md-6">
@@ -241,9 +267,11 @@
                   <div id="training_education_support_raty"></div>
                   <script>
                     var elem = document.querySelector('#training_education_support_raty');
+                    var score = <%= form.object.training_education_support || 0 %>;
                     var opt = {
                       starOn: "<%= asset_path('star-on.png') %>",
                       starOff: "<%= asset_path('star-off.png') %>",
+                      score: score,
                       scoreName: 'review[training_education_support]',
                     };
                     raty(elem, opt);
@@ -257,9 +285,11 @@
                   <div id="career_support_raty"></div>
                   <script>
                     var elem = document.querySelector('#career_support_raty');
+                    var score = <%= form.object.career_support || 0 %>;
                     var opt = {
                       starOn: "<%= asset_path('star-on.png') %>",
                       starOff: "<%= asset_path('star-off.png') %>",
+                      score: score,
                       scoreName: 'review[career_support]',
                     };
                     raty(elem, opt);
@@ -273,9 +303,11 @@
                   <div id="work_engagement_raty"></div>
                   <script>
                     var elem = document.querySelector('#work_engagement_raty');
+                    var score = <%= form.object.work_engagement || 0 %>;
                     var opt = {
                       starOn: "<%= asset_path('star-on.png') %>",
                       starOff: "<%= asset_path('star-off.png') %>",
+                      score: score,
                       scoreName: 'review[work_engagement]',
                     };
                     raty(elem, opt);

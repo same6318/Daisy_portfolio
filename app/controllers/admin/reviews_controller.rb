@@ -6,7 +6,7 @@ class Admin::ReviewsController < ApplicationController
       search_word = params[:q][:content_cont]
       hiragana_search_word = Review.to_hiragana(search_word)
       katakana_search_word = Review.to_katakana(search_word)
-      @q = Review.joins(:company).ransack(m: "and", content_cont_any: [search_word, hiragana_search_word, katakana_search_word], company_name_cont: params[:q][:company_name_cont])
+      @q = Review.joins(:company).ransack(m: "and", content_cont_any: [search_word, hiragana_search_word, katakana_search_word], company_name_cont: params[:q][:company_name_cont], user_name_cont: params[:q][:user_name_cont])
     else
       @q = Review.joins(:company).ransack(params[:q])
     end

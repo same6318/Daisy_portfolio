@@ -14,7 +14,7 @@
           <div class="row justify-content-center">
             <div class="col-6">
               <%= f.label :name_or_screen_name_cont, "名前 or ハンドルネーム", class:"d-block" %>
-              <%= f.text_field :name_or_screen_name_cont, class:"form-control mx-auto" %>
+              <%= f.text_field :name_or_screen_name_cont, value: params.dig(:q, :name_or_screen_name_cont), class:"form-control mx-auto" %>
             </div>
             <div class="col-6">
               <%= f.label :email_cont, "メールアドレス", class:"d-block" %>

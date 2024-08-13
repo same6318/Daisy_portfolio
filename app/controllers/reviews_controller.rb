@@ -8,8 +8,7 @@ class ReviewsController < ApplicationController
     @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
     @q = @company.reviews.ransack(params[:q])
     @company_reviews = @q.result.order(created_at: :desc).page(params[:page]).per(10)
-    #binding.irb
-    
+    #binding.irb 
   end
 
 
@@ -17,6 +16,7 @@ class ReviewsController < ApplicationController
     @user = current_user
     @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
     @review = @company.reviews.build
+    @review_form_attr = Review.form_attr
   end
 
   def create
@@ -38,6 +38,7 @@ class ReviewsController < ApplicationController
 
   def edit
     @company = @review.company
+    @review_form_attr = Review.form_attr
   end
 
   def update

@@ -22,7 +22,8 @@ company = Company.create!(
   capital: 1000000, # 資本金
   employee: 50, # 従業員数
   sales: 50000000, # 売上
-  description: 'これはデイジー株式会社の説明です。',
+  description: "当社は、小型船舶の製造に特化し、個人オーナー向けに最新技術を駆使した船を提供しています。\n
+  長年の経験と技術力を活かし、安心・安全な船作りを通じてお客様の満足度を高めることを目指しています。",
   address: '東京都渋谷区1-1-1',
   industry: 1,
   company_url: 'https://www.daisy.co.jp',
@@ -34,7 +35,8 @@ company2 = Company.create!(
   capital: 2000000, # 資本金
   employee: 100, # 従業員数
   sales: 100000000, # 売上
-  description: 'これは株式会社サンプルテクノロジーの説明です。',
+  description: "当社は、地熱発電向けの次世代バッテリーを開発し、最新技術の研究に取り組んでいます。\n
+                  持続可能なエネルギー供給を目指し、革新的なソリューションで地球に優しい未来を創造します。",
   address: '大阪府大阪市1-2-3',
   industry: 2,
   company_url: 'https://www.sampletech.co.jp',
@@ -46,7 +48,8 @@ company3 = Company.create!(
   capital: 3000000, # 資本金
   employee: 200, # 従業員数
   sales: 200000000, # 売上
-  description: 'これはSampleTESTコーポレーションの説明です。',
+  description: "当社は、IOT技術の普及を目指し、日々新しいソリューションを提供しています。\n
+  あらゆる分野においてIOT技術を活用し、効率的で革新的なサービスを開発し、社会の進歩に貢献します。",
   address: '北海道札幌市1-3-5',
   industry: 3,
   company_url: 'https://www.sampletest.co.jp',

@@ -24,3 +24,5 @@ rails s
 
 ## 画面遷移図
 ![alt text](imag.png)
+
+追加

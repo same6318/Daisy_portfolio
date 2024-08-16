@@ -1,38 +1,24 @@
 
-
-  <!--<% if @grouped_reviews.present? %>
-    <% @grouped_reviews.each do |company, reviews| %>
-      <div class="review">
-        <div>会社名：<%= company.name %></div>
-        <div>レビュー件数：<%= reviews.size %></div>
-      <div>レビュー平均評価：<%= (reviews.map(&:review_average).sum / reviews.size.to_f).round(1) %></div>
-      </div>
-    <% end %>
-  <% end %>-->
-
   <div class="top-head-container">
     <section class="hero-section">
     </section>
   </div>
-      <div class="public-content">
-        <h2>【 新着レビュー 】</h2>
-        <% if @grouped_reviews.present? %>
-            <div class="top-reviews-container">
-              <% @grouped_reviews.each do |company, reviews| %>
-                <div class="review-card">
-                  <div class="top-review">
-                    <div class="company-name">会社名：<%= link_to "#{company.name}", new_user_session_path, data: {confirm: "コンテンツを閲覧する場合は、ログインか新規登録を行ってください。\nこのままログイン画面にジャンプします。"} %></div>
-                    <div class="review-count">レビュー件数：<%= "#{reviews.size} 件" %></div>
-                    <div class="average-rating">レビュー総合評価：<%= "#{(reviews.map(&:review_average).sum / reviews.size.to_f).round(1)} 点" %></div>
-                  </div>
+    <div class="public-content">
+      <h2>【 新着レビュー 】</h2>
+      <% if @grouped_reviews.present? %>
+          <div class="top-reviews-container">
+            <% @grouped_reviews.each do |company, reviews| %>
+              <div class="review-card">
+                <div class="top-review">
+                  <div class="company-name">会社名：<%= link_to "#{company.name}", new_user_session_path, data: {confirm: "コンテンツを閲覧する場合は、ログインか新規登録を行ってください。\nこのままログイン画面にジャンプします。"} %></div>
+                  <div class="review-count">レビュー件数：<%= "#{reviews.size} 件" %></div>
+                  <div class="average-rating">レビュー総合評価：<%= "#{(reviews.map(&:review_average).sum / reviews.size.to_f).round(1)} 点" %></div>
                 </div>
-              <% end %>
-            </div>
-        <% end %>
-      </div>
-    
-
-  
+              </div>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
 
     <h2>【 新着トピックス 】</h2>
     <div class="container">
@@ -75,16 +61,6 @@
 <br>
 <br>
 
- <!--   <figure class="text-center">
-      <div class="top-content">
-        <blockquote class="blockquote">
-          <% unless user_signed_in? %>
-            <p>コンテンツを見るには、<%= link_to 'ログイン', new_user_session_path %> または <%= link_to '新規登録', new_user_registration_path %> してください。</p>
-          <% end %>
-      </blockquote>
-      </div>
-    </figure>
-  </div>-->
 
 
 

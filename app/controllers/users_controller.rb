@@ -34,7 +34,6 @@ class UsersController < ApplicationController
   private
 
   def set_and_authorize_user
-    # @user = User.find(params[:id])
     @user = User.find(params[:id])
     unless @user == current_user
       flash[:alert] = 'アクセス権限がありません'

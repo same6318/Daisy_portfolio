@@ -59,7 +59,6 @@
             <%= link_to "企業情報を登録", new_company_path, class: "btn btn-primary" %>
               <!--企業のロールを持っている、且つ企業を登録していない場合のみ、ボタン表示-->
           <% else %>
-        <%# unless current_user.role = 'company'%>
           <p>レビューがまだありません。</p>
           <%= link_to 'レビューを投稿する', companies_path, class: 'btn btn-primary' %>
         </div>

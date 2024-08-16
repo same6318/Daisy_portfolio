@@ -66,7 +66,7 @@
                 <% if current_user.age.present? && current_user.gender.present? %>
                   <td class="text-center"><%= link_to "投稿", new_company_review_path(company), class:"btn btn-custom" %></td>
                 <% else %>
-                  <td class="text-center"><%= link_to "投稿", companies_path, class:"btn btn-custom", data: { confirm: "レビューを投稿する場合は、年代と性別を登録してください"} %></td>
+                  <td class="text-center"><%= link_to "投稿", edit_user_path(current_user), class:"btn btn-custom", data: { confirm: "レビューを投稿する場合は、年代と性別を登録してください\n「OK」ボタンを押すと、アカウント編集ページに遷移します"} %></td>
                 <% end %>
               <% end %>
               <td class="fw-bold"><%= link_to "#{company.name}", company_path(company), class:"link-dark text-underline" %></td>

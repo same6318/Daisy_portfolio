@@ -1,14 +1,12 @@
 class ReviewsController < ApplicationController
-  #before_action :business_user?, only: [:new, :create, :edit, :update, :destroy]
   before_action :authenticate_user! #ログインしてなかったらログイン画面に自動的に遷移
   before_action :set_review, only: [:show]
   before_action :review_edit, only: [:edit, :update, :destroy]
 
   def index
-    @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
+    @company = Company.find_by(id: params[:company_id])
     @q = @company.reviews.ransack(params[:q])
     @company_reviews = @q.result.order(created_at: :desc).page(params[:page]).per(10)
-    #binding.irb 
   end
 
 
@@ -20,13 +18,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @company = Company.find_by(id: params[:company_id]) #企業一覧ページから選択した企業IDを取得したい
+    @company = Company.find_by(id: params[:company_id])
     @review = @company.reviews.build(review_params)
+    @review_form_attr = Review.form_attr
     if @review.save
       flash[:notice] = t('.created')
       redirect_to company_review_path(@company, @review)
     else
-      #flash[:alert] = "レビューの作成に失敗しました"
+      # flash[:alert] = "レビューの作成に失敗しました"
       render :new, status: :unprocessable_entity #エラーが起こった時のステータスコードが返る
     end
   end
@@ -42,7 +41,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @company = Company.find_by(id: @review.company) #企業一覧ページから選択した企業IDを取得したい
+    @company = Company.find_by(id: @review.company)
+    @review_form_attr = Review.form_attr
     if @review.update(review_params)
       flash[:notice] = t('.updated')
       redirect_to company_review_path(@company, @review)

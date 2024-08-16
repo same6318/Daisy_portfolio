@@ -7,7 +7,7 @@
 ## アプリケーションの実行手順（クローンから起動までの手順）
 
 ```sh
-git clone gitのURL記入
+git clone git git@github.com:same6318/Daisy_app.git
 cd Daisy_app
 bundle install
 yarn install
@@ -22,5 +22,5 @@ rails s
 ## ワイヤーフレーム（画面遷移図）
 [ワイヤーフレーム](https://www.figma.com/design/R4U9J2Q7leGJqyQG1LldKL/Daisy%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?t=yPcQ32mLpcxhIfef-0)
 
-## 画面遷移図
+## ER図
 ![alt text](imag.png)

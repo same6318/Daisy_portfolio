@@ -29,8 +29,6 @@ class TopicsController < ApplicationController
       flash[:notice] = t('.created')
       redirect_to topic_path(@topic)
     else
-      #flash[:alert] = "トピックの作成に失敗しました"
-      # binding.irb
       render :new
     end
   end
@@ -71,7 +69,7 @@ class TopicsController < ApplicationController
 
   private
 
-  def topic_params #:topic_imageを追加、モデルはhas_many_attached :topic_image
+  def topic_params
     params.require(:topic).permit(:title, :content, :genre, :author_name, topic_images: []).merge(user_id: current_user.id)
   end
 
